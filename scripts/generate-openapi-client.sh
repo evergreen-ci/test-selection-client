@@ -13,7 +13,7 @@ tar xvzf apache-maven-3.9.9-bin.tar.gz
 curl -O https://raw.githubusercontent.com/OpenAPITools/openapi-generator/master/bin/utils/openapi-generator-cli.sh
 chmod +x ./openapi-generator-cli.sh
 
-# TODO: fill in actual test selection spec URL once the test selection service exists.
+# TODO (DEVPROD-14571): fill in actual test selection spec URL once the test selection service exists.
 # Download latest OpenAPI spec from test selection service.
 # curl -O <TEST_SELECTION_SERVICES_URL>
 
