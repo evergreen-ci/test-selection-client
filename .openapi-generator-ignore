@@ -25,8 +25,12 @@
 # Do not overwrite .gitignore when auto-generating OpenAPI client since it has custom rules in it.
 .gitignore
 
+# Do not overwrite the custom README.
+README.md
+
 # Do not create script to git push to repo since it's not used.
 git_push.sh
 
 # Do not generate .travis.yml since Travis isn't used.
 .travis.yml
+
