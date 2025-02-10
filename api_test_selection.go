@@ -23,7 +23,7 @@ import (
 // TestSelectionAPIService TestSelectionAPI service
 type TestSelectionAPIService service
 
-type ApiExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNameTestNamesGetRequest struct {
+type ApiExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest struct {
 	ctx context.Context
 	ApiService *TestSelectionAPIService
 	projectId string
@@ -31,21 +31,26 @@ type ApiExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVar
 	buildVariantName string
 	taskId string
 	taskName string
-	testNames string
+	requestBody *[]string
 	strategies *StrategyEnum
 }
 
-func (r ApiExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNameTestNamesGetRequest) Strategies(strategies StrategyEnum) ApiExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNameTestNamesGetRequest {
+func (r ApiExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest) RequestBody(requestBody []string) ApiExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest {
+	r.requestBody = &requestBody
+	return r
+}
+
+func (r ApiExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest) Strategies(strategies StrategyEnum) ApiExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest {
 	r.strategies = &strategies
 	return r
 }
 
-func (r ApiExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNameTestNamesGetRequest) Execute() ([]Explanation, *http.Response, error) {
-	return r.ApiService.ExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNameTestNamesGetExecute(r)
+func (r ApiExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest) Execute() ([]Explanation, *http.Response, error) {
+	return r.ApiService.ExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostExecute(r)
 }
 
 /*
-ExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNameTestNamesGet Explain Select Tests
+ExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost Explain Select Tests
 
 Get the results of the default strategy as well as the explanation.
 :param project_id: The project id.
@@ -64,11 +69,10 @@ Get the results of the default strategy as well as the explanation.
  @param buildVariantName
  @param taskId
  @param taskName
- @param testNames
- @return ApiExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNameTestNamesGetRequest
+ @return ApiExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest
 */
-func (a *TestSelectionAPIService) ExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNameTestNamesGet(ctx context.Context, projectId string, requester string, buildVariantName string, taskId string, taskName string, testNames string) ApiExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNameTestNamesGetRequest {
-	return ApiExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNameTestNamesGetRequest{
+func (a *TestSelectionAPIService) ExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost(ctx context.Context, projectId string, requester string, buildVariantName string, taskId string, taskName string) ApiExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest {
+	return ApiExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest{
 		ApiService: a,
 		ctx: ctx,
 		projectId: projectId,
@@ -76,42 +80,43 @@ func (a *TestSelectionAPIService) ExplainSelectTestsApiTestSelectionExplainTests
 		buildVariantName: buildVariantName,
 		taskId: taskId,
 		taskName: taskName,
-		testNames: testNames,
 	}
 }
 
 // Execute executes the request
 //  @return []Explanation
-func (a *TestSelectionAPIService) ExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNameTestNamesGetExecute(r ApiExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNameTestNamesGetRequest) ([]Explanation, *http.Response, error) {
+func (a *TestSelectionAPIService) ExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostExecute(r ApiExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest) ([]Explanation, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 		localVarReturnValue  []Explanation
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TestSelectionAPIService.ExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNameTestNamesGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TestSelectionAPIService.ExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/test_selection/explain_tests/{project_id}/{requester}/{build_variant_name}/{task_id}/{task_name}/{test_names}/"
+	localVarPath := localBasePath + "/api/test_selection/explain_tests/{project_id}/{requester}/{build_variant_name}/{task_id}/{task_name}/"
 	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"requester"+"}", url.PathEscape(parameterValueToString(r.requester, "requester")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"build_variant_name"+"}", url.PathEscape(parameterValueToString(r.buildVariantName, "buildVariantName")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"task_id"+"}", url.PathEscape(parameterValueToString(r.taskId, "taskId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"task_name"+"}", url.PathEscape(parameterValueToString(r.taskName, "taskName")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"test_names"+"}", url.PathEscape(parameterValueToString(r.testNames, "testNames")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.requestBody == nil {
+		return localVarReturnValue, nil, reportError("requestBody is required and must be specified")
+	}
 
 	if r.strategies != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "strategies", r.strategies, "form", "")
 	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -127,6 +132,8 @@ func (a *TestSelectionAPIService) ExplainSelectTestsApiTestSelectionExplainTests
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	// body params
+	localVarPostBody = r.requestBody
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -174,7 +181,7 @@ func (a *TestSelectionAPIService) ExplainSelectTestsApiTestSelectionExplainTests
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNameTestNamesGetRequest struct {
+type ApiSelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest struct {
 	ctx context.Context
 	ApiService *TestSelectionAPIService
 	projectId string
@@ -182,21 +189,26 @@ type ApiSelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantName
 	buildVariantName string
 	taskId string
 	taskName string
-	testNames string
+	requestBody *[]string
 	strategies *StrategyEnum
 }
 
-func (r ApiSelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNameTestNamesGetRequest) Strategies(strategies StrategyEnum) ApiSelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNameTestNamesGetRequest {
+func (r ApiSelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest) RequestBody(requestBody []string) ApiSelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest {
+	r.requestBody = &requestBody
+	return r
+}
+
+func (r ApiSelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest) Strategies(strategies StrategyEnum) ApiSelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest {
 	r.strategies = &strategies
 	return r
 }
 
-func (r ApiSelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNameTestNamesGetRequest) Execute() ([]string, *http.Response, error) {
-	return r.ApiService.SelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNameTestNamesGetExecute(r)
+func (r ApiSelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest) Execute() ([]string, *http.Response, error) {
+	return r.ApiService.SelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostExecute(r)
 }
 
 /*
-SelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNameTestNamesGet Select Tests
+SelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost Select Tests
 
 Get the results of the default strategy.
 :param project_id: The project id.
@@ -215,11 +227,10 @@ Get the results of the default strategy.
  @param buildVariantName
  @param taskId
  @param taskName
- @param testNames
- @return ApiSelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNameTestNamesGetRequest
+ @return ApiSelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest
 */
-func (a *TestSelectionAPIService) SelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNameTestNamesGet(ctx context.Context, projectId string, requester string, buildVariantName string, taskId string, taskName string, testNames string) ApiSelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNameTestNamesGetRequest {
-	return ApiSelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNameTestNamesGetRequest{
+func (a *TestSelectionAPIService) SelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost(ctx context.Context, projectId string, requester string, buildVariantName string, taskId string, taskName string) ApiSelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest {
+	return ApiSelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest{
 		ApiService: a,
 		ctx: ctx,
 		projectId: projectId,
@@ -227,42 +238,43 @@ func (a *TestSelectionAPIService) SelectTestsApiTestSelectionSelectTestsProjectI
 		buildVariantName: buildVariantName,
 		taskId: taskId,
 		taskName: taskName,
-		testNames: testNames,
 	}
 }
 
 // Execute executes the request
 //  @return []string
-func (a *TestSelectionAPIService) SelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNameTestNamesGetExecute(r ApiSelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNameTestNamesGetRequest) ([]string, *http.Response, error) {
+func (a *TestSelectionAPIService) SelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostExecute(r ApiSelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest) ([]string, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 		localVarReturnValue  []string
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TestSelectionAPIService.SelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNameTestNamesGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TestSelectionAPIService.SelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/test_selection/select_tests/{project_id}/{requester}/{build_variant_name}/{task_id}/{task_name}/{test_names}/"
+	localVarPath := localBasePath + "/api/test_selection/select_tests/{project_id}/{requester}/{build_variant_name}/{task_id}/{task_name}/"
 	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"requester"+"}", url.PathEscape(parameterValueToString(r.requester, "requester")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"build_variant_name"+"}", url.PathEscape(parameterValueToString(r.buildVariantName, "buildVariantName")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"task_id"+"}", url.PathEscape(parameterValueToString(r.taskId, "taskId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"task_name"+"}", url.PathEscape(parameterValueToString(r.taskName, "taskName")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"test_names"+"}", url.PathEscape(parameterValueToString(r.testNames, "testNames")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.requestBody == nil {
+		return localVarReturnValue, nil, reportError("requestBody is required and must be specified")
+	}
 
 	if r.strategies != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "strategies", r.strategies, "form", "")
 	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -278,6 +290,8 @@ func (a *TestSelectionAPIService) SelectTestsApiTestSelectionSelectTestsProjectI
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	// body params
+	localVarPostBody = r.requestBody
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

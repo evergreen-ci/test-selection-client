@@ -4,14 +4,14 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNameTestNamesGet**](TestSelectionAPI.md#ExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNameTestNamesGet) | **Get** /api/test_selection/explain_tests/{project_id}/{requester}/{build_variant_name}/{task_id}/{task_name}/{test_names}/ | Explain Select Tests
-[**SelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNameTestNamesGet**](TestSelectionAPI.md#SelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNameTestNamesGet) | **Get** /api/test_selection/select_tests/{project_id}/{requester}/{build_variant_name}/{task_id}/{task_name}/{test_names}/ | Select Tests
+[**ExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost**](TestSelectionAPI.md#ExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost) | **Post** /api/test_selection/explain_tests/{project_id}/{requester}/{build_variant_name}/{task_id}/{task_name}/ | Explain Select Tests
+[**SelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost**](TestSelectionAPI.md#SelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost) | **Post** /api/test_selection/select_tests/{project_id}/{requester}/{build_variant_name}/{task_id}/{task_name}/ | Select Tests
 
 
 
-## ExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNameTestNamesGet
+## ExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost
 
-> []Explanation ExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNameTestNamesGet(ctx, projectId, requester, buildVariantName, taskId, taskName, testNames).Strategies(strategies).Execute()
+> []Explanation ExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost(ctx, projectId, requester, buildVariantName, taskId, taskName).RequestBody(requestBody).Strategies(strategies).Execute()
 
 Explain Select Tests
 
@@ -35,18 +35,18 @@ func main() {
 	buildVariantName := "buildVariantName_example" // string | 
 	taskId := "taskId_example" // string | 
 	taskName := "taskName_example" // string | 
-	testNames := "testNames_example" // string | 
+	requestBody := []string{"Property_example"} // []string | 
 	strategies := openapiclient.StrategyEnum("Optimistic") // StrategyEnum |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.TestSelectionAPI.ExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNameTestNamesGet(context.Background(), projectId, requester, buildVariantName, taskId, taskName, testNames).Strategies(strategies).Execute()
+	resp, r, err := apiClient.TestSelectionAPI.ExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost(context.Background(), projectId, requester, buildVariantName, taskId, taskName).RequestBody(requestBody).Strategies(strategies).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `TestSelectionAPI.ExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNameTestNamesGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `TestSelectionAPI.ExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNameTestNamesGet`: []Explanation
-	fmt.Fprintf(os.Stdout, "Response from `TestSelectionAPI.ExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNameTestNamesGet`: %v\n", resp)
+	// response from `ExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost`: []Explanation
+	fmt.Fprintf(os.Stdout, "Response from `TestSelectionAPI.ExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost`: %v\n", resp)
 }
 ```
 
@@ -61,11 +61,10 @@ Name | Type | Description  | Notes
 **buildVariantName** | **string** |  | 
 **taskId** | **string** |  | 
 **taskName** | **string** |  | 
-**testNames** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNameTestNamesGetRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -75,7 +74,7 @@ Name | Type | Description  | Notes
 
 
 
-
+ **requestBody** | **[]string** |  | 
  **strategies** | [**StrategyEnum**](StrategyEnum.md) |  | 
 
 ### Return type
@@ -88,7 +87,7 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -96,9 +95,9 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## SelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNameTestNamesGet
+## SelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost
 
-> []string SelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNameTestNamesGet(ctx, projectId, requester, buildVariantName, taskId, taskName, testNames).Strategies(strategies).Execute()
+> []string SelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost(ctx, projectId, requester, buildVariantName, taskId, taskName).RequestBody(requestBody).Strategies(strategies).Execute()
 
 Select Tests
 
@@ -122,18 +121,18 @@ func main() {
 	buildVariantName := "buildVariantName_example" // string | 
 	taskId := "taskId_example" // string | 
 	taskName := "taskName_example" // string | 
-	testNames := "testNames_example" // string | 
+	requestBody := []string{"Property_example"} // []string | 
 	strategies := openapiclient.StrategyEnum("Optimistic") // StrategyEnum |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.TestSelectionAPI.SelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNameTestNamesGet(context.Background(), projectId, requester, buildVariantName, taskId, taskName, testNames).Strategies(strategies).Execute()
+	resp, r, err := apiClient.TestSelectionAPI.SelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost(context.Background(), projectId, requester, buildVariantName, taskId, taskName).RequestBody(requestBody).Strategies(strategies).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `TestSelectionAPI.SelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNameTestNamesGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `TestSelectionAPI.SelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `SelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNameTestNamesGet`: []string
-	fmt.Fprintf(os.Stdout, "Response from `TestSelectionAPI.SelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNameTestNamesGet`: %v\n", resp)
+	// response from `SelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost`: []string
+	fmt.Fprintf(os.Stdout, "Response from `TestSelectionAPI.SelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost`: %v\n", resp)
 }
 ```
 
@@ -148,11 +147,10 @@ Name | Type | Description  | Notes
 **buildVariantName** | **string** |  | 
 **taskId** | **string** |  | 
 **taskName** | **string** |  | 
-**testNames** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiSelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNameTestNamesGetRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiSelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -162,7 +160,7 @@ Name | Type | Description  | Notes
 
 
 
-
+ **requestBody** | **[]string** |  | 
  **strategies** | [**StrategyEnum**](StrategyEnum.md) |  | 
 
 ### Return type
@@ -175,7 +173,7 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

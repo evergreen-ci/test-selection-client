@@ -6,8 +6,8 @@ info:
 servers:
 - url: /
 paths:
-  /api/test_selection/select_tests/{project_id}/{requester}/{build_variant_name}/{task_id}/{task_name}/{test_names}/:
-    get:
+  /api/test_selection/select_tests/{project_id}/{requester}/{build_variant_name}/{task_id}/{task_name}/:
+    post:
       description: |-
         Get the results of the default strategy.
         :param project_id: The project id.
@@ -19,7 +19,7 @@ paths:
         :param strategies: The set of strategies to use
         :return: A mapping from {Build variant x task x test} to a
                  true/false value indicating if the test should run
-      operationId: select_tests_api_test_selection_select_tests__project_id___requester___build_variant_name___task_id___task_name___test_names___get
+      operationId: select_tests_api_test_selection_select_tests__project_id___requester___build_variant_name___task_id___task_name___post
       parameters:
       - explode: false
         in: path
@@ -61,14 +61,6 @@ paths:
           title: Task Name
           type: string
         style: simple
-      - explode: false
-        in: path
-        name: test_names
-        required: true
-        schema:
-          title: Test Names
-          type: string
-        style: simple
       - explode: true
         in: query
         name: strategies
@@ -76,6 +68,14 @@ paths:
         schema:
           $ref: '#/components/schemas/StrategyEnum'
         style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                type: string
+              type: array
+        required: true
       responses:
         "200":
           content:
@@ -95,8 +95,8 @@ paths:
       summary: Select Tests
       tags:
       - test_selection
-  /api/test_selection/explain_tests/{project_id}/{requester}/{build_variant_name}/{task_id}/{task_name}/{test_names}/:
-    get:
+  /api/test_selection/explain_tests/{project_id}/{requester}/{build_variant_name}/{task_id}/{task_name}/:
+    post:
       description: |-
         Get the results of the default strategy as well as the explanation.
         :param project_id: The project id.
@@ -108,7 +108,7 @@ paths:
         :param strategies: The set of strategies to use
         :return: A mapping from {Build variant x task x test} to a
                  true/false value indicating if the test should run
-      operationId: explain_select_tests_api_test_selection_explain_tests__project_id___requester___build_variant_name___task_id___task_name___test_names___get
+      operationId: explain_select_tests_api_test_selection_explain_tests__project_id___requester___build_variant_name___task_id___task_name___post
       parameters:
       - explode: false
         in: path
@@ -150,14 +150,6 @@ paths:
           title: Task Name
           type: string
         style: simple
-      - explode: false
-        in: path
-        name: test_names
-        required: true
-        schema:
-          title: Test Names
-          type: string
-        style: simple
       - explode: true
         in: query
         name: strategies
@@ -165,6 +157,14 @@ paths:
         schema:
           $ref: '#/components/schemas/StrategyEnum'
         style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                type: string
+              type: array
+        required: true
       responses:
         "200":
           content:
