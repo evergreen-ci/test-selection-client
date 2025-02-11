@@ -1,8 +1,9 @@
-README.md
 api/openapi.yaml
 api_test_selection.go
 client.go
 configuration.go
+docs/BodyExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost.md
+docs/BodySelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost.md
 docs/Explanation.md
 docs/HTTPValidationError.md
 docs/StrategyEnum.md
@@ -11,11 +12,12 @@ docs/ValidationError.md
 docs/ValidationErrorLocInner.md
 go.mod
 go.sum
+model_body_explain_select_tests_api_test_selection_explain_tests__project_id___requester___build_variant_name___task_id___task_name___post.go
+model_body_select_tests_api_test_selection_select_tests__project_id___requester___build_variant_name___task_id___task_name___post.go
 model_explanation.go
 model_http_validation_error.go
 model_strategy_enum.go
 model_validation_error.go
 model_validation_error_loc_inner.go
 response.go
-test/api_test_selection_test.go
 utils.go
