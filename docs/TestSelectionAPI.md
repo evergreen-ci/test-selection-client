@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## ExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost
 
-> []Explanation ExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost(ctx, projectId, requester, buildVariantName, taskId, taskName).RequestBody(requestBody).Strategies(strategies).Execute()
+> []Explanation ExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost(ctx, projectId, requester, buildVariantName, taskId, taskName).BodyExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost(bodyExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost).Execute()
 
 Explain Select Tests
 
@@ -35,12 +35,11 @@ func main() {
 	buildVariantName := "buildVariantName_example" // string | 
 	taskId := "taskId_example" // string | 
 	taskName := "taskName_example" // string | 
-	requestBody := []string{"Property_example"} // []string | 
-	strategies := openapiclient.StrategyEnum("Optimistic") // StrategyEnum |  (optional)
+	bodyExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost := *openapiclient.NewBodyExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost([]string{"TestNames_example"}) // BodyExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.TestSelectionAPI.ExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost(context.Background(), projectId, requester, buildVariantName, taskId, taskName).RequestBody(requestBody).Strategies(strategies).Execute()
+	resp, r, err := apiClient.TestSelectionAPI.ExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost(context.Background(), projectId, requester, buildVariantName, taskId, taskName).BodyExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost(bodyExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `TestSelectionAPI.ExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -74,8 +73,7 @@ Name | Type | Description  | Notes
 
 
 
- **requestBody** | **[]string** |  | 
- **strategies** | [**StrategyEnum**](StrategyEnum.md) |  | 
+ **bodyExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost** | [**BodyExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost**](BodyExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost.md) |  | 
 
 ### Return type
 
@@ -97,7 +95,7 @@ No authorization required
 
 ## SelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost
 
-> []string SelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost(ctx, projectId, requester, buildVariantName, taskId, taskName).RequestBody(requestBody).Strategies(strategies).Execute()
+> []string SelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost(ctx, projectId, requester, buildVariantName, taskId, taskName).BodySelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost(bodySelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost).Execute()
 
 Select Tests
 
@@ -121,12 +119,11 @@ func main() {
 	buildVariantName := "buildVariantName_example" // string | 
 	taskId := "taskId_example" // string | 
 	taskName := "taskName_example" // string | 
-	requestBody := []string{"Property_example"} // []string | 
-	strategies := openapiclient.StrategyEnum("Optimistic") // StrategyEnum |  (optional)
+	bodySelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost := *openapiclient.NewBodySelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost([]string{"TestNames_example"}) // BodySelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.TestSelectionAPI.SelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost(context.Background(), projectId, requester, buildVariantName, taskId, taskName).RequestBody(requestBody).Strategies(strategies).Execute()
+	resp, r, err := apiClient.TestSelectionAPI.SelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost(context.Background(), projectId, requester, buildVariantName, taskId, taskName).BodySelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost(bodySelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `TestSelectionAPI.SelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -160,8 +157,7 @@ Name | Type | Description  | Notes
 
 
 
- **requestBody** | **[]string** |  | 
- **strategies** | [**StrategyEnum**](StrategyEnum.md) |  | 
+ **bodySelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost** | [**BodySelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost**](BodySelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost.md) |  | 
 
 ### Return type
 

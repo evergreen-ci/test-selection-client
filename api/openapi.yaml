@@ -61,20 +61,11 @@ paths:
           title: Task Name
           type: string
         style: simple
-      - explode: true
-        in: query
-        name: strategies
-        required: false
-        schema:
-          $ref: '#/components/schemas/StrategyEnum'
-        style: form
       requestBody:
         content:
           application/json:
             schema:
-              items:
-                type: string
-              type: array
+              $ref: '#/components/schemas/Body_select_tests_api_test_selection_select_tests__project_id___requester___build_variant_name___task_id___task_name___post'
         required: true
       responses:
         "200":
@@ -150,20 +141,11 @@ paths:
           title: Task Name
           type: string
         style: simple
-      - explode: true
-        in: query
-        name: strategies
-        required: false
-        schema:
-          $ref: '#/components/schemas/StrategyEnum'
-        style: form
       requestBody:
         content:
           application/json:
             schema:
-              items:
-                type: string
-              type: array
+              $ref: '#/components/schemas/Body_explain_select_tests_api_test_selection_explain_tests__project_id___requester___build_variant_name___task_id___task_name___post'
         required: true
       responses:
         "200":
@@ -185,6 +167,34 @@ paths:
       - test_selection
 components:
   schemas:
+    ? Body_explain_select_tests_api_test_selection_explain_tests__project_id___requester___build_variant_name___task_id___task_name___post
+    : properties:
+        test_names:
+          items:
+            type: string
+          type: array
+        strategies:
+          items:
+            $ref: '#/components/schemas/StrategyEnum'
+          nullable: true
+          type: array
+      required:
+      - test_names
+      title: Body_explain_select_tests_api_test_selection_explain_tests__project_id___requester___build_variant_name___task_id___task_name___post
+    Body_select_tests_api_test_selection_select_tests__project_id___requester___build_variant_name___task_id___task_name___post:
+      properties:
+        test_names:
+          items:
+            type: string
+          type: array
+        strategies:
+          items:
+            $ref: '#/components/schemas/StrategyEnum'
+          nullable: true
+          type: array
+      required:
+      - test_names
+      title: Body_select_tests_api_test_selection_select_tests__project_id___requester___build_variant_name___task_id___task_name___post
     Explanation:
       description: Explanation of the results.
       example:

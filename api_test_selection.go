@@ -31,17 +31,11 @@ type ApiExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVar
 	buildVariantName string
 	taskId string
 	taskName string
-	requestBody *[]string
-	strategies *StrategyEnum
+	bodyExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost *BodyExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost
 }
 
-func (r ApiExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest) RequestBody(requestBody []string) ApiExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest {
-	r.requestBody = &requestBody
-	return r
-}
-
-func (r ApiExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest) Strategies(strategies StrategyEnum) ApiExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest {
-	r.strategies = &strategies
+func (r ApiExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest) BodyExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost(bodyExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost BodyExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost) ApiExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest {
+	r.bodyExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost = &bodyExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost
 	return r
 }
 
@@ -108,13 +102,10 @@ func (a *TestSelectionAPIService) ExplainSelectTestsApiTestSelectionExplainTests
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.requestBody == nil {
-		return localVarReturnValue, nil, reportError("requestBody is required and must be specified")
+	if r.bodyExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost == nil {
+		return localVarReturnValue, nil, reportError("bodyExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost is required and must be specified")
 	}
 
-	if r.strategies != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "strategies", r.strategies, "form", "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -133,7 +124,7 @@ func (a *TestSelectionAPIService) ExplainSelectTestsApiTestSelectionExplainTests
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.requestBody
+	localVarPostBody = r.bodyExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -189,17 +180,11 @@ type ApiSelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantName
 	buildVariantName string
 	taskId string
 	taskName string
-	requestBody *[]string
-	strategies *StrategyEnum
+	bodySelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost *BodySelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost
 }
 
-func (r ApiSelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest) RequestBody(requestBody []string) ApiSelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest {
-	r.requestBody = &requestBody
-	return r
-}
-
-func (r ApiSelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest) Strategies(strategies StrategyEnum) ApiSelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest {
-	r.strategies = &strategies
+func (r ApiSelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest) BodySelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost(bodySelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost BodySelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost) ApiSelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest {
+	r.bodySelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost = &bodySelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost
 	return r
 }
 
@@ -266,13 +251,10 @@ func (a *TestSelectionAPIService) SelectTestsApiTestSelectionSelectTestsProjectI
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.requestBody == nil {
-		return localVarReturnValue, nil, reportError("requestBody is required and must be specified")
+	if r.bodySelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost == nil {
+		return localVarReturnValue, nil, reportError("bodySelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost is required and must be specified")
 	}
 
-	if r.strategies != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "strategies", r.strategies, "form", "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -291,7 +273,7 @@ func (a *TestSelectionAPIService) SelectTestsApiTestSelectionSelectTestsProjectI
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.requestBody
+	localVarPostBody = r.bodySelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
