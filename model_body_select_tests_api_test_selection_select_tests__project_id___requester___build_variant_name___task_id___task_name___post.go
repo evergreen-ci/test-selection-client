@@ -69,9 +69,9 @@ func (o *BodySelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVarian
 	o.TestNames = v
 }
 
-// GetStrategies returns the Strategies field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetStrategies returns the Strategies field value if set, zero value otherwise.
 func (o *BodySelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost) GetStrategies() []StrategyEnum {
-	if o == nil {
+	if o == nil || IsNil(o.Strategies) {
 		var ret []StrategyEnum
 		return ret
 	}
@@ -80,7 +80,6 @@ func (o *BodySelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVarian
 
 // GetStrategiesOk returns a tuple with the Strategies field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BodySelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost) GetStrategiesOk() ([]StrategyEnum, bool) {
 	if o == nil || IsNil(o.Strategies) {
 		return nil, false
@@ -113,7 +112,7 @@ func (o BodySelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariant
 func (o BodySelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["test_names"] = o.TestNames
-	if o.Strategies != nil {
+	if !IsNil(o.Strategies) {
 		toSerialize["strategies"] = o.Strategies
 	}
 	return toSerialize, nil

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **TestNames** | **[]string** |  | 
-**Strategies** | Pointer to [**[]StrategyEnum**](StrategyEnum.md) |  | [optional] 
+**Strategies** | Pointer to [**[]StrategyEnum**](StrategyEnum.md) |  | [optional] [default to [Optimistic]]
 
 ## Methods
 
@@ -71,16 +71,6 @@ SetStrategies sets Strategies field to given value.
 
 HasStrategies returns a boolean if a field has been set.
 
-### SetStrategiesNil
-
-`func (o *BodySelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost) SetStrategiesNil(b bool)`
-
- SetStrategiesNil sets the value for Strategies to be an explicit nil
-
-### UnsetStrategies
-`func (o *BodySelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost) UnsetStrategies()`
-
-UnsetStrategies ensures that no value is present for Strategies, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

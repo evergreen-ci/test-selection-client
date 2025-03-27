@@ -165,6 +165,49 @@ paths:
       summary: Explain Select Tests
       tags:
       - test_selection
+  /api/test_selection/explain_patch/{patch_id}/:
+    post:
+      description: |-
+        Get the results of the default strategy as well as the explanation.
+        :param patch_id: The patch id to compare results to.
+        :param strategies: The set of strategies to use
+        :return: A mapping from {Build variant x task x test} to a
+                 true/false value indicating if the test should run
+      operationId: explain_patch_api_test_selection_explain_patch__patch_id___post
+      parameters:
+      - explode: false
+        in: path
+        name: patch_id
+        required: true
+        schema:
+          title: Patch Id
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              default:
+              - Optimistic
+              items:
+                $ref: '#/components/schemas/StrategyEnum'
+              type: array
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatchExplanation'
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Explain Patch
+      tags:
+      - test_selection
 components:
   schemas:
     ? Body_explain_select_tests_api_test_selection_explain_tests__project_id___requester___build_variant_name___task_id___task_name___post
@@ -174,9 +217,10 @@ components:
             type: string
           type: array
         strategies:
+          default:
+          - Optimistic
           items:
             $ref: '#/components/schemas/StrategyEnum'
-          nullable: true
           type: array
       required:
       - test_names
@@ -188,19 +232,55 @@ components:
             type: string
           type: array
         strategies:
+          default:
+          - Optimistic
           items:
             $ref: '#/components/schemas/StrategyEnum'
-          nullable: true
           type: array
       required:
       - test_names
       title: Body_select_tests_api_test_selection_select_tests__project_id___requester___build_variant_name___task_id___task_name___post
+    BuildExplanation:
+      description: Explanation of the results of a single build variant
+      example:
+        build_variant: build_variant
+        tasks:
+          key:
+            task_name: task_name
+            tests:
+              key:
+                explanation: explanation
+                test_name: test_name
+                selected: true
+                expected_outcome: success
+      properties:
+        build_variant:
+          description: Build variant name (not display name)
+          title: Build Variant
+          type: string
+        tasks:
+          additionalProperties:
+            $ref: '#/components/schemas/TaskExplanation'
+          default: {}
+          title: Tasks
+      required:
+      - build_variant
+      title: BuildExplanation
+    ExpectedOutcome:
+      description: The expected outcome of a test for the selected strategy
+      enum:
+      - success
+      - failure
+      - unknown
+      title: ExpectedOutcome
+      type: string
     Explanation:
-      description: Explanation of the results.
+      description: Explanation of the results of a single test.
       example:
         explanation: explanation
         test_name: test_name
         selected: true
+        expected_outcome: success
       properties:
         test_name:
           title: Test Name
@@ -208,10 +288,13 @@ components:
         selected:
           title: Selected
           type: boolean
+        expected_outcome:
+          $ref: '#/components/schemas/ExpectedOutcome'
         explanation:
           title: Explanation
           type: string
       required:
+      - expected_outcome
       - explanation
       - selected
       - test_name
@@ -235,11 +318,65 @@ components:
             $ref: '#/components/schemas/ValidationError'
           type: array
       title: HTTPValidationError
+    PatchExplanation:
+      description: |-
+        Explanation of the results of a whole patch
+
+        The builds are mapped by build variant name (not display name)
+      example:
+        patch_id: patch_id
+        builds:
+          key:
+            build_variant: build_variant
+            tasks:
+              key:
+                task_name: task_name
+                tests:
+                  key:
+                    explanation: explanation
+                    test_name: test_name
+                    selected: true
+                    expected_outcome: success
+      properties:
+        patch_id:
+          title: Patch Id
+          type: string
+        builds:
+          additionalProperties:
+            $ref: '#/components/schemas/BuildExplanation'
+          default: {}
+          title: Builds
+      required:
+      - patch_id
+      title: PatchExplanation
     StrategyEnum:
       enum:
       - Optimistic
+      - StartsWithT
       title: StrategyEnum
       type: string
+    TaskExplanation:
+      description: Explanation of the results of a single task.
+      example:
+        task_name: task_name
+        tests:
+          key:
+            explanation: explanation
+            test_name: test_name
+            selected: true
+            expected_outcome: success
+      properties:
+        task_name:
+          title: Task Name
+          type: string
+        tests:
+          additionalProperties:
+            $ref: '#/components/schemas/Explanation'
+          default: {}
+          title: Tests
+      required:
+      - task_name
+      title: TaskExplanation
     ValidationError:
       example:
         msg: msg
