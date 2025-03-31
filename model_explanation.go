@@ -19,10 +19,11 @@ import (
 // checks if the Explanation type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Explanation{}
 
-// Explanation Explanation of the results.
+// Explanation Explanation of the results of a single test.
 type Explanation struct {
 	TestName string `json:"test_name"`
 	Selected bool `json:"selected"`
+	ExpectedOutcome ExpectedOutcome `json:"expected_outcome"`
 	Explanation string `json:"explanation"`
 }
 
@@ -32,10 +33,11 @@ type _Explanation Explanation
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewExplanation(testName string, selected bool, explanation string) *Explanation {
+func NewExplanation(testName string, selected bool, expectedOutcome ExpectedOutcome, explanation string) *Explanation {
 	this := Explanation{}
 	this.TestName = testName
 	this.Selected = selected
+	this.ExpectedOutcome = expectedOutcome
 	this.Explanation = explanation
 	return &this
 }
@@ -96,6 +98,30 @@ func (o *Explanation) SetSelected(v bool) {
 	o.Selected = v
 }
 
+// GetExpectedOutcome returns the ExpectedOutcome field value
+func (o *Explanation) GetExpectedOutcome() ExpectedOutcome {
+	if o == nil {
+		var ret ExpectedOutcome
+		return ret
+	}
+
+	return o.ExpectedOutcome
+}
+
+// GetExpectedOutcomeOk returns a tuple with the ExpectedOutcome field value
+// and a boolean to check if the value has been set.
+func (o *Explanation) GetExpectedOutcomeOk() (*ExpectedOutcome, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ExpectedOutcome, true
+}
+
+// SetExpectedOutcome sets field value
+func (o *Explanation) SetExpectedOutcome(v ExpectedOutcome) {
+	o.ExpectedOutcome = v
+}
+
 // GetExplanation returns the Explanation field value
 func (o *Explanation) GetExplanation() string {
 	if o == nil {
@@ -132,6 +158,7 @@ func (o Explanation) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["test_name"] = o.TestName
 	toSerialize["selected"] = o.Selected
+	toSerialize["expected_outcome"] = o.ExpectedOutcome
 	toSerialize["explanation"] = o.Explanation
 	return toSerialize, nil
 }
@@ -143,6 +170,7 @@ func (o *Explanation) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"test_name",
 		"selected",
+		"expected_outcome",
 		"explanation",
 	}
 

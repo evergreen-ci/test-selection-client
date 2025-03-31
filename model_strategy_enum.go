@@ -21,11 +21,13 @@ type StrategyEnum string
 // List of StrategyEnum
 const (
 	OPTIMISTIC StrategyEnum = "Optimistic"
+	STARTS_WITH_T StrategyEnum = "StartsWithT"
 )
 
 // All allowed values of StrategyEnum enum
 var AllowedStrategyEnumEnumValues = []StrategyEnum{
 	"Optimistic",
+	"StartsWithT",
 }
 
 func (v *StrategyEnum) UnmarshalJSON(src []byte) error {

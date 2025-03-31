@@ -1,11 +1,13 @@
-# StrategyEnum
+# ExpectedOutcome
 
 ## Enum
 
 
-* `OPTIMISTIC` (value: `"Optimistic"`)
+* `SUCCESS` (value: `"success"`)
 
-* `STARTS_WITH_T` (value: `"StartsWithT"`)
+* `FAILURE` (value: `"failure"`)
+
+* `UNKNOWN` (value: `"unknown"`)
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -6,13 +6,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **TestName** | **string** |  | 
 **Selected** | **bool** |  | 
+**ExpectedOutcome** | [**ExpectedOutcome**](ExpectedOutcome.md) |  | 
 **Explanation** | **string** |  | 
 
 ## Methods
 
 ### NewExplanation
 
-`func NewExplanation(testName string, selected bool, explanation string, ) *Explanation`
+`func NewExplanation(testName string, selected bool, expectedOutcome ExpectedOutcome, explanation string, ) *Explanation`
 
 NewExplanation instantiates a new Explanation object
 This constructor will assign default values to properties that have it defined,
@@ -65,6 +66,26 @@ and a boolean to check if the value has been set.
 `func (o *Explanation) SetSelected(v bool)`
 
 SetSelected sets Selected field to given value.
+
+
+### GetExpectedOutcome
+
+`func (o *Explanation) GetExpectedOutcome() ExpectedOutcome`
+
+GetExpectedOutcome returns the ExpectedOutcome field if non-nil, zero value otherwise.
+
+### GetExpectedOutcomeOk
+
+`func (o *Explanation) GetExpectedOutcomeOk() (*ExpectedOutcome, bool)`
+
+GetExpectedOutcomeOk returns a tuple with the ExpectedOutcome field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExpectedOutcome
+
+`func (o *Explanation) SetExpectedOutcome(v ExpectedOutcome)`
+
+SetExpectedOutcome sets ExpectedOutcome field to given value.
 
 
 ### GetExplanation
