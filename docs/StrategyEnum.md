@@ -3,6 +3,14 @@
 ## Enum
 
 
+* `EXISTENTIAL` (value: `"Existential"`)
+
+* `NOT_FAILING` (value: `"NotFailing"`)
+
+* `NOT_PASSING` (value: `"NotPassing"`)
+
+* `NOT_FLAKY` (value: `"NotFlaky"`)
+
 * `OPTIMISTIC` (value: `"Optimistic"`)
 
 * `STARTS_WITH_T` (value: `"StartsWithT"`)

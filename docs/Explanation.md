@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **TestName** | **string** |  | 
+**Strategy** | [**StrategyEnum**](StrategyEnum.md) |  | 
 **Selected** | **bool** |  | 
 **ExpectedOutcome** | [**ExpectedOutcome**](ExpectedOutcome.md) |  | 
 **Explanation** | **string** |  | 
@@ -13,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewExplanation
 
-`func NewExplanation(testName string, selected bool, expectedOutcome ExpectedOutcome, explanation string, ) *Explanation`
+`func NewExplanation(testName string, strategy StrategyEnum, selected bool, expectedOutcome ExpectedOutcome, explanation string, ) *Explanation`
 
 NewExplanation instantiates a new Explanation object
 This constructor will assign default values to properties that have it defined,
@@ -46,6 +47,26 @@ and a boolean to check if the value has been set.
 `func (o *Explanation) SetTestName(v string)`
 
 SetTestName sets TestName field to given value.
+
+
+### GetStrategy
+
+`func (o *Explanation) GetStrategy() StrategyEnum`
+
+GetStrategy returns the Strategy field if non-nil, zero value otherwise.
+
+### GetStrategyOk
+
+`func (o *Explanation) GetStrategyOk() (*StrategyEnum, bool)`
+
+GetStrategyOk returns a tuple with the Strategy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStrategy
+
+`func (o *Explanation) SetStrategy(v StrategyEnum)`
+
+SetStrategy sets Strategy field to given value.
 
 
 ### GetSelected

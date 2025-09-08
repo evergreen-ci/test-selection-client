@@ -23,6 +23,7 @@ var _ MappedNullable = &PatchExplanation{}
 type PatchExplanation struct {
 	PatchId string `json:"patch_id"`
 	Builds map[string]BuildExplanation `json:"builds,omitempty"`
+	SuccessMeasure map[string]SuccessMeasure `json:"success_measure,omitempty"`
 }
 
 type _PatchExplanation PatchExplanation
@@ -101,6 +102,38 @@ func (o *PatchExplanation) SetBuilds(v map[string]BuildExplanation) {
 	o.Builds = v
 }
 
+// GetSuccessMeasure returns the SuccessMeasure field value if set, zero value otherwise.
+func (o *PatchExplanation) GetSuccessMeasure() map[string]SuccessMeasure {
+	if o == nil || IsNil(o.SuccessMeasure) {
+		var ret map[string]SuccessMeasure
+		return ret
+	}
+	return o.SuccessMeasure
+}
+
+// GetSuccessMeasureOk returns a tuple with the SuccessMeasure field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PatchExplanation) GetSuccessMeasureOk() (map[string]SuccessMeasure, bool) {
+	if o == nil || IsNil(o.SuccessMeasure) {
+		return map[string]SuccessMeasure{}, false
+	}
+	return o.SuccessMeasure, true
+}
+
+// HasSuccessMeasure returns a boolean if a field has been set.
+func (o *PatchExplanation) HasSuccessMeasure() bool {
+	if o != nil && !IsNil(o.SuccessMeasure) {
+		return true
+	}
+
+	return false
+}
+
+// SetSuccessMeasure gets a reference to the given map[string]SuccessMeasure and assigns it to the SuccessMeasure field.
+func (o *PatchExplanation) SetSuccessMeasure(v map[string]SuccessMeasure) {
+	o.SuccessMeasure = v
+}
+
 func (o PatchExplanation) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -114,6 +147,9 @@ func (o PatchExplanation) ToMap() (map[string]interface{}, error) {
 	toSerialize["patch_id"] = o.PatchId
 	if !IsNil(o.Builds) {
 		toSerialize["builds"] = o.Builds
+	}
+	if !IsNil(o.SuccessMeasure) {
+		toSerialize["success_measure"] = o.SuccessMeasure
 	}
 	return toSerialize, nil
 }
