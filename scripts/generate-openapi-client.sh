@@ -11,7 +11,8 @@ curl -O "https://dlcdn.apache.org/maven/maven-3/${maven_version}/binaries/apache
 tar xvzf "apache-maven-${maven_version}-bin.tar.gz"
 
 # Download OpenAPI generator CLI.
-curl -O https://raw.githubusercontent.com/OpenAPITools/openapi-generator/master/bin/utils/openapi-generator-cli.sh
+curl -O https://raw.githubusercontent.com/OpenAPITools/openapi-generator/v7.15.0/bin/utils/openapi-generator-cli.sh
+md5sum ./openapi-generator-cli.sh | cut -d ' ' -f 1 | grep -x ded6da16d3f40d98196f1d9b668f2a45 || (echo "md5sum for openapi-generator-cli.sh did not match" && exit 2)
 chmod +x ./openapi-generator-cli.sh
 
 cd ..

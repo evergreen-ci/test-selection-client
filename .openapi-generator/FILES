@@ -36,6 +36,4 @@ model_test_explanation.go
 model_validation_error.go
 model_validation_error_loc_inner.go
 response.go
-test/api_patch_scanner_initiation_test.go
-test/api_state_transition_test.go
 utils.go
