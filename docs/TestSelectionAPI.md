@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ExplainPatchApiTestSelectionExplainPatchPatchIdPost**](TestSelectionAPI.md#ExplainPatchApiTestSelectionExplainPatchPatchIdPost) | **Post** /api/test_selection/explain_patch/{patch_id}/ | Explain Patch
 [**ExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost**](TestSelectionAPI.md#ExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost) | **Post** /api/test_selection/explain_tests/{project_id}/{requester}/{build_variant_name}/{task_id}/{task_name}/ | Explain Select Tests
+[**SelectAllKnownTestsOfATaskApiTestSelectionSelectKnownTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost**](TestSelectionAPI.md#SelectAllKnownTestsOfATaskApiTestSelectionSelectKnownTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost) | **Post** /api/test_selection/select_known_tests/{project_id}/{requester}/{build_variant_name}/{task_id}/{task_name}/ | Select All Known Tests Of A Task
 [**SelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost**](TestSelectionAPI.md#SelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost) | **Post** /api/test_selection/select_tests/{project_id}/{requester}/{build_variant_name}/{task_id}/{task_name}/ | Select Tests
 
 
@@ -32,7 +33,7 @@ import (
 
 func main() {
 	patchId := "patchId_example" // string | 
-	strategyEnum := []openapiclient.StrategyEnum{openapiclient.StrategyEnum("Optimistic")} // []StrategyEnum |  (optional)
+	strategyEnum := []openapiclient.StrategyEnum{openapiclient.StrategyEnum("Existential")} // []StrategyEnum |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -84,7 +85,7 @@ No authorization required
 
 ## ExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost
 
-> []Explanation ExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost(ctx, projectId, requester, buildVariantName, taskId, taskName).BodyExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost(bodyExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost).Execute()
+> map[string]map[string]Explanation ExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost(ctx, projectId, requester, buildVariantName, taskId, taskName).BodyExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost(bodyExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost).Execute()
 
 Explain Select Tests
 
@@ -117,7 +118,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `TestSelectionAPI.ExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost`: []Explanation
+	// response from `ExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost`: map[string]map[string]Explanation
 	fmt.Fprintf(os.Stdout, "Response from `TestSelectionAPI.ExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost`: %v\n", resp)
 }
 ```
@@ -150,7 +151,91 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]Explanation**](Explanation.md)
+[**map[string]map[string]Explanation**](map.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## SelectAllKnownTestsOfATaskApiTestSelectionSelectKnownTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost
+
+> []string SelectAllKnownTestsOfATaskApiTestSelectionSelectKnownTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost(ctx, projectId, requester, buildVariantName, taskId, taskName).StrategyEnum(strategyEnum).Execute()
+
+Select All Known Tests Of A Task
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/evergreen-ci/test-selection-client"
+)
+
+func main() {
+	projectId := "projectId_example" // string | 
+	requester := "requester_example" // string | 
+	buildVariantName := "buildVariantName_example" // string | 
+	taskId := "taskId_example" // string | 
+	taskName := "taskName_example" // string | 
+	strategyEnum := []openapiclient.StrategyEnum{openapiclient.StrategyEnum("Existential")} // []StrategyEnum |  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.TestSelectionAPI.SelectAllKnownTestsOfATaskApiTestSelectionSelectKnownTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost(context.Background(), projectId, requester, buildVariantName, taskId, taskName).StrategyEnum(strategyEnum).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `TestSelectionAPI.SelectAllKnownTestsOfATaskApiTestSelectionSelectKnownTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `SelectAllKnownTestsOfATaskApiTestSelectionSelectKnownTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost`: []string
+	fmt.Fprintf(os.Stdout, "Response from `TestSelectionAPI.SelectAllKnownTestsOfATaskApiTestSelectionSelectKnownTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**projectId** | **string** |  | 
+**requester** | **string** |  | 
+**buildVariantName** | **string** |  | 
+**taskId** | **string** |  | 
+**taskName** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSelectAllKnownTestsOfATaskApiTestSelectionSelectKnownTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+
+
+ **strategyEnum** | [**[]StrategyEnum**](StrategyEnum.md) |  | 
+
+### Return type
+
+**[]string**
 
 ### Authorization
 

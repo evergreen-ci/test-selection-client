@@ -16,9 +16,10 @@ paths:
         :param task_id: The task id.
         :param task_name: The task name.
         :param test_names: The test names.
+        :param background_tasks: Background tasks to run after the request is completed.
         :param strategies: The set of strategies to use
-        :return: A mapping from {Build variant x task x test} to a
-                 true/false value indicating if the test should run
+        :return: A set of strings representing the names of tests
+                 that should run for the specified task based on the selected strategies.
       operationId: select_tests_api_test_selection_select_tests__project_id___requester___build_variant_name___task_id___task_name___post
       parameters:
       - explode: false
@@ -65,7 +66,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Body_select_tests_api_test_selection_select_tests__project_id___requester___build_variant_name___task_id___task_name___post'
+              $ref: "#/components/schemas/Body_select_tests_api_test_selection_select_tests__project_id___requester___build_variant_name___task_id___task_name___post"
         required: true
       responses:
         "200":
@@ -81,9 +82,92 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HTTPValidationError'
+                $ref: "#/components/schemas/HTTPValidationError"
           description: Validation Error
       summary: Select Tests
+      tags:
+      - test_selection
+  /api/test_selection/select_known_tests/{project_id}/{requester}/{build_variant_name}/{task_id}/{task_name}/:
+    post:
+      description: |-
+        Get the results of the default strategy for known tests of a task.
+        :param project_id: The project id.
+        :param requester: The requester.
+        :param build_variant_name: The build variant name.
+        :param task_id: The task id.
+        :param task_name: The task name.
+        :param background_tasks: Background tasks to run after the request is completed.
+        :param strategies: The set of strategies to use
+        :return: A set of strings representing the names of known tests
+                 that should run for the specified task based on the selected strategies.
+      operationId: select_all_known_tests_of_a_task_api_test_selection_select_known_tests__project_id___requester___build_variant_name___task_id___task_name___post
+      parameters:
+      - explode: false
+        in: path
+        name: project_id
+        required: true
+        schema:
+          title: Project Id
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: requester
+        required: true
+        schema:
+          title: Requester
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: build_variant_name
+        required: true
+        schema:
+          title: Build Variant Name
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: task_id
+        required: true
+        schema:
+          title: Task Id
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: task_name
+        required: true
+        schema:
+          title: Task Name
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              default:
+              - Optimistic
+              items:
+                $ref: "#/components/schemas/StrategyEnum"
+              type: array
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  type: string
+                type: array
+                uniqueItems: true
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      summary: Select All Known Tests Of A Task
       tags:
       - test_selection
   /api/test_selection/explain_tests/{project_id}/{requester}/{build_variant_name}/{task_id}/{task_name}/:
@@ -96,9 +180,10 @@ paths:
         :param task_id: The task id.
         :param task_name: The task name.
         :param test_names: The test names.
+        :param background_tasks: Background tasks to run after the request is completed.
         :param strategies: The set of strategies to use
         :return: A mapping from {Build variant x task x test} to a
-                 true/false value indicating if the test should run
+                 full explanation of the reasons behind the test selection
       operationId: explain_select_tests_api_test_selection_explain_tests__project_id___requester___build_variant_name___task_id___task_name___post
       parameters:
       - explode: false
@@ -145,22 +230,24 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Body_explain_select_tests_api_test_selection_explain_tests__project_id___requester___build_variant_name___task_id___task_name___post'
+              $ref: "#/components/schemas/Body_explain_select_tests_api_test_selection_explain_tests__project_id___requester___build_variant_name___task_id___task_name___post"
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                items:
-                  $ref: '#/components/schemas/Explanation'
-                type: array
+                additionalProperties:
+                  additionalProperties:
+                    $ref: "#/components/schemas/Explanation"
+                title: Response Explain Select Tests Api Test Selection Explain Tests  Project
+                  Id   Requester   Build Variant Name   Task Id   Task Name   Post
           description: Successful Response
         "422":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HTTPValidationError'
+                $ref: "#/components/schemas/HTTPValidationError"
           description: Validation Error
       summary: Explain Select Tests
       tags:
@@ -170,6 +257,7 @@ paths:
       description: |-
         Get the results of the default strategy as well as the explanation.
         :param patch_id: The patch id to compare results to.
+        :param background_tasks: Background tasks to run after the request is completed.
         :param strategies: The set of strategies to use
         :return: A mapping from {Build variant x task x test} to a
                  true/false value indicating if the test should run
@@ -190,24 +278,242 @@ paths:
               default:
               - Optimistic
               items:
-                $ref: '#/components/schemas/StrategyEnum'
+                $ref: "#/components/schemas/StrategyEnum"
               type: array
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PatchExplanation'
+                $ref: "#/components/schemas/PatchExplanation"
           description: Successful Response
         "422":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HTTPValidationError'
+                $ref: "#/components/schemas/HTTPValidationError"
           description: Validation Error
       summary: Explain Patch
       tags:
       - test_selection
+  /api/test_selection/transition_tests/{project_id}/{build_variant_name}/{task_name}/:
+    post:
+      description: |-
+        Transition a single test into or out of the "Random By Design" state
+        :param project_id: The project id.
+        :param build_variant_name: The build variant name.
+        :param task_name: The task name.
+        :param test_names: The test names to be transitioned.
+        :param is_random: Denote if the test should be marked random or not
+        :return: None
+      operationId: mark_tests_random_by_design_api_test_selection_transition_tests__project_id___build_variant_name___task_name___post
+      parameters:
+      - explode: false
+        in: path
+        name: project_id
+        required: true
+        schema:
+          title: Project Id
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: build_variant_name
+        required: true
+        schema:
+          title: Build Variant Name
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: task_name
+        required: true
+        schema:
+          title: Task Name
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: is_random
+        required: true
+        schema:
+          title: Is Random
+          type: boolean
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                type: string
+              type: array
+              uniqueItems: true
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      summary: Mark Tests Random By Design
+      tags:
+      - state_transition
+  /api/test_selection/transition_task/{project_id}/{build_variant_name}/{task_name}/:
+    post:
+      description: |-
+        Transition all tests of a single task into or out of the "Random By Design" state
+        :param project_id: The project id.
+        :param requester: The requester.
+        :param build_variant_name: The build variant name.
+        :param task_name: The task name.
+        :param is_random: Denote if the task should be marked random or not
+        :return: None
+      operationId: mark_task_random_by_design_api_test_selection_transition_task__project_id___build_variant_name___task_name___post
+      parameters:
+      - explode: false
+        in: path
+        name: project_id
+        required: true
+        schema:
+          title: Project Id
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: build_variant_name
+        required: true
+        schema:
+          title: Build Variant Name
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: task_name
+        required: true
+        schema:
+          title: Task Name
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: requester
+        required: true
+        schema:
+          title: Requester
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: is_random
+        required: true
+        schema:
+          title: Is Random
+          type: boolean
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      summary: Mark Task Random By Design
+      tags:
+      - state_transition
+  /api/test_selection/patch_scanner/{project_id}:
+    post:
+      description: |-
+        Run over all patches of the last day in a project
+        :param project_id: The project id.
+        :param strategies: The set of strategies to use
+        :return: None
+      operationId: scan_patches_api_test_selection_patch_scanner__project_id__post
+      parameters:
+      - explode: false
+        in: path
+        name: project_id
+        required: true
+        schema:
+          title: Project Id
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              default:
+              - Optimistic
+              items:
+                $ref: "#/components/schemas/StrategyEnum"
+              type: array
+      responses:
+        "200":
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      summary: Scan Patches
+      tags:
+      - patch_scanner_initiation
+  /api/test_selection/single_patch_scanner/{patch_id}:
+    post:
+      description: |-
+        Run over all patches of the last day in a project
+        :param patch_id: The patch id.
+        :param strategies: The set of strategies to use
+        :return: None
+      operationId: scan_single_patch_api_test_selection_single_patch_scanner__patch_id__post
+      parameters:
+      - explode: false
+        in: path
+        name: patch_id
+        required: true
+        schema:
+          title: Patch Id
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              default:
+              - Optimistic
+              items:
+                $ref: "#/components/schemas/StrategyEnum"
+              type: array
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PatchExplanation"
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      summary: Scan Single Patch
+      tags:
+      - patch_scanner_initiation
 components:
   schemas:
     ? Body_explain_select_tests_api_test_selection_explain_tests__project_id___requester___build_variant_name___task_id___task_name___post
@@ -220,7 +526,7 @@ components:
           default:
           - Optimistic
           items:
-            $ref: '#/components/schemas/StrategyEnum'
+            $ref: "#/components/schemas/StrategyEnum"
           type: array
       required:
       - test_names
@@ -235,7 +541,7 @@ components:
           default:
           - Optimistic
           items:
-            $ref: '#/components/schemas/StrategyEnum'
+            $ref: "#/components/schemas/StrategyEnum"
           type: array
       required:
       - test_names
@@ -249,10 +555,18 @@ components:
             task_name: task_name
             tests:
               key:
+                explanations:
+                  key:
+                    strategy: Existential
+                    explanation: explanation
+                    test_name: test_name
+                    selected: true
+                    expected_outcome: success
+                is_passing: true
                 explanation: explanation
                 test_name: test_name
                 selected: true
-                expected_outcome: success
+                expected_outcome: null
       properties:
         build_variant:
           description: Build variant name (not display name)
@@ -260,7 +574,7 @@ components:
           type: string
         tasks:
           additionalProperties:
-            $ref: '#/components/schemas/TaskExplanation'
+            $ref: "#/components/schemas/TaskExplanation"
           default: {}
           title: Tasks
       required:
@@ -277,6 +591,7 @@ components:
     Explanation:
       description: Explanation of the results of a single test.
       example:
+        strategy: Existential
         explanation: explanation
         test_name: test_name
         selected: true
@@ -285,11 +600,13 @@ components:
         test_name:
           title: Test Name
           type: string
+        strategy:
+          $ref: "#/components/schemas/StrategyEnum"
         selected:
           title: Selected
           type: boolean
         expected_outcome:
-          $ref: '#/components/schemas/ExpectedOutcome'
+          $ref: "#/components/schemas/ExpectedOutcome"
         explanation:
           title: Explanation
           type: string
@@ -297,6 +614,7 @@ components:
       - expected_outcome
       - explanation
       - selected
+      - strategy
       - test_name
       title: Explanation
     HTTPValidationError:
@@ -315,7 +633,7 @@ components:
       properties:
         detail:
           items:
-            $ref: '#/components/schemas/ValidationError'
+            $ref: "#/components/schemas/ValidationError"
           type: array
       title: HTTPValidationError
     PatchExplanation:
@@ -333,50 +651,185 @@ components:
                 task_name: task_name
                 tests:
                   key:
+                    explanations:
+                      key:
+                        strategy: Existential
+                        explanation: explanation
+                        test_name: test_name
+                        selected: true
+                        expected_outcome: success
+                    is_passing: true
                     explanation: explanation
                     test_name: test_name
                     selected: true
-                    expected_outcome: success
+                    expected_outcome: null
+        success_measure:
+          key:
+            number_of_selected_tests: 6
+            number_of_correctly_selected_expected_outcome_passing_tests: 5
+            selected_without_filter: 2
+            total_number_of_tests: 0
+            number_of_unselected_unknown_expected_outcome_tests: 9
+            number_of_unselected_tests: 1
+            number_of_selected_unknown_expected_outcome_tests: 7
+            number_of_correctly_unselected_expected_outcome_passing_tests: 5
       properties:
         patch_id:
           title: Patch Id
           type: string
         builds:
           additionalProperties:
-            $ref: '#/components/schemas/BuildExplanation'
+            $ref: "#/components/schemas/BuildExplanation"
           default: {}
           title: Builds
+        success_measure:
+          additionalProperties:
+            $ref: "#/components/schemas/SuccessMeasure"
+          default: {}
+          title: Success Measure
       required:
       - patch_id
       title: PatchExplanation
     StrategyEnum:
+      description: This enumerated the types of strategies we support for test selection.
       enum:
+      - Existential
+      - NotFailing
+      - NotPassing
+      - NotFlaky
       - Optimistic
       - StartsWithT
       title: StrategyEnum
       type: string
+    SuccessMeasure:
+      description: |-
+        This class is used to calculate the "magic number" that denotes the efficiency of a strategy
+
+        The "magic numbers" are:
+        1. How many tests were processed: total_number_of_tests
+        2. What percentage of selected tests matched the expected outcome
+            (number_of_correctly_selected_expected_outcome_passing_tests / number_of_selected_tests)
+        3. What percentage of unselected tests matched the expected outcome
+            (number_of_correctly_unselected_expected_outcome_passing_tests / number_of_unselected_tests)
+        4. The overall success of the patch
+            (number_of_correctly_selected_expected_outcome_passing_tests +
+            number_of_correctly_unselected_expected_outcome_passing_tests)
+            / total_number_of_tests
+      example:
+        number_of_selected_tests: 6
+        number_of_correctly_selected_expected_outcome_passing_tests: 5
+        selected_without_filter: 2
+        total_number_of_tests: 0
+        number_of_unselected_unknown_expected_outcome_tests: 9
+        number_of_unselected_tests: 1
+        number_of_selected_unknown_expected_outcome_tests: 7
+        number_of_correctly_unselected_expected_outcome_passing_tests: 5
+      properties:
+        total_number_of_tests:
+          default: 0
+          title: Total Number Of Tests
+          type: integer
+        number_of_selected_tests:
+          default: 0
+          title: Number Of Selected Tests
+          type: integer
+        number_of_unselected_tests:
+          default: 0
+          title: Number Of Unselected Tests
+          type: integer
+        number_of_correctly_selected_expected_outcome_passing_tests:
+          default: 0
+          title: Number Of Correctly Selected Expected Outcome Passing Tests
+          type: integer
+        number_of_correctly_unselected_expected_outcome_passing_tests:
+          default: 0
+          title: Number Of Correctly Unselected Expected Outcome Passing Tests
+          type: integer
+        selected_without_filter:
+          default: 0
+          title: Selected Without Filter
+          type: integer
+        number_of_selected_unknown_expected_outcome_tests:
+          default: 0
+          title: Number Of Selected Unknown Expected Outcome Tests
+          type: integer
+        number_of_unselected_unknown_expected_outcome_tests:
+          default: 0
+          title: Number Of Unselected Unknown Expected Outcome Tests
+          type: integer
+      title: SuccessMeasure
     TaskExplanation:
       description: Explanation of the results of a single task.
       example:
         task_name: task_name
         tests:
           key:
+            explanations:
+              key:
+                strategy: Existential
+                explanation: explanation
+                test_name: test_name
+                selected: true
+                expected_outcome: success
+            is_passing: true
             explanation: explanation
             test_name: test_name
             selected: true
-            expected_outcome: success
+            expected_outcome: null
       properties:
         task_name:
           title: Task Name
           type: string
         tests:
           additionalProperties:
-            $ref: '#/components/schemas/Explanation'
+            $ref: "#/components/schemas/TestExplanation"
           default: {}
           title: Tests
       required:
       - task_name
       title: TaskExplanation
+    TestExplanation:
+      description: Explanation of the results of a single test.
+      example:
+        explanations:
+          key:
+            strategy: Existential
+            explanation: explanation
+            test_name: test_name
+            selected: true
+            expected_outcome: success
+        is_passing: true
+        explanation: explanation
+        test_name: test_name
+        selected: true
+        expected_outcome: null
+      properties:
+        test_name:
+          title: Test Name
+          type: string
+        is_passing:
+          title: Is Passing
+          type: boolean
+        selected:
+          title: Selected
+          type: boolean
+        explanation:
+          title: Explanation
+          type: string
+        explanations:
+          additionalProperties:
+            $ref: "#/components/schemas/Explanation"
+          default: {}
+          title: Explanations
+        expected_outcome:
+          $ref: "#/components/schemas/ExpectedOutcome"
+      required:
+      - expected_outcome
+      - explanation
+      - is_passing
+      - selected
+      - test_name
+      title: TestExplanation
     ValidationError:
       example:
         msg: msg
@@ -387,7 +840,7 @@ components:
       properties:
         loc:
           items:
-            $ref: '#/components/schemas/ValidationError_loc_inner'
+            $ref: "#/components/schemas/ValidationError_loc_inner"
           type: array
         msg:
           title: Message

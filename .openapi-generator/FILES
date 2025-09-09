@@ -1,4 +1,6 @@
 api/openapi.yaml
+api_patch_scanner_initiation.go
+api_state_transition.go
 api_test_selection.go
 client.go
 configuration.go
@@ -9,8 +11,12 @@ docs/ExpectedOutcome.md
 docs/Explanation.md
 docs/HTTPValidationError.md
 docs/PatchExplanation.md
+docs/PatchScannerInitiationAPI.md
+docs/StateTransitionAPI.md
 docs/StrategyEnum.md
+docs/SuccessMeasure.md
 docs/TaskExplanation.md
+docs/TestExplanation.md
 docs/TestSelectionAPI.md
 docs/ValidationError.md
 docs/ValidationErrorLocInner.md
@@ -24,7 +30,9 @@ model_explanation.go
 model_http_validation_error.go
 model_patch_explanation.go
 model_strategy_enum.go
+model_success_measure.go
 model_task_explanation.go
+model_test_explanation.go
 model_validation_error.go
 model_validation_error_loc_inner.go
 response.go

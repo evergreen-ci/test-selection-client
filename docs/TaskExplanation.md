@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **TaskName** | **string** |  | 
-**Tests** | Pointer to [**map[string]Explanation**](Explanation.md) |  | [optional] [default to {}]
+**Tests** | Pointer to [**map[string]TestExplanation**](TestExplanation.md) |  | [optional] [default to {}]
 
 ## Methods
 
@@ -48,20 +48,20 @@ SetTaskName sets TaskName field to given value.
 
 ### GetTests
 
-`func (o *TaskExplanation) GetTests() map[string]Explanation`
+`func (o *TaskExplanation) GetTests() map[string]TestExplanation`
 
 GetTests returns the Tests field if non-nil, zero value otherwise.
 
 ### GetTestsOk
 
-`func (o *TaskExplanation) GetTestsOk() (*map[string]Explanation, bool)`
+`func (o *TaskExplanation) GetTestsOk() (*map[string]TestExplanation, bool)`
 
 GetTestsOk returns a tuple with the Tests field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTests
 
-`func (o *TaskExplanation) SetTests(v map[string]Explanation)`
+`func (o *TaskExplanation) SetTests(v map[string]TestExplanation)`
 
 SetTests sets Tests field to given value.
 

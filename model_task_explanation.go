@@ -22,7 +22,7 @@ var _ MappedNullable = &TaskExplanation{}
 // TaskExplanation Explanation of the results of a single task.
 type TaskExplanation struct {
 	TaskName string `json:"task_name"`
-	Tests map[string]Explanation `json:"tests,omitempty"`
+	Tests map[string]TestExplanation `json:"tests,omitempty"`
 }
 
 type _TaskExplanation TaskExplanation
@@ -70,9 +70,9 @@ func (o *TaskExplanation) SetTaskName(v string) {
 }
 
 // GetTests returns the Tests field value if set, zero value otherwise.
-func (o *TaskExplanation) GetTests() map[string]Explanation {
+func (o *TaskExplanation) GetTests() map[string]TestExplanation {
 	if o == nil || IsNil(o.Tests) {
-		var ret map[string]Explanation
+		var ret map[string]TestExplanation
 		return ret
 	}
 	return o.Tests
@@ -80,9 +80,9 @@ func (o *TaskExplanation) GetTests() map[string]Explanation {
 
 // GetTestsOk returns a tuple with the Tests field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TaskExplanation) GetTestsOk() (map[string]Explanation, bool) {
+func (o *TaskExplanation) GetTestsOk() (map[string]TestExplanation, bool) {
 	if o == nil || IsNil(o.Tests) {
-		return map[string]Explanation{}, false
+		return map[string]TestExplanation{}, false
 	}
 	return o.Tests, true
 }
@@ -96,8 +96,8 @@ func (o *TaskExplanation) HasTests() bool {
 	return false
 }
 
-// SetTests gets a reference to the given map[string]Explanation and assigns it to the Tests field.
-func (o *TaskExplanation) SetTests(v map[string]Explanation) {
+// SetTests gets a reference to the given map[string]TestExplanation and assigns it to the Tests field.
+func (o *TaskExplanation) SetTests(v map[string]TestExplanation) {
 	o.Tests = v
 }
 

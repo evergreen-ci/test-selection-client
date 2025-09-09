@@ -49,6 +49,10 @@ type APIClient struct {
 
 	// API Services
 
+	PatchScannerInitiationAPI *PatchScannerInitiationAPIService
+
+	StateTransitionAPI *StateTransitionAPIService
+
 	TestSelectionAPI *TestSelectionAPIService
 }
 
@@ -68,6 +72,8 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 
 	// API Services
+	c.PatchScannerInitiationAPI = (*PatchScannerInitiationAPIService)(&c.common)
+	c.StateTransitionAPI = (*StateTransitionAPIService)(&c.common)
 	c.TestSelectionAPI = (*TestSelectionAPIService)(&c.common)
 
 	return c

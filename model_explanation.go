@@ -22,6 +22,7 @@ var _ MappedNullable = &Explanation{}
 // Explanation Explanation of the results of a single test.
 type Explanation struct {
 	TestName string `json:"test_name"`
+	Strategy StrategyEnum `json:"strategy"`
 	Selected bool `json:"selected"`
 	ExpectedOutcome ExpectedOutcome `json:"expected_outcome"`
 	Explanation string `json:"explanation"`
@@ -33,9 +34,10 @@ type _Explanation Explanation
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewExplanation(testName string, selected bool, expectedOutcome ExpectedOutcome, explanation string) *Explanation {
+func NewExplanation(testName string, strategy StrategyEnum, selected bool, expectedOutcome ExpectedOutcome, explanation string) *Explanation {
 	this := Explanation{}
 	this.TestName = testName
+	this.Strategy = strategy
 	this.Selected = selected
 	this.ExpectedOutcome = expectedOutcome
 	this.Explanation = explanation
@@ -72,6 +74,30 @@ func (o *Explanation) GetTestNameOk() (*string, bool) {
 // SetTestName sets field value
 func (o *Explanation) SetTestName(v string) {
 	o.TestName = v
+}
+
+// GetStrategy returns the Strategy field value
+func (o *Explanation) GetStrategy() StrategyEnum {
+	if o == nil {
+		var ret StrategyEnum
+		return ret
+	}
+
+	return o.Strategy
+}
+
+// GetStrategyOk returns a tuple with the Strategy field value
+// and a boolean to check if the value has been set.
+func (o *Explanation) GetStrategyOk() (*StrategyEnum, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Strategy, true
+}
+
+// SetStrategy sets field value
+func (o *Explanation) SetStrategy(v StrategyEnum) {
+	o.Strategy = v
 }
 
 // GetSelected returns the Selected field value
@@ -157,6 +183,7 @@ func (o Explanation) MarshalJSON() ([]byte, error) {
 func (o Explanation) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["test_name"] = o.TestName
+	toSerialize["strategy"] = o.Strategy
 	toSerialize["selected"] = o.Selected
 	toSerialize["expected_outcome"] = o.ExpectedOutcome
 	toSerialize["explanation"] = o.Explanation
@@ -169,6 +196,7 @@ func (o *Explanation) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"test_name",
+		"strategy",
 		"selected",
 		"expected_outcome",
 		"explanation",

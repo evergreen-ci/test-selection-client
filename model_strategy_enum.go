@@ -15,17 +15,25 @@ import (
 	"fmt"
 )
 
-// StrategyEnum the model 'StrategyEnum'
+// StrategyEnum This enumerated the types of strategies we support for test selection.
 type StrategyEnum string
 
 // List of StrategyEnum
 const (
+	EXISTENTIAL StrategyEnum = "Existential"
+	NOT_FAILING StrategyEnum = "NotFailing"
+	NOT_PASSING StrategyEnum = "NotPassing"
+	NOT_FLAKY StrategyEnum = "NotFlaky"
 	OPTIMISTIC StrategyEnum = "Optimistic"
 	STARTS_WITH_T StrategyEnum = "StartsWithT"
 )
 
 // All allowed values of StrategyEnum enum
 var AllowedStrategyEnumEnumValues = []StrategyEnum{
+	"Existential",
+	"NotFailing",
+	"NotPassing",
+	"NotFlaky",
 	"Optimistic",
 	"StartsWithT",
 }

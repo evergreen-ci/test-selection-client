@@ -44,6 +44,7 @@ ExplainPatchApiTestSelectionExplainPatchPatchIdPost Explain Patch
 
 Get the results of the default strategy as well as the explanation.
 :param patch_id: The patch id to compare results to.
+:param background_tasks: Background tasks to run after the request is completed.
 :param strategies: The set of strategies to use
 :return: A mapping from {Build variant x task x test} to a
          true/false value indicating if the test should run
@@ -164,7 +165,7 @@ func (r ApiExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuild
 	return r
 }
 
-func (r ApiExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest) Execute() ([]Explanation, *http.Response, error) {
+func (r ApiExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest) Execute() (*map[string]map[string]Explanation, *http.Response, error) {
 	return r.ApiService.ExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostExecute(r)
 }
 
@@ -178,9 +179,10 @@ Get the results of the default strategy as well as the explanation.
 :param task_id: The task id.
 :param task_name: The task name.
 :param test_names: The test names.
+:param background_tasks: Background tasks to run after the request is completed.
 :param strategies: The set of strategies to use
 :return: A mapping from {Build variant x task x test} to a
-         true/false value indicating if the test should run
+         full explanation of the reasons behind the test selection
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param projectId
@@ -203,13 +205,13 @@ func (a *TestSelectionAPIService) ExplainSelectTestsApiTestSelectionExplainTests
 }
 
 // Execute executes the request
-//  @return []Explanation
-func (a *TestSelectionAPIService) ExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostExecute(r ApiExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest) ([]Explanation, *http.Response, error) {
+//  @return map[string]map[string]Explanation
+func (a *TestSelectionAPIService) ExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostExecute(r ApiExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest) (*map[string]map[string]Explanation, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []Explanation
+		localVarReturnValue  *map[string]map[string]Explanation
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TestSelectionAPIService.ExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost")
@@ -297,6 +299,152 @@ func (a *TestSelectionAPIService) ExplainSelectTestsApiTestSelectionExplainTests
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiSelectAllKnownTestsOfATaskApiTestSelectionSelectKnownTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest struct {
+	ctx context.Context
+	ApiService *TestSelectionAPIService
+	projectId string
+	requester string
+	buildVariantName string
+	taskId string
+	taskName string
+	strategyEnum *[]StrategyEnum
+}
+
+func (r ApiSelectAllKnownTestsOfATaskApiTestSelectionSelectKnownTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest) StrategyEnum(strategyEnum []StrategyEnum) ApiSelectAllKnownTestsOfATaskApiTestSelectionSelectKnownTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest {
+	r.strategyEnum = &strategyEnum
+	return r
+}
+
+func (r ApiSelectAllKnownTestsOfATaskApiTestSelectionSelectKnownTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest) Execute() ([]string, *http.Response, error) {
+	return r.ApiService.SelectAllKnownTestsOfATaskApiTestSelectionSelectKnownTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostExecute(r)
+}
+
+/*
+SelectAllKnownTestsOfATaskApiTestSelectionSelectKnownTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost Select All Known Tests Of A Task
+
+Get the results of the default strategy for known tests of a task.
+:param project_id: The project id.
+:param requester: The requester.
+:param build_variant_name: The build variant name.
+:param task_id: The task id.
+:param task_name: The task name.
+:param background_tasks: Background tasks to run after the request is completed.
+:param strategies: The set of strategies to use
+:return: A set of strings representing the names of known tests
+         that should run for the specified task based on the selected strategies.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param projectId
+ @param requester
+ @param buildVariantName
+ @param taskId
+ @param taskName
+ @return ApiSelectAllKnownTestsOfATaskApiTestSelectionSelectKnownTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest
+*/
+func (a *TestSelectionAPIService) SelectAllKnownTestsOfATaskApiTestSelectionSelectKnownTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost(ctx context.Context, projectId string, requester string, buildVariantName string, taskId string, taskName string) ApiSelectAllKnownTestsOfATaskApiTestSelectionSelectKnownTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest {
+	return ApiSelectAllKnownTestsOfATaskApiTestSelectionSelectKnownTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest{
+		ApiService: a,
+		ctx: ctx,
+		projectId: projectId,
+		requester: requester,
+		buildVariantName: buildVariantName,
+		taskId: taskId,
+		taskName: taskName,
+	}
+}
+
+// Execute executes the request
+//  @return []string
+func (a *TestSelectionAPIService) SelectAllKnownTestsOfATaskApiTestSelectionSelectKnownTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostExecute(r ApiSelectAllKnownTestsOfATaskApiTestSelectionSelectKnownTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest) ([]string, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  []string
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TestSelectionAPIService.SelectAllKnownTestsOfATaskApiTestSelectionSelectKnownTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/test_selection/select_known_tests/{project_id}/{requester}/{build_variant_name}/{task_id}/{task_name}/"
+	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"requester"+"}", url.PathEscape(parameterValueToString(r.requester, "requester")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"build_variant_name"+"}", url.PathEscape(parameterValueToString(r.buildVariantName, "buildVariantName")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"task_id"+"}", url.PathEscape(parameterValueToString(r.taskId, "taskId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"task_name"+"}", url.PathEscape(parameterValueToString(r.taskName, "taskName")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.strategyEnum
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v HTTPValidationError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiSelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest struct {
 	ctx context.Context
 	ApiService *TestSelectionAPIService
@@ -327,9 +475,10 @@ Get the results of the default strategy.
 :param task_id: The task id.
 :param task_name: The task name.
 :param test_names: The test names.
+:param background_tasks: Background tasks to run after the request is completed.
 :param strategies: The set of strategies to use
-:return: A mapping from {Build variant x task x test} to a
-         true/false value indicating if the test should run
+:return: A set of strings representing the names of tests
+         that should run for the specified task based on the selected strategies.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param projectId
