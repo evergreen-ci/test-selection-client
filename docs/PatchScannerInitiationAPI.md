@@ -31,7 +31,7 @@ import (
 
 func main() {
 	projectId := "projectId_example" // string | 
-	strategyEnum := []openapiclient.StrategyEnum{openapiclient.StrategyEnum("Existential")} // []StrategyEnum |  (optional)
+	strategyEnum := []openapiclient.StrategyEnum{openapiclient.StrategyEnum("ExcludeManuallyQuarantined")} // []StrategyEnum |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -103,7 +103,7 @@ import (
 
 func main() {
 	patchId := "patchId_example" // string | 
-	strategyEnum := []openapiclient.StrategyEnum{openapiclient.StrategyEnum("Existential")} // []StrategyEnum |  (optional)
+	strategyEnum := []openapiclient.StrategyEnum{openapiclient.StrategyEnum("ExcludeManuallyQuarantined")} // []StrategyEnum |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

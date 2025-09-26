@@ -4,16 +4,16 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**MarkTaskRandomByDesignApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePost**](StateTransitionAPI.md#MarkTaskRandomByDesignApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePost) | **Post** /api/test_selection/transition_task/{project_id}/{build_variant_name}/{task_name}/ | Mark Task Random By Design
-[**MarkTestsRandomByDesignApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePost**](StateTransitionAPI.md#MarkTestsRandomByDesignApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePost) | **Post** /api/test_selection/transition_tests/{project_id}/{build_variant_name}/{task_name}/ | Mark Tests Random By Design
+[**MarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePost**](StateTransitionAPI.md#MarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePost) | **Post** /api/test_selection/transition_task/{project_id}/{build_variant_name}/{task_name}/ | Mark Task As Manually Quarantined
+[**MarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePost**](StateTransitionAPI.md#MarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePost) | **Post** /api/test_selection/transition_tests/{project_id}/{build_variant_name}/{task_name}/ | Mark Tests As Manually Quarantined
 
 
 
-## MarkTaskRandomByDesignApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePost
+## MarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePost
 
-> interface{} MarkTaskRandomByDesignApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePost(ctx, projectId, buildVariantName, taskName).Requester(requester).IsRandom(isRandom).Execute()
+> interface{} MarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePost(ctx, projectId, buildVariantName, taskName).Requester(requester).IsManuallyQuarantined(isManuallyQuarantined).Execute()
 
-Mark Task Random By Design
+Mark Task As Manually Quarantined
 
 
 
@@ -34,17 +34,17 @@ func main() {
 	buildVariantName := "buildVariantName_example" // string | 
 	taskName := "taskName_example" // string | 
 	requester := "requester_example" // string | 
-	isRandom := true // bool | 
+	isManuallyQuarantined := true // bool | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StateTransitionAPI.MarkTaskRandomByDesignApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePost(context.Background(), projectId, buildVariantName, taskName).Requester(requester).IsRandom(isRandom).Execute()
+	resp, r, err := apiClient.StateTransitionAPI.MarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePost(context.Background(), projectId, buildVariantName, taskName).Requester(requester).IsManuallyQuarantined(isManuallyQuarantined).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `StateTransitionAPI.MarkTaskRandomByDesignApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `StateTransitionAPI.MarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePost``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `MarkTaskRandomByDesignApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePost`: interface{}
-	fmt.Fprintf(os.Stdout, "Response from `StateTransitionAPI.MarkTaskRandomByDesignApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePost`: %v\n", resp)
+	// response from `MarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePost`: interface{}
+	fmt.Fprintf(os.Stdout, "Response from `StateTransitionAPI.MarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePost`: %v\n", resp)
 }
 ```
 
@@ -60,7 +60,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiMarkTaskRandomByDesignApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePostRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiMarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePostRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -69,7 +69,7 @@ Name | Type | Description  | Notes
 
 
  **requester** | **string** |  | 
- **isRandom** | **bool** |  | 
+ **isManuallyQuarantined** | **bool** |  | 
 
 ### Return type
 
@@ -89,11 +89,11 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## MarkTestsRandomByDesignApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePost
+## MarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePost
 
-> interface{} MarkTestsRandomByDesignApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePost(ctx, projectId, buildVariantName, taskName).IsRandom(isRandom).RequestBody(requestBody).Execute()
+> interface{} MarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePost(ctx, projectId, buildVariantName, taskName).IsManuallyQuarantined(isManuallyQuarantined).RequestBody(requestBody).Execute()
 
-Mark Tests Random By Design
+Mark Tests As Manually Quarantined
 
 
 
@@ -113,18 +113,18 @@ func main() {
 	projectId := "projectId_example" // string | 
 	buildVariantName := "buildVariantName_example" // string | 
 	taskName := "taskName_example" // string | 
-	isRandom := true // bool | 
+	isManuallyQuarantined := true // bool | 
 	requestBody := []string{"Property_example"} // []string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StateTransitionAPI.MarkTestsRandomByDesignApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePost(context.Background(), projectId, buildVariantName, taskName).IsRandom(isRandom).RequestBody(requestBody).Execute()
+	resp, r, err := apiClient.StateTransitionAPI.MarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePost(context.Background(), projectId, buildVariantName, taskName).IsManuallyQuarantined(isManuallyQuarantined).RequestBody(requestBody).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `StateTransitionAPI.MarkTestsRandomByDesignApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `StateTransitionAPI.MarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePost``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `MarkTestsRandomByDesignApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePost`: interface{}
-	fmt.Fprintf(os.Stdout, "Response from `StateTransitionAPI.MarkTestsRandomByDesignApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePost`: %v\n", resp)
+	// response from `MarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePost`: interface{}
+	fmt.Fprintf(os.Stdout, "Response from `StateTransitionAPI.MarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePost`: %v\n", resp)
 }
 ```
 
@@ -140,7 +140,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiMarkTestsRandomByDesignApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePostRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiMarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePostRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -148,7 +148,7 @@ Name | Type | Description  | Notes
 
 
 
- **isRandom** | **bool** |  | 
+ **isManuallyQuarantined** | **bool** |  | 
  **requestBody** | **[]string** |  | 
 
 ### Return type

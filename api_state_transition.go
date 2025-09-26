@@ -23,49 +23,49 @@ import (
 // StateTransitionAPIService StateTransitionAPI service
 type StateTransitionAPIService service
 
-type ApiMarkTaskRandomByDesignApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePostRequest struct {
+type ApiMarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePostRequest struct {
 	ctx context.Context
 	ApiService *StateTransitionAPIService
 	projectId string
 	buildVariantName string
 	taskName string
 	requester *string
-	isRandom *bool
+	isManuallyQuarantined *bool
 }
 
-func (r ApiMarkTaskRandomByDesignApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePostRequest) Requester(requester string) ApiMarkTaskRandomByDesignApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePostRequest {
+func (r ApiMarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePostRequest) Requester(requester string) ApiMarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePostRequest {
 	r.requester = &requester
 	return r
 }
 
-func (r ApiMarkTaskRandomByDesignApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePostRequest) IsRandom(isRandom bool) ApiMarkTaskRandomByDesignApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePostRequest {
-	r.isRandom = &isRandom
+func (r ApiMarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePostRequest) IsManuallyQuarantined(isManuallyQuarantined bool) ApiMarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePostRequest {
+	r.isManuallyQuarantined = &isManuallyQuarantined
 	return r
 }
 
-func (r ApiMarkTaskRandomByDesignApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePostRequest) Execute() (interface{}, *http.Response, error) {
-	return r.ApiService.MarkTaskRandomByDesignApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePostExecute(r)
+func (r ApiMarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePostRequest) Execute() (interface{}, *http.Response, error) {
+	return r.ApiService.MarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePostExecute(r)
 }
 
 /*
-MarkTaskRandomByDesignApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePost Mark Task Random By Design
+MarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePost Mark Task As Manually Quarantined
 
-Transition all tests of a single task into or out of the "Random By Design" state
+Transition all tests of a single task into or out of the "Manually Quarantined" state
 :param project_id: The project id.
 :param requester: The requester.
 :param build_variant_name: The build variant name.
 :param task_name: The task name.
-:param is_random: Denote if the task should be marked random or not
+:param is_manually_quarantined: Denote if the task should be marked manually quarantined
 :return: None
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param projectId
  @param buildVariantName
  @param taskName
- @return ApiMarkTaskRandomByDesignApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePostRequest
+ @return ApiMarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePostRequest
 */
-func (a *StateTransitionAPIService) MarkTaskRandomByDesignApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePost(ctx context.Context, projectId string, buildVariantName string, taskName string) ApiMarkTaskRandomByDesignApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePostRequest {
-	return ApiMarkTaskRandomByDesignApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePostRequest{
+func (a *StateTransitionAPIService) MarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePost(ctx context.Context, projectId string, buildVariantName string, taskName string) ApiMarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePostRequest {
+	return ApiMarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePostRequest{
 		ApiService: a,
 		ctx: ctx,
 		projectId: projectId,
@@ -76,7 +76,7 @@ func (a *StateTransitionAPIService) MarkTaskRandomByDesignApiTestSelectionTransi
 
 // Execute executes the request
 //  @return interface{}
-func (a *StateTransitionAPIService) MarkTaskRandomByDesignApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePostExecute(r ApiMarkTaskRandomByDesignApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePostRequest) (interface{}, *http.Response, error) {
+func (a *StateTransitionAPIService) MarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePostExecute(r ApiMarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePostRequest) (interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -84,7 +84,7 @@ func (a *StateTransitionAPIService) MarkTaskRandomByDesignApiTestSelectionTransi
 		localVarReturnValue  interface{}
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StateTransitionAPIService.MarkTaskRandomByDesignApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StateTransitionAPIService.MarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePost")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -100,12 +100,12 @@ func (a *StateTransitionAPIService) MarkTaskRandomByDesignApiTestSelectionTransi
 	if r.requester == nil {
 		return localVarReturnValue, nil, reportError("requester is required and must be specified")
 	}
-	if r.isRandom == nil {
-		return localVarReturnValue, nil, reportError("isRandom is required and must be specified")
+	if r.isManuallyQuarantined == nil {
+		return localVarReturnValue, nil, reportError("isManuallyQuarantined is required and must be specified")
 	}
 
 	parameterAddToHeaderOrQuery(localVarQueryParams, "requester", r.requester, "form", "")
-	parameterAddToHeaderOrQuery(localVarQueryParams, "is_random", r.isRandom, "form", "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "is_manually_quarantined", r.isManuallyQuarantined, "form", "")
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -170,49 +170,49 @@ func (a *StateTransitionAPIService) MarkTaskRandomByDesignApiTestSelectionTransi
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiMarkTestsRandomByDesignApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePostRequest struct {
+type ApiMarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePostRequest struct {
 	ctx context.Context
 	ApiService *StateTransitionAPIService
 	projectId string
 	buildVariantName string
 	taskName string
-	isRandom *bool
+	isManuallyQuarantined *bool
 	requestBody *[]string
 }
 
-func (r ApiMarkTestsRandomByDesignApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePostRequest) IsRandom(isRandom bool) ApiMarkTestsRandomByDesignApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePostRequest {
-	r.isRandom = &isRandom
+func (r ApiMarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePostRequest) IsManuallyQuarantined(isManuallyQuarantined bool) ApiMarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePostRequest {
+	r.isManuallyQuarantined = &isManuallyQuarantined
 	return r
 }
 
-func (r ApiMarkTestsRandomByDesignApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePostRequest) RequestBody(requestBody []string) ApiMarkTestsRandomByDesignApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePostRequest {
+func (r ApiMarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePostRequest) RequestBody(requestBody []string) ApiMarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePostRequest {
 	r.requestBody = &requestBody
 	return r
 }
 
-func (r ApiMarkTestsRandomByDesignApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePostRequest) Execute() (interface{}, *http.Response, error) {
-	return r.ApiService.MarkTestsRandomByDesignApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePostExecute(r)
+func (r ApiMarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePostRequest) Execute() (interface{}, *http.Response, error) {
+	return r.ApiService.MarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePostExecute(r)
 }
 
 /*
-MarkTestsRandomByDesignApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePost Mark Tests Random By Design
+MarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePost Mark Tests As Manually Quarantined
 
-Transition a single test into or out of the "Random By Design" state
+Transition a single test into or out of the "Manually Quarantined" state
 :param project_id: The project id.
 :param build_variant_name: The build variant name.
 :param task_name: The task name.
 :param test_names: The test names to be transitioned.
-:param is_random: Denote if the test should be marked random or not
+:param is_manually_quarantined: Denote if the test should be marked manually quarantined or not
 :return: None
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param projectId
  @param buildVariantName
  @param taskName
- @return ApiMarkTestsRandomByDesignApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePostRequest
+ @return ApiMarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePostRequest
 */
-func (a *StateTransitionAPIService) MarkTestsRandomByDesignApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePost(ctx context.Context, projectId string, buildVariantName string, taskName string) ApiMarkTestsRandomByDesignApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePostRequest {
-	return ApiMarkTestsRandomByDesignApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePostRequest{
+func (a *StateTransitionAPIService) MarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePost(ctx context.Context, projectId string, buildVariantName string, taskName string) ApiMarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePostRequest {
+	return ApiMarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePostRequest{
 		ApiService: a,
 		ctx: ctx,
 		projectId: projectId,
@@ -223,7 +223,7 @@ func (a *StateTransitionAPIService) MarkTestsRandomByDesignApiTestSelectionTrans
 
 // Execute executes the request
 //  @return interface{}
-func (a *StateTransitionAPIService) MarkTestsRandomByDesignApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePostExecute(r ApiMarkTestsRandomByDesignApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePostRequest) (interface{}, *http.Response, error) {
+func (a *StateTransitionAPIService) MarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePostExecute(r ApiMarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePostRequest) (interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -231,7 +231,7 @@ func (a *StateTransitionAPIService) MarkTestsRandomByDesignApiTestSelectionTrans
 		localVarReturnValue  interface{}
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StateTransitionAPIService.MarkTestsRandomByDesignApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StateTransitionAPIService.MarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePost")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -244,14 +244,14 @@ func (a *StateTransitionAPIService) MarkTestsRandomByDesignApiTestSelectionTrans
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.isRandom == nil {
-		return localVarReturnValue, nil, reportError("isRandom is required and must be specified")
+	if r.isManuallyQuarantined == nil {
+		return localVarReturnValue, nil, reportError("isManuallyQuarantined is required and must be specified")
 	}
 	if r.requestBody == nil {
 		return localVarReturnValue, nil, reportError("requestBody is required and must be specified")
 	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "is_random", r.isRandom, "form", "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "is_manually_quarantined", r.isManuallyQuarantined, "form", "")
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
