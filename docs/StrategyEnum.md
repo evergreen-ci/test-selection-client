@@ -3,6 +3,8 @@
 ## Enum
 
 
+* `EXCLUDE_MANUALLY_QUARANTINED` (value: `"ExcludeManuallyQuarantined"`)
+
 * `EXISTENTIAL` (value: `"Existential"`)
 
 * `NOT_FAILING` (value: `"NotFailing"`)

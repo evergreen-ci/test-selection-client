@@ -20,6 +20,7 @@ type StrategyEnum string
 
 // List of StrategyEnum
 const (
+	EXCLUDE_MANUALLY_QUARANTINED StrategyEnum = "ExcludeManuallyQuarantined"
 	EXISTENTIAL StrategyEnum = "Existential"
 	NOT_FAILING StrategyEnum = "NotFailing"
 	NOT_PASSING StrategyEnum = "NotPassing"
@@ -30,6 +31,7 @@ const (
 
 // All allowed values of StrategyEnum enum
 var AllowedStrategyEnumEnumValues = []StrategyEnum{
+	"ExcludeManuallyQuarantined",
 	"Existential",
 	"NotFailing",
 	"NotPassing",
