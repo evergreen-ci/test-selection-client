@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## MarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePost
 
-> interface{} MarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePost(ctx, projectId, buildVariantName, taskName).Requester(requester).IsManuallyQuarantined(isManuallyQuarantined).Execute()
+> interface{} MarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePost(ctx, projectId, buildVariantName, taskName).IsManuallyQuarantined(isManuallyQuarantined).Execute()
 
 Mark Task As Manually Quarantined
 
@@ -33,12 +33,11 @@ func main() {
 	projectId := "projectId_example" // string | 
 	buildVariantName := "buildVariantName_example" // string | 
 	taskName := "taskName_example" // string | 
-	requester := "requester_example" // string | 
 	isManuallyQuarantined := true // bool | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StateTransitionAPI.MarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePost(context.Background(), projectId, buildVariantName, taskName).Requester(requester).IsManuallyQuarantined(isManuallyQuarantined).Execute()
+	resp, r, err := apiClient.StateTransitionAPI.MarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePost(context.Background(), projectId, buildVariantName, taskName).IsManuallyQuarantined(isManuallyQuarantined).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StateTransitionAPI.MarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePost``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -68,7 +67,6 @@ Name | Type | Description  | Notes
 
 
 
- **requester** | **string** |  | 
  **isManuallyQuarantined** | **bool** |  | 
 
 ### Return type

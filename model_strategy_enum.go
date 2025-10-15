@@ -24,7 +24,6 @@ const (
 	EXISTENTIAL StrategyEnum = "Existential"
 	NOT_FAILING StrategyEnum = "NotFailing"
 	NOT_PASSING StrategyEnum = "NotPassing"
-	NOT_FLAKY StrategyEnum = "NotFlaky"
 	OPTIMISTIC StrategyEnum = "Optimistic"
 	STARTS_WITH_T StrategyEnum = "StartsWithT"
 )
@@ -35,7 +34,6 @@ var AllowedStrategyEnumEnumValues = []StrategyEnum{
 	"Existential",
 	"NotFailing",
 	"NotPassing",
-	"NotFlaky",
 	"Optimistic",
 	"StartsWithT",
 }
