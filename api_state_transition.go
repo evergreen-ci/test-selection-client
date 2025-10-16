@@ -29,13 +29,7 @@ type ApiMarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuil
 	projectId string
 	buildVariantName string
 	taskName string
-	requester *string
 	isManuallyQuarantined *bool
-}
-
-func (r ApiMarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePostRequest) Requester(requester string) ApiMarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePostRequest {
-	r.requester = &requester
-	return r
 }
 
 func (r ApiMarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePostRequest) IsManuallyQuarantined(isManuallyQuarantined bool) ApiMarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePostRequest {
@@ -52,7 +46,6 @@ MarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariant
 
 Transition all tests of a single task into or out of the "Manually Quarantined" state
 :param project_id: The project id.
-:param requester: The requester.
 :param build_variant_name: The build variant name.
 :param task_name: The task name.
 :param is_manually_quarantined: Denote if the task should be marked manually quarantined
@@ -97,14 +90,10 @@ func (a *StateTransitionAPIService) MarkTaskAsManuallyQuarantinedApiTestSelectio
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.requester == nil {
-		return localVarReturnValue, nil, reportError("requester is required and must be specified")
-	}
 	if r.isManuallyQuarantined == nil {
 		return localVarReturnValue, nil, reportError("isManuallyQuarantined is required and must be specified")
 	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "requester", r.requester, "form", "")
 	parameterAddToHeaderOrQuery(localVarQueryParams, "is_manually_quarantined", r.isManuallyQuarantined, "form", "")
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
