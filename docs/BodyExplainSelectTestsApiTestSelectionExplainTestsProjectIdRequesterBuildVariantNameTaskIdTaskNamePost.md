@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **TestNames** | **[]string** |  | 
-**Strategies** | Pointer to [**[]StrategyEnum**](StrategyEnum.md) |  | [optional] [default to [Optimistic]]
+**Strategies** | Pointer to [**[]StrategyEnum**](StrategyEnum.md) |  | [optional] [default to {"Optimistic"}]
 
 ## Methods
 
