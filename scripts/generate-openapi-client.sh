@@ -21,4 +21,4 @@ cd ..
 export PATH="${PWD}/bin/apache-maven-${maven_version}/bin":"${PATH}"
 export PATH=/opt/bin/java/jdk21/bin:"${PATH}"
 # It's assumed that the latest JSON spec is downloaded locally in bin/test_selection_services.json.
-bin/openapi-generator-cli.sh generate -i bin/test_selection_services.json -g go -o ./ --git-user-id evergreen-ci --git-repo-id test-selection-client
+bin/openapi-generator-cli.sh generate -i bin/test_selection_services.json -g go -o ./ --git-user-id evergreen-ci --git-repo-id test-selection-client --additional-properties=enumClassPrefix=true

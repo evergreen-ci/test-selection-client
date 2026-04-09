@@ -20,10 +20,10 @@ type KnownIssueSource string
 
 // List of KnownIssueSource
 const (
-	TEST_REGISTRY KnownIssueSource = "test_registry"
-	BUILD_BARON KnownIssueSource = "build_baron"
-	FOLIAGE KnownIssueSource = "foliage"
-	EVERGREEN KnownIssueSource = "evergreen"
+	KNOWNISSUESOURCE_TEST_REGISTRY KnownIssueSource = "test_registry"
+	KNOWNISSUESOURCE_BUILD_BARON KnownIssueSource = "build_baron"
+	KNOWNISSUESOURCE_FOLIAGE KnownIssueSource = "foliage"
+	KNOWNISSUESOURCE_EVERGREEN KnownIssueSource = "evergreen"
 )
 
 // All allowed values of KnownIssueSource enum

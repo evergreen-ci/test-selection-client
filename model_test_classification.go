@@ -20,11 +20,11 @@ type TestClassification string
 
 // List of TestClassification
 const (
-	TRUE_POSITIVE TestClassification = "true_positive"
-	FALSE_POSITIVE TestClassification = "false_positive"
-	TRUE_NEGATIVE TestClassification = "true_negative"
-	FALSE_NEGATIVE TestClassification = "false_negative"
-	UNKNOWN TestClassification = "unknown"
+	TESTCLASSIFICATION_TRUE_POSITIVE TestClassification = "true_positive"
+	TESTCLASSIFICATION_FALSE_POSITIVE TestClassification = "false_positive"
+	TESTCLASSIFICATION_TRUE_NEGATIVE TestClassification = "true_negative"
+	TESTCLASSIFICATION_FALSE_NEGATIVE TestClassification = "false_negative"
+	TESTCLASSIFICATION_UNKNOWN TestClassification = "unknown"
 )
 
 // All allowed values of TestClassification enum

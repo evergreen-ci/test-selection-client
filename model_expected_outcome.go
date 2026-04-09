@@ -20,9 +20,9 @@ type ExpectedOutcome string
 
 // List of ExpectedOutcome
 const (
-	SUCCESS ExpectedOutcome = "success"
-	FAILURE ExpectedOutcome = "failure"
-	UNKNOWN ExpectedOutcome = "unknown"
+	EXPECTEDOUTCOME_SUCCESS ExpectedOutcome = "success"
+	EXPECTEDOUTCOME_FAILURE ExpectedOutcome = "failure"
+	EXPECTEDOUTCOME_UNKNOWN ExpectedOutcome = "unknown"
 )
 
 // All allowed values of ExpectedOutcome enum

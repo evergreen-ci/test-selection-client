@@ -62,5 +62,4 @@ model_test_result.go
 model_test_state_info.go
 model_validation_error.go
 response.go
-test/api_baseline_test.go
 utils.go
