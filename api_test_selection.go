@@ -189,7 +189,7 @@ func (r ApiSelectAllKnownTestsOfATaskApiTestSelectionSelectKnownTestsProjectIdRe
 	return r
 }
 
-func (r ApiSelectAllKnownTestsOfATaskApiTestSelectionSelectKnownTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest) Execute() ([]string, *http.Response, error) {
+func (r ApiSelectAllKnownTestsOfATaskApiTestSelectionSelectKnownTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest) Execute() ([]*string, *http.Response, error) {
 	return r.ApiService.SelectAllKnownTestsOfATaskApiTestSelectionSelectKnownTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostExecute(r)
 }
 
@@ -228,13 +228,13 @@ func (a *TestSelectionAPIService) SelectAllKnownTestsOfATaskApiTestSelectionSele
 }
 
 // Execute executes the request
-//  @return []string
-func (a *TestSelectionAPIService) SelectAllKnownTestsOfATaskApiTestSelectionSelectKnownTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostExecute(r ApiSelectAllKnownTestsOfATaskApiTestSelectionSelectKnownTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest) ([]string, *http.Response, error) {
+//  @return []*string
+func (a *TestSelectionAPIService) SelectAllKnownTestsOfATaskApiTestSelectionSelectKnownTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostExecute(r ApiSelectAllKnownTestsOfATaskApiTestSelectionSelectKnownTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest) ([]*string, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []string
+		localVarReturnValue  []*string
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TestSelectionAPIService.SelectAllKnownTestsOfATaskApiTestSelectionSelectKnownTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost")
@@ -335,7 +335,7 @@ func (r ApiSelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantN
 	return r
 }
 
-func (r ApiSelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest) Execute() ([]string, *http.Response, error) {
+func (r ApiSelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest) Execute() ([]*string, *http.Response, error) {
 	return r.ApiService.SelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostExecute(r)
 }
 
@@ -375,13 +375,13 @@ func (a *TestSelectionAPIService) SelectTestsApiTestSelectionSelectTestsProjectI
 }
 
 // Execute executes the request
-//  @return []string
-func (a *TestSelectionAPIService) SelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostExecute(r ApiSelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest) ([]string, *http.Response, error) {
+//  @return []*string
+func (a *TestSelectionAPIService) SelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostExecute(r ApiSelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest) ([]*string, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []string
+		localVarReturnValue  []*string
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TestSelectionAPIService.SelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost")

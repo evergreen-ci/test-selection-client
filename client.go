@@ -49,6 +49,8 @@ type APIClient struct {
 
 	// API Services
 
+	BaselineAPI *BaselineAPIService
+
 	PatchScannerInitiationAPI *PatchScannerInitiationAPIService
 
 	StateTransitionAPI *StateTransitionAPIService
@@ -72,6 +74,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 
 	// API Services
+	c.BaselineAPI = (*BaselineAPIService)(&c.common)
 	c.PatchScannerInitiationAPI = (*PatchScannerInitiationAPIService)(&c.common)
 	c.StateTransitionAPI = (*StateTransitionAPIService)(&c.common)
 	c.TestSelectionAPI = (*TestSelectionAPIService)(&c.common)
@@ -493,10 +496,7 @@ func addFile(w *multipart.Writer, fieldName, path string) error {
 	if err != nil {
 		return err
 	}
-	err = file.Close()
-	if err != nil {
-		return err
-	}
+	defer file.Close()
 
 	part, err := w.CreateFormFile(fieldName, filepath.Base(path))
 	if err != nil {

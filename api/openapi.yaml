@@ -74,7 +74,10 @@ paths:
             application/json:
               schema:
                 items:
+                  nullable: true
                   type: string
+                title: Response Select Tests Api Test Selection Select Tests  Project
+                  Id   Requester   Build Variant Name   Task Id   Task Name   Post
                 type: array
                 uniqueItems: true
           description: Successful Response
@@ -150,6 +153,7 @@ paths:
               - Optimistic
               items:
                 $ref: "#/components/schemas/StrategyEnum"
+              title: Strategies
               type: array
       responses:
         "200":
@@ -157,7 +161,11 @@ paths:
             application/json:
               schema:
                 items:
+                  nullable: true
                   type: string
+                title: Response Select All Known Tests Of A Task Api Test Selection
+                  Select Known Tests  Project Id   Requester   Build Variant Name   Task
+                  Id   Task Name   Post
                 type: array
                 uniqueItems: true
           description: Successful Response
@@ -255,7 +263,8 @@ paths:
   /api/test_selection/transition_tests/{project_id}/{build_variant_name}/{task_name}/:
     post:
       description: |-
-        Transition a single test into or out of the "Manually Quarantined" state
+        Transition a single test into or out of the "Manually Quarantined" state.
+        If that test doesn't exist in the registry, the registry will create an entry for it.
         :param project_id: The project id.
         :param build_variant_name: The build variant name.
         :param task_name: The task name.
@@ -301,7 +310,9 @@ paths:
           application/json:
             schema:
               items:
+                nullable: true
                 type: string
+              title: Test Names
               type: array
               uniqueItems: true
         required: true
@@ -323,7 +334,7 @@ paths:
   /api/test_selection/transition_task/{project_id}/{build_variant_name}/{task_name}/:
     post:
       description: |-
-        Transition all tests of a single task into or out of the "Manually Quarantined" state
+        Transition all known tests of a single task into or out of the "Manually Quarantined" state
         :param project_id: The project id.
         :param build_variant_name: The build variant name.
         :param task_name: The task name.
@@ -378,6 +389,163 @@ paths:
       summary: Mark Task As Manually Quarantined
       tags:
       - state_transition
+  /api/test_selection/transition_variant/{project_id}/{build_variant_name}/:
+    post:
+      description: |-
+        Transition all known tests of a single variant into or out of the "Manually Quarantined" state
+        :param project_id: The project id.
+        :param build_variant_name: The build variant name.
+        :param is_manually_quarantined: Denote if the variant should be marked manually quarantined
+        :return: None
+      operationId: mark_variant_as_manually_quarantined_api_test_selection_transition_variant__project_id___build_variant_name___post
+      parameters:
+      - explode: false
+        in: path
+        name: project_id
+        required: true
+        schema:
+          title: Project Id
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: build_variant_name
+        required: true
+        schema:
+          title: Build Variant Name
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: is_manually_quarantined
+        required: true
+        schema:
+          title: Is Manually Quarantined
+          type: boolean
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      summary: Mark Variant As Manually Quarantined
+      tags:
+      - state_transition
+  /api/test_selection/get_tests_state/{project_id}/{build_variant_name}/{task_name}/:
+    post:
+      description: |-
+        Return the state of a single test
+        :param project_id: The project id.
+        :param build_variant_name: The build variant name.
+        :param task_name: The task name.
+        :param test_names: The test names to be transitioned.
+        :return: None
+      operationId: get_tests_state_api_test_selection_get_tests_state__project_id___build_variant_name___task_name___post
+      parameters:
+      - explode: false
+        in: path
+        name: project_id
+        required: true
+        schema:
+          title: Project Id
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: build_variant_name
+        required: true
+        schema:
+          title: Build Variant Name
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: task_name
+        required: true
+        schema:
+          title: Task Name
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                type: string
+              title: Test Names
+              type: array
+              uniqueItems: true
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  $ref: "#/components/schemas/TestStateInfo"
+                title: Response Get Tests State Api Test Selection Get Tests State  Project
+                  Id   Build Variant Name   Task Name   Post
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      summary: Get Tests State
+      tags:
+      - state_transition
+  /api/test_selection/get_variant_state/{project_id}/{build_variant_name}/:
+    post:
+      description: |-
+        Return the state of all known tests of a single variant
+        :param project_id: The project id.
+        :param build_variant_name: The build variant name.
+        :return: None
+      operationId: get_variant_state_api_test_selection_get_variant_state__project_id___build_variant_name___post
+      parameters:
+      - explode: false
+        in: path
+        name: project_id
+        required: true
+        schema:
+          title: Project Id
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: build_variant_name
+        required: true
+        schema:
+          title: Build Variant Name
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  $ref: "#/components/schemas/TaskStateInfo"
+                title: Response Get Variant State Api Test Selection Get Variant State  Project
+                  Id   Build Variant Name   Post
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      summary: Get Variant State
+      tags:
+      - state_transition
   /api/test_selection/patch_scanner/{project_id}:
     post:
       description: |-
@@ -403,6 +571,7 @@ paths:
               - Optimistic
               items:
                 $ref: "#/components/schemas/StrategyEnum"
+              title: Strategies
               type: array
       responses:
         "200":
@@ -444,13 +613,16 @@ paths:
               - Optimistic
               items:
                 $ref: "#/components/schemas/StrategyEnum"
+              title: Strategies
               type: array
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PatchExplanation"
+                allOf:
+                - $ref: "#/components/schemas/PatchExplanation"
+                nullable: true
           description: Successful Response
         "422":
           content:
@@ -461,19 +633,251 @@ paths:
       summary: Scan Single Patch
       tags:
       - patch_scanner_initiation
+  /api/baseline/status:
+    get:
+      description: |-
+        Get a baseline comparison by task ID or comparison ID.
+
+        Provide exactly one of task_id or comparison_id as a query parameter.
+
+        :param task_id: Optional Evergreen task ID
+        :param comparison_id: Optional baseline comparison UUID
+        :return: BaselineComparison model with full comparison data
+        :raises HTTPException: 400 if neither or both IDs provided, 404 if no comparison found
+      operationId: get_baseline_status_api_baseline_status_get
+      parameters:
+      - description: Evergreen task ID
+        explode: true
+        in: query
+        name: task_id
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: form
+      - description: Baseline comparison UUID
+        explode: true
+        in: query
+        name: comparison_id
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BaselineComparison"
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      summary: Get Baseline Status
+      tags:
+      - baseline
 components:
   schemas:
+    BaselineComparison:
+      description: Main model for baseline comparison tracking and results.
+      example:
+        strategies:
+        - strategies
+        - strategies
+        project: project
+        execution_number: 0
+        created_at: 2000-01-23T04:56:07.000+00:00
+        task_id: task_id
+        strategy_patch_id: strategy_patch_id
+        task_metrics:
+        - task_name: task_name
+          tests_selected: 1
+          tests_filtered: 5
+          test_metrics:
+          - known_issues:
+            - source: test_registry
+              discovered_at: 2000-01-23T04:56:07.000+00:00
+            - source: test_registry
+              discovered_at: 2000-01-23T04:56:07.000+00:00
+            subsequent_result: ""
+            baseline_result: ""
+            explanation: explanation
+            classification: true_positive
+            is_known_issue: true
+            test_name: test_name
+            strategy_name: null
+            strategy_result: ""
+            was_filtered: true
+            expected_outcome: expected_outcome
+          - known_issues:
+            - source: test_registry
+              discovered_at: 2000-01-23T04:56:07.000+00:00
+            - source: test_registry
+              discovered_at: 2000-01-23T04:56:07.000+00:00
+            subsequent_result: ""
+            baseline_result: ""
+            explanation: explanation
+            classification: true_positive
+            is_known_issue: true
+            test_name: test_name
+            strategy_name: null
+            strategy_result: ""
+            was_filtered: true
+            expected_outcome: expected_outcome
+          variant: variant
+          total_tests: 6
+        - task_name: task_name
+          tests_selected: 1
+          tests_filtered: 5
+          test_metrics:
+          - known_issues:
+            - source: test_registry
+              discovered_at: 2000-01-23T04:56:07.000+00:00
+            - source: test_registry
+              discovered_at: 2000-01-23T04:56:07.000+00:00
+            subsequent_result: ""
+            baseline_result: ""
+            explanation: explanation
+            classification: true_positive
+            is_known_issue: true
+            test_name: test_name
+            strategy_name: null
+            strategy_result: ""
+            was_filtered: true
+            expected_outcome: expected_outcome
+          - known_issues:
+            - source: test_registry
+              discovered_at: 2000-01-23T04:56:07.000+00:00
+            - source: test_registry
+              discovered_at: 2000-01-23T04:56:07.000+00:00
+            subsequent_result: ""
+            baseline_result: ""
+            explanation: explanation
+            classification: true_positive
+            is_known_issue: true
+            test_name: test_name
+            strategy_name: null
+            strategy_result: ""
+            was_filtered: true
+            expected_outcome: expected_outcome
+          variant: variant
+          total_tests: 6
+        subsequent_commit_sha: subsequent_commit_sha
+        completed_at: 2000-01-23T04:56:07.000+00:00
+        comparison_id: comparison_id
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        strategy_metrics:
+          key:
+            tests_selected: 4
+            true_negatives: 7
+            tests_filtered: 7
+            false_positives: 2
+            total_tests: 2
+            true_positives: 5
+            false_negatives: 9
+            strategy_name: null
+            unknown: 3
+        retroactive_corrections:
+        - retroactive_corrections
+        - retroactive_corrections
+        strategy_execution_order:
+        - ExcludeManuallyQuarantined
+        - ExcludeManuallyQuarantined
+        base_commit_sha: base_commit_sha
+        total_tests_across_all_tasks: 1
+        status: pending
+      properties:
+        comparison_id:
+          title: Comparison Id
+          type: string
+        project:
+          title: Project
+          type: string
+        strategy_patch_id:
+          nullable: true
+          type: string
+        task_id:
+          title: Task Id
+          type: string
+        execution_number:
+          default: 0
+          title: Execution Number
+          type: integer
+        base_commit_sha:
+          nullable: true
+          type: string
+        subsequent_commit_sha:
+          nullable: true
+          type: string
+        status:
+          $ref: "#/components/schemas/ComparisonStatus"
+        created_at:
+          format: date-time
+          title: Created At
+          type: string
+        updated_at:
+          format: date-time
+          title: Updated At
+          type: string
+        completed_at:
+          format: date-time
+          nullable: true
+          type: string
+        strategies:
+          items:
+            type: string
+          title: Strategies
+          type: array
+        strategy_execution_order:
+          items:
+            $ref: "#/components/schemas/StrategyEnum"
+          title: Strategy Execution Order
+          type: array
+        task_metrics:
+          items:
+            $ref: "#/components/schemas/TaskMetrics"
+          title: Task Metrics
+          type: array
+        strategy_metrics:
+          additionalProperties:
+            $ref: "#/components/schemas/StrategyMetrics"
+          title: Strategy Metrics
+        retroactive_corrections:
+          items:
+            type: string
+          title: Retroactive Corrections
+          type: array
+        total_tests_across_all_tasks:
+          default: 0
+          title: Total Tests Across All Tasks
+          type: integer
+      required:
+      - comparison_id
+      - created_at
+      - project
+      - status
+      - strategies
+      - strategy_execution_order
+      - task_id
+      - updated_at
+      title: BaselineComparison
     ? Body_explain_select_tests_api_test_selection_explain_tests__project_id___requester___build_variant_name___task_id___task_name___post
     : properties:
         test_names:
           items:
             type: string
+          title: Test Names
           type: array
         strategies:
           default:
           - Optimistic
           items:
             $ref: "#/components/schemas/StrategyEnum"
+          title: Strategies
           type: array
       required:
       - test_names
@@ -483,37 +887,20 @@ components:
         test_names:
           items:
             type: string
+          title: Test Names
           type: array
         strategies:
           default:
           - Optimistic
           items:
             $ref: "#/components/schemas/StrategyEnum"
+          title: Strategies
           type: array
       required:
       - test_names
       title: Body_select_tests_api_test_selection_select_tests__project_id___requester___build_variant_name___task_id___task_name___post
     BuildExplanation:
       description: Explanation of the results of a single build variant
-      example:
-        build_variant: build_variant
-        tasks:
-          key:
-            task_name: task_name
-            tests:
-              key:
-                explanations:
-                  key:
-                    strategy: ExcludeManuallyQuarantined
-                    explanation: explanation
-                    test_name: test_name
-                    selected: true
-                    expected_outcome: success
-                is_passing: true
-                explanation: explanation
-                test_name: test_name
-                selected: true
-                expected_outcome: null
       properties:
         build_variant:
           description: Build variant name (not display name)
@@ -527,6 +914,15 @@ components:
       required:
       - build_variant
       title: BuildExplanation
+    ComparisonStatus:
+      description: Status of a baseline comparison operation.
+      enum:
+      - pending
+      - computing_metrics
+      - complete
+      - failed
+      title: ComparisonStatus
+      type: string
     ExpectedOutcome:
       description: The expected outcome of a test for the selected strategy
       enum:
@@ -537,12 +933,6 @@ components:
       type: string
     Explanation:
       description: Explanation of the results of a single test.
-      example:
-        strategy: ExcludeManuallyQuarantined
-        explanation: explanation
-        test_name: test_name
-        selected: true
-        expected_outcome: success
       properties:
         test_name:
           title: Test Name
@@ -569,57 +959,51 @@ components:
         detail:
         - msg: msg
           loc:
-          - ValidationError_loc_inner
-          - ValidationError_loc_inner
+          - Location_inner
+          - Location_inner
           type: type
         - msg: msg
           loc:
-          - ValidationError_loc_inner
-          - ValidationError_loc_inner
+          - Location_inner
+          - Location_inner
           type: type
       properties:
         detail:
           items:
             $ref: "#/components/schemas/ValidationError"
+          title: Detail
           type: array
       title: HTTPValidationError
+    KnownIssue:
+      description: Represents a known test issue from Test Registry or Build Baron.
+      example:
+        source: test_registry
+        discovered_at: 2000-01-23T04:56:07.000+00:00
+      properties:
+        source:
+          $ref: "#/components/schemas/KnownIssueSource"
+        discovered_at:
+          format: date-time
+          title: Discovered At
+          type: string
+      required:
+      - discovered_at
+      - source
+      title: KnownIssue
+    KnownIssueSource:
+      description: Source of known issue classification.
+      enum:
+      - test_registry
+      - build_baron
+      - foliage
+      - evergreen
+      title: KnownIssueSource
+      type: string
     PatchExplanation:
       description: |-
         Explanation of the results of a whole patch
 
         The builds are mapped by build variant name (not display name)
-      example:
-        patch_id: patch_id
-        builds:
-          key:
-            build_variant: build_variant
-            tasks:
-              key:
-                task_name: task_name
-                tests:
-                  key:
-                    explanations:
-                      key:
-                        strategy: ExcludeManuallyQuarantined
-                        explanation: explanation
-                        test_name: test_name
-                        selected: true
-                        expected_outcome: success
-                    is_passing: true
-                    explanation: explanation
-                    test_name: test_name
-                    selected: true
-                    expected_outcome: null
-        success_measure:
-          key:
-            number_of_selected_tests: 6
-            number_of_correctly_selected_expected_outcome_passing_tests: 5
-            selected_without_filter: 2
-            total_number_of_tests: 0
-            number_of_unselected_unknown_expected_outcome_tests: 9
-            number_of_unselected_tests: 1
-            number_of_selected_unknown_expected_outcome_tests: 7
-            number_of_correctly_unselected_expected_outcome_passing_tests: 5
       properties:
         patch_id:
           title: Patch Id
@@ -637,6 +1021,18 @@ components:
       required:
       - patch_id
       title: PatchExplanation
+    StateMachineEnum:
+      description: This enumerates all possible test states
+      enum:
+      - "n"
+      - stress_testing
+      - stable
+      - deleted
+      - suspected_flaky
+      - quarantined
+      - manually_quarantined
+      title: StateMachineEnum
+      type: string
     StrategyEnum:
       description: This enumerated the types of strategies we support for test selection.
       enum:
@@ -648,6 +1044,120 @@ components:
       - StartsWithT
       title: StrategyEnum
       type: string
+    StrategyMetrics:
+      description: Aggregated metrics for a strategy across all tasks.
+      example:
+        tests_selected: 4
+        true_negatives: 7
+        tests_filtered: 7
+        false_positives: 2
+        total_tests: 2
+        true_positives: 5
+        false_negatives: 9
+        strategy_name: null
+        unknown: 3
+      properties:
+        strategy_name:
+          $ref: "#/components/schemas/StrategyEnum"
+        true_positives:
+          default: 0
+          title: True Positives
+          type: integer
+        false_positives:
+          default: 0
+          title: False Positives
+          type: integer
+        true_negatives:
+          default: 0
+          title: True Negatives
+          type: integer
+        false_negatives:
+          default: 0
+          title: False Negatives
+          type: integer
+        unknown:
+          default: 0
+          title: Unknown
+          type: integer
+        total_tests:
+          title: Total Tests
+          type: integer
+        tests_selected:
+          title: Tests Selected
+          type: integer
+        tests_filtered:
+          title: Tests Filtered
+          type: integer
+      required:
+      - strategy_name
+      - tests_filtered
+      - tests_selected
+      - total_tests
+      title: StrategyMetrics
+    StrategyTestMetrics:
+      description: Metrics for a specific test evaluated by a strategy.
+      example:
+        known_issues:
+        - source: test_registry
+          discovered_at: 2000-01-23T04:56:07.000+00:00
+        - source: test_registry
+          discovered_at: 2000-01-23T04:56:07.000+00:00
+        subsequent_result: ""
+        baseline_result: ""
+        explanation: explanation
+        classification: true_positive
+        is_known_issue: true
+        test_name: test_name
+        strategy_name: null
+        strategy_result: ""
+        was_filtered: true
+        expected_outcome: expected_outcome
+      properties:
+        test_name:
+          title: Test Name
+          type: string
+        was_filtered:
+          title: Was Filtered
+          type: boolean
+        strategy_name:
+          $ref: "#/components/schemas/StrategyEnum"
+        expected_outcome:
+          title: Expected Outcome
+          type: string
+        explanation:
+          title: Explanation
+          type: string
+        baseline_result:
+          allOf:
+          - $ref: "#/components/schemas/TestResult"
+          nullable: true
+        strategy_result:
+          allOf:
+          - $ref: "#/components/schemas/TestResult"
+          nullable: true
+        subsequent_result:
+          allOf:
+          - $ref: "#/components/schemas/TestResult"
+          nullable: true
+        classification:
+          $ref: "#/components/schemas/TestClassification"
+        known_issues:
+          items:
+            $ref: "#/components/schemas/KnownIssue"
+          title: Known Issues
+          type: array
+        is_known_issue:
+          title: Is Known Issue
+          type: boolean
+      required:
+      - classification
+      - expected_outcome
+      - explanation
+      - is_known_issue
+      - strategy_name
+      - test_name
+      - was_filtered
+      title: StrategyTestMetrics
     SuccessMeasure:
       description: |-
         This class is used to calculate the "magic number" that denotes the efficiency of a strategy
@@ -662,15 +1172,6 @@ components:
             (number_of_correctly_selected_expected_outcome_passing_tests +
             number_of_correctly_unselected_expected_outcome_passing_tests)
             / total_number_of_tests
-      example:
-        number_of_selected_tests: 6
-        number_of_correctly_selected_expected_outcome_passing_tests: 5
-        selected_without_filter: 2
-        total_number_of_tests: 0
-        number_of_unselected_unknown_expected_outcome_tests: 9
-        number_of_unselected_tests: 1
-        number_of_selected_unknown_expected_outcome_tests: 7
-        number_of_correctly_unselected_expected_outcome_passing_tests: 5
       properties:
         total_number_of_tests:
           default: 0
@@ -707,22 +1208,6 @@ components:
       title: SuccessMeasure
     TaskExplanation:
       description: Explanation of the results of a single task.
-      example:
-        task_name: task_name
-        tests:
-          key:
-            explanations:
-              key:
-                strategy: ExcludeManuallyQuarantined
-                explanation: explanation
-                test_name: test_name
-                selected: true
-                expected_outcome: success
-            is_passing: true
-            explanation: explanation
-            test_name: test_name
-            selected: true
-            expected_outcome: null
       properties:
         task_name:
           title: Task Name
@@ -735,21 +1220,100 @@ components:
       required:
       - task_name
       title: TaskExplanation
+    TaskMetrics:
+      description: Aggregated metrics for a task.
+      example:
+        task_name: task_name
+        tests_selected: 1
+        tests_filtered: 5
+        test_metrics:
+        - known_issues:
+          - source: test_registry
+            discovered_at: 2000-01-23T04:56:07.000+00:00
+          - source: test_registry
+            discovered_at: 2000-01-23T04:56:07.000+00:00
+          subsequent_result: ""
+          baseline_result: ""
+          explanation: explanation
+          classification: true_positive
+          is_known_issue: true
+          test_name: test_name
+          strategy_name: null
+          strategy_result: ""
+          was_filtered: true
+          expected_outcome: expected_outcome
+        - known_issues:
+          - source: test_registry
+            discovered_at: 2000-01-23T04:56:07.000+00:00
+          - source: test_registry
+            discovered_at: 2000-01-23T04:56:07.000+00:00
+          subsequent_result: ""
+          baseline_result: ""
+          explanation: explanation
+          classification: true_positive
+          is_known_issue: true
+          test_name: test_name
+          strategy_name: null
+          strategy_result: ""
+          was_filtered: true
+          expected_outcome: expected_outcome
+        variant: variant
+        total_tests: 6
+      properties:
+        task_name:
+          title: Task Name
+          type: string
+        variant:
+          title: Variant
+          type: string
+        total_tests:
+          title: Total Tests
+          type: integer
+        tests_selected:
+          title: Tests Selected
+          type: integer
+        tests_filtered:
+          title: Tests Filtered
+          type: integer
+        test_metrics:
+          items:
+            $ref: "#/components/schemas/StrategyTestMetrics"
+          title: Test Metrics
+          type: array
+      required:
+      - task_name
+      - test_metrics
+      - tests_filtered
+      - tests_selected
+      - total_tests
+      - variant
+      title: TaskMetrics
+    TaskStateInfo:
+      description: Information about test states and override states of a task.
+      properties:
+        task_name:
+          title: Task Name
+          type: string
+        test_stats:
+          additionalProperties:
+            $ref: "#/components/schemas/TestStateInfo"
+          title: Test Stats
+      required:
+      - task_name
+      - test_stats
+      title: TaskStateInfo
+    TestClassification:
+      description: Classification of a test result in the confusion matrix.
+      enum:
+      - true_positive
+      - false_positive
+      - true_negative
+      - false_negative
+      - unknown
+      title: TestClassification
+      type: string
     TestExplanation:
       description: Explanation of the results of a single test.
-      example:
-        explanations:
-          key:
-            strategy: ExcludeManuallyQuarantined
-            explanation: explanation
-            test_name: test_name
-            selected: true
-            expected_outcome: success
-        is_passing: true
-        explanation: explanation
-        test_name: test_name
-        selected: true
-        expected_outcome: null
       properties:
         test_name:
           title: Test Name
@@ -777,17 +1341,51 @@ components:
       - selected
       - test_name
       title: TestExplanation
+    TestResult:
+      description: Represents a test execution result from Evergreen.
+      properties:
+        test_name:
+          title: Test Name
+          type: string
+        status:
+          title: Status
+          type: string
+        task_id:
+          title: Task Id
+          type: string
+        execution:
+          title: Execution
+          type: integer
+      required:
+      - execution
+      - status
+      - task_id
+      - test_name
+      title: TestResult
+    TestStateInfo:
+      description: Information about a test state and override state.
+      properties:
+        state:
+          $ref: "#/components/schemas/StateMachineEnum"
+        override_state:
+          allOf:
+          - $ref: "#/components/schemas/StateMachineEnum"
+          nullable: true
+      required:
+      - state
+      title: TestStateInfo
     ValidationError:
       example:
         msg: msg
         loc:
-        - ValidationError_loc_inner
-        - ValidationError_loc_inner
+        - Location_inner
+        - Location_inner
         type: type
       properties:
         loc:
           items:
-            $ref: "#/components/schemas/ValidationError_loc_inner"
+            $ref: "#/components/schemas/Location_inner"
+          title: Location
           type: array
         msg:
           title: Message
@@ -800,7 +1398,7 @@ components:
       - msg
       - type
       title: ValidationError
-    ValidationError_loc_inner:
+    Location_inner:
       anyOf:
       - type: string
       - type: integer

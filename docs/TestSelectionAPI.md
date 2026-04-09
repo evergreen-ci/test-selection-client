@@ -96,7 +96,7 @@ No authorization required
 
 ## SelectAllKnownTestsOfATaskApiTestSelectionSelectKnownTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost
 
-> []string SelectAllKnownTestsOfATaskApiTestSelectionSelectKnownTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost(ctx, projectId, requester, buildVariantName, taskId, taskName).StrategyEnum(strategyEnum).Execute()
+> []*string SelectAllKnownTestsOfATaskApiTestSelectionSelectKnownTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost(ctx, projectId, requester, buildVariantName, taskId, taskName).StrategyEnum(strategyEnum).Execute()
 
 Select All Known Tests Of A Task
 
@@ -129,7 +129,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `TestSelectionAPI.SelectAllKnownTestsOfATaskApiTestSelectionSelectKnownTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `SelectAllKnownTestsOfATaskApiTestSelectionSelectKnownTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost`: []string
+	// response from `SelectAllKnownTestsOfATaskApiTestSelectionSelectKnownTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost`: []*string
 	fmt.Fprintf(os.Stdout, "Response from `TestSelectionAPI.SelectAllKnownTestsOfATaskApiTestSelectionSelectKnownTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost`: %v\n", resp)
 }
 ```
@@ -162,7 +162,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**[]string**
+**[]*string**
 
 ### Authorization
 
@@ -180,7 +180,7 @@ No authorization required
 
 ## SelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost
 
-> []string SelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost(ctx, projectId, requester, buildVariantName, taskId, taskName).BodySelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost(bodySelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost).Execute()
+> []*string SelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost(ctx, projectId, requester, buildVariantName, taskId, taskName).BodySelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost(bodySelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost).Execute()
 
 Select Tests
 
@@ -213,7 +213,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `TestSelectionAPI.SelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `SelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost`: []string
+	// response from `SelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost`: []*string
 	fmt.Fprintf(os.Stdout, "Response from `TestSelectionAPI.SelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost`: %v\n", resp)
 }
 ```
@@ -246,7 +246,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**[]string**
+**[]*string**
 
 ### Authorization
 
