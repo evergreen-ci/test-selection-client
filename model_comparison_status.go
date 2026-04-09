@@ -20,10 +20,10 @@ type ComparisonStatus string
 
 // List of ComparisonStatus
 const (
-	PENDING ComparisonStatus = "pending"
-	COMPUTING_METRICS ComparisonStatus = "computing_metrics"
-	COMPLETE ComparisonStatus = "complete"
-	FAILED ComparisonStatus = "failed"
+	COMPARISONSTATUS_PENDING ComparisonStatus = "pending"
+	COMPARISONSTATUS_COMPUTING_METRICS ComparisonStatus = "computing_metrics"
+	COMPARISONSTATUS_COMPLETE ComparisonStatus = "complete"
+	COMPARISONSTATUS_FAILED ComparisonStatus = "failed"
 )
 
 // All allowed values of ComparisonStatus enum

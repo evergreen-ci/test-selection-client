@@ -20,12 +20,12 @@ type StrategyEnum string
 
 // List of StrategyEnum
 const (
-	EXCLUDE_MANUALLY_QUARANTINED StrategyEnum = "ExcludeManuallyQuarantined"
-	EXISTENTIAL StrategyEnum = "Existential"
-	NOT_FAILING StrategyEnum = "NotFailing"
-	NOT_PASSING StrategyEnum = "NotPassing"
-	OPTIMISTIC StrategyEnum = "Optimistic"
-	STARTS_WITH_T StrategyEnum = "StartsWithT"
+	STRATEGYENUM_EXCLUDE_MANUALLY_QUARANTINED StrategyEnum = "ExcludeManuallyQuarantined"
+	STRATEGYENUM_EXISTENTIAL StrategyEnum = "Existential"
+	STRATEGYENUM_NOT_FAILING StrategyEnum = "NotFailing"
+	STRATEGYENUM_NOT_PASSING StrategyEnum = "NotPassing"
+	STRATEGYENUM_OPTIMISTIC StrategyEnum = "Optimistic"
+	STRATEGYENUM_STARTS_WITH_T StrategyEnum = "StartsWithT"
 )
 
 // All allowed values of StrategyEnum enum

@@ -20,13 +20,13 @@ type StateMachineEnum string
 
 // List of StateMachineEnum
 const (
-	N StateMachineEnum = "n"
-	STRESS_TESTING StateMachineEnum = "stress_testing"
-	STABLE StateMachineEnum = "stable"
-	DELETED StateMachineEnum = "deleted"
-	SUSPECTED_FLAKY StateMachineEnum = "suspected_flaky"
-	QUARANTINED StateMachineEnum = "quarantined"
-	MANUALLY_QUARANTINED StateMachineEnum = "manually_quarantined"
+	STATEMACHINEENUM_N StateMachineEnum = "n"
+	STATEMACHINEENUM_STRESS_TESTING StateMachineEnum = "stress_testing"
+	STATEMACHINEENUM_STABLE StateMachineEnum = "stable"
+	STATEMACHINEENUM_DELETED StateMachineEnum = "deleted"
+	STATEMACHINEENUM_SUSPECTED_FLAKY StateMachineEnum = "suspected_flaky"
+	STATEMACHINEENUM_QUARANTINED StateMachineEnum = "quarantined"
+	STATEMACHINEENUM_MANUALLY_QUARANTINED StateMachineEnum = "manually_quarantined"
 )
 
 // All allowed values of StateMachineEnum enum
