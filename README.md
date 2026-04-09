@@ -5,11 +5,7 @@ Test selection services client.
 ## How to Autogenerate Client Files Locally
 The auto-generation script depends on `java` being in the `PATH`.
 
-1. Download the OpenAPI spec from https://test-selection-services.cloud-build.prod.corp.mongodb.com/test_selection_services.json and save it to `bin/test_selection_services.json`:
-   ```
-   mkdir -p bin
-   curl -o bin/test_selection_services.json https://test-selection-services.cloud-build.prod.corp.mongodb.com/test_selection_services.json
-   ```
+1. Download the OpenAPI spec from https://test-selection-services.cloud-build.prod.corp.mongodb.com/test_selection_services.json (requires corp auth) and save it to `bin/test_selection_services.json`.
 2. Run the auto-generation script:
    ```
    bash scripts/generate-openapi-client.sh
