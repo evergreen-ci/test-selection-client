@@ -26,6 +26,8 @@ type TaskMetrics struct {
 	TotalTests int32 `json:"total_tests"`
 	TestsSelected int32 `json:"tests_selected"`
 	TestsFiltered int32 `json:"tests_filtered"`
+	TestsSelectedByStrategy map[string]int32 `json:"tests_selected_by_strategy,omitempty"`
+	TestsFilteredByStrategy map[string]int32 `json:"tests_filtered_by_strategy,omitempty"`
 	TestMetrics []StrategyTestMetrics `json:"test_metrics"`
 }
 
@@ -174,6 +176,70 @@ func (o *TaskMetrics) SetTestsFiltered(v int32) {
 	o.TestsFiltered = v
 }
 
+// GetTestsSelectedByStrategy returns the TestsSelectedByStrategy field value if set, zero value otherwise.
+func (o *TaskMetrics) GetTestsSelectedByStrategy() map[string]int32 {
+	if o == nil || IsNil(o.TestsSelectedByStrategy) {
+		var ret map[string]int32
+		return ret
+	}
+	return o.TestsSelectedByStrategy
+}
+
+// GetTestsSelectedByStrategyOk returns a tuple with the TestsSelectedByStrategy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TaskMetrics) GetTestsSelectedByStrategyOk() (map[string]int32, bool) {
+	if o == nil || IsNil(o.TestsSelectedByStrategy) {
+		return map[string]int32{}, false
+	}
+	return o.TestsSelectedByStrategy, true
+}
+
+// HasTestsSelectedByStrategy returns a boolean if a field has been set.
+func (o *TaskMetrics) HasTestsSelectedByStrategy() bool {
+	if o != nil && !IsNil(o.TestsSelectedByStrategy) {
+		return true
+	}
+
+	return false
+}
+
+// SetTestsSelectedByStrategy gets a reference to the given map[string]int32 and assigns it to the TestsSelectedByStrategy field.
+func (o *TaskMetrics) SetTestsSelectedByStrategy(v map[string]int32) {
+	o.TestsSelectedByStrategy = v
+}
+
+// GetTestsFilteredByStrategy returns the TestsFilteredByStrategy field value if set, zero value otherwise.
+func (o *TaskMetrics) GetTestsFilteredByStrategy() map[string]int32 {
+	if o == nil || IsNil(o.TestsFilteredByStrategy) {
+		var ret map[string]int32
+		return ret
+	}
+	return o.TestsFilteredByStrategy
+}
+
+// GetTestsFilteredByStrategyOk returns a tuple with the TestsFilteredByStrategy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TaskMetrics) GetTestsFilteredByStrategyOk() (map[string]int32, bool) {
+	if o == nil || IsNil(o.TestsFilteredByStrategy) {
+		return map[string]int32{}, false
+	}
+	return o.TestsFilteredByStrategy, true
+}
+
+// HasTestsFilteredByStrategy returns a boolean if a field has been set.
+func (o *TaskMetrics) HasTestsFilteredByStrategy() bool {
+	if o != nil && !IsNil(o.TestsFilteredByStrategy) {
+		return true
+	}
+
+	return false
+}
+
+// SetTestsFilteredByStrategy gets a reference to the given map[string]int32 and assigns it to the TestsFilteredByStrategy field.
+func (o *TaskMetrics) SetTestsFilteredByStrategy(v map[string]int32) {
+	o.TestsFilteredByStrategy = v
+}
+
 // GetTestMetrics returns the TestMetrics field value
 func (o *TaskMetrics) GetTestMetrics() []StrategyTestMetrics {
 	if o == nil {
@@ -213,6 +279,12 @@ func (o TaskMetrics) ToMap() (map[string]interface{}, error) {
 	toSerialize["total_tests"] = o.TotalTests
 	toSerialize["tests_selected"] = o.TestsSelected
 	toSerialize["tests_filtered"] = o.TestsFiltered
+	if !IsNil(o.TestsSelectedByStrategy) {
+		toSerialize["tests_selected_by_strategy"] = o.TestsSelectedByStrategy
+	}
+	if !IsNil(o.TestsFilteredByStrategy) {
+		toSerialize["tests_filtered_by_strategy"] = o.TestsFilteredByStrategy
+	}
 	toSerialize["test_metrics"] = o.TestMetrics
 	return toSerialize, nil
 }

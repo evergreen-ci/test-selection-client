@@ -23,6 +23,492 @@ import (
 // StateTransitionAPIService StateTransitionAPI service
 type StateTransitionAPIService service
 
+type ApiGetProjectQuarantinedApiTestSelectionGetProjectQuarantinedProjectIdPostRequest struct {
+	ctx context.Context
+	ApiService *StateTransitionAPIService
+	projectId string
+}
+
+func (r ApiGetProjectQuarantinedApiTestSelectionGetProjectQuarantinedProjectIdPostRequest) Execute() (*map[string]VariantStateInfo, *http.Response, error) {
+	return r.ApiService.GetProjectQuarantinedApiTestSelectionGetProjectQuarantinedProjectIdPostExecute(r)
+}
+
+/*
+GetProjectQuarantinedApiTestSelectionGetProjectQuarantinedProjectIdPost Get Project Quarantined
+
+Return the state of all quarantined tests of a single project
+:param project_id: The project id.
+:return: All quarantined tests in the project
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param projectId
+ @return ApiGetProjectQuarantinedApiTestSelectionGetProjectQuarantinedProjectIdPostRequest
+*/
+func (a *StateTransitionAPIService) GetProjectQuarantinedApiTestSelectionGetProjectQuarantinedProjectIdPost(ctx context.Context, projectId string) ApiGetProjectQuarantinedApiTestSelectionGetProjectQuarantinedProjectIdPostRequest {
+	return ApiGetProjectQuarantinedApiTestSelectionGetProjectQuarantinedProjectIdPostRequest{
+		ApiService: a,
+		ctx: ctx,
+		projectId: projectId,
+	}
+}
+
+// Execute executes the request
+//  @return map[string]VariantStateInfo
+func (a *StateTransitionAPIService) GetProjectQuarantinedApiTestSelectionGetProjectQuarantinedProjectIdPostExecute(r ApiGetProjectQuarantinedApiTestSelectionGetProjectQuarantinedProjectIdPostRequest) (*map[string]VariantStateInfo, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *map[string]VariantStateInfo
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StateTransitionAPIService.GetProjectQuarantinedApiTestSelectionGetProjectQuarantinedProjectIdPost")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/test_selection/get_project_quarantined/{project_id}/"
+	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v HTTPValidationError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetProjectQuarantinedDataInBodyApiTestSelectionGetProjectQuarantinedPostRequest struct {
+	ctx context.Context
+	ApiService *StateTransitionAPIService
+	bodyGetProjectQuarantinedDataInBodyApiTestSelectionGetProjectQuarantinedPost *BodyGetProjectQuarantinedDataInBodyApiTestSelectionGetProjectQuarantinedPost
+}
+
+func (r ApiGetProjectQuarantinedDataInBodyApiTestSelectionGetProjectQuarantinedPostRequest) BodyGetProjectQuarantinedDataInBodyApiTestSelectionGetProjectQuarantinedPost(bodyGetProjectQuarantinedDataInBodyApiTestSelectionGetProjectQuarantinedPost BodyGetProjectQuarantinedDataInBodyApiTestSelectionGetProjectQuarantinedPost) ApiGetProjectQuarantinedDataInBodyApiTestSelectionGetProjectQuarantinedPostRequest {
+	r.bodyGetProjectQuarantinedDataInBodyApiTestSelectionGetProjectQuarantinedPost = &bodyGetProjectQuarantinedDataInBodyApiTestSelectionGetProjectQuarantinedPost
+	return r
+}
+
+func (r ApiGetProjectQuarantinedDataInBodyApiTestSelectionGetProjectQuarantinedPostRequest) Execute() (*map[string]VariantStateInfo, *http.Response, error) {
+	return r.ApiService.GetProjectQuarantinedDataInBodyApiTestSelectionGetProjectQuarantinedPostExecute(r)
+}
+
+/*
+GetProjectQuarantinedDataInBodyApiTestSelectionGetProjectQuarantinedPost Get Project Quarantined Data In Body
+
+Return the state of all quarantined tests of a single project
+:param project_id: The project id.
+:return: All quarantined tests in the project
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetProjectQuarantinedDataInBodyApiTestSelectionGetProjectQuarantinedPostRequest
+*/
+func (a *StateTransitionAPIService) GetProjectQuarantinedDataInBodyApiTestSelectionGetProjectQuarantinedPost(ctx context.Context) ApiGetProjectQuarantinedDataInBodyApiTestSelectionGetProjectQuarantinedPostRequest {
+	return ApiGetProjectQuarantinedDataInBodyApiTestSelectionGetProjectQuarantinedPostRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return map[string]VariantStateInfo
+func (a *StateTransitionAPIService) GetProjectQuarantinedDataInBodyApiTestSelectionGetProjectQuarantinedPostExecute(r ApiGetProjectQuarantinedDataInBodyApiTestSelectionGetProjectQuarantinedPostRequest) (*map[string]VariantStateInfo, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *map[string]VariantStateInfo
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StateTransitionAPIService.GetProjectQuarantinedDataInBodyApiTestSelectionGetProjectQuarantinedPost")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/test_selection/get_project_quarantined/"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.bodyGetProjectQuarantinedDataInBodyApiTestSelectionGetProjectQuarantinedPost == nil {
+		return localVarReturnValue, nil, reportError("bodyGetProjectQuarantinedDataInBodyApiTestSelectionGetProjectQuarantinedPost is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.bodyGetProjectQuarantinedDataInBodyApiTestSelectionGetProjectQuarantinedPost
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v HTTPValidationError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetTaskQuarantinedApiTestSelectionGetTaskQuarantinedProjectIdBuildVariantNameTaskNamePostRequest struct {
+	ctx context.Context
+	ApiService *StateTransitionAPIService
+	projectId string
+	buildVariantName string
+	taskName string
+}
+
+func (r ApiGetTaskQuarantinedApiTestSelectionGetTaskQuarantinedProjectIdBuildVariantNameTaskNamePostRequest) Execute() (*TaskStateInfo, *http.Response, error) {
+	return r.ApiService.GetTaskQuarantinedApiTestSelectionGetTaskQuarantinedProjectIdBuildVariantNameTaskNamePostExecute(r)
+}
+
+/*
+GetTaskQuarantinedApiTestSelectionGetTaskQuarantinedProjectIdBuildVariantNameTaskNamePost Get Task Quarantined
+
+Return the state of all quarantined tests of a single task
+:param project_id: The project id.
+:param build_variant_name: The build variant name.
+:param task_name: The task name.
+:return: All quarantined tests in the task
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param projectId
+ @param buildVariantName
+ @param taskName
+ @return ApiGetTaskQuarantinedApiTestSelectionGetTaskQuarantinedProjectIdBuildVariantNameTaskNamePostRequest
+*/
+func (a *StateTransitionAPIService) GetTaskQuarantinedApiTestSelectionGetTaskQuarantinedProjectIdBuildVariantNameTaskNamePost(ctx context.Context, projectId string, buildVariantName string, taskName string) ApiGetTaskQuarantinedApiTestSelectionGetTaskQuarantinedProjectIdBuildVariantNameTaskNamePostRequest {
+	return ApiGetTaskQuarantinedApiTestSelectionGetTaskQuarantinedProjectIdBuildVariantNameTaskNamePostRequest{
+		ApiService: a,
+		ctx: ctx,
+		projectId: projectId,
+		buildVariantName: buildVariantName,
+		taskName: taskName,
+	}
+}
+
+// Execute executes the request
+//  @return TaskStateInfo
+func (a *StateTransitionAPIService) GetTaskQuarantinedApiTestSelectionGetTaskQuarantinedProjectIdBuildVariantNameTaskNamePostExecute(r ApiGetTaskQuarantinedApiTestSelectionGetTaskQuarantinedProjectIdBuildVariantNameTaskNamePostRequest) (*TaskStateInfo, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *TaskStateInfo
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StateTransitionAPIService.GetTaskQuarantinedApiTestSelectionGetTaskQuarantinedProjectIdBuildVariantNameTaskNamePost")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/test_selection/get_task_quarantined/{project_id}/{build_variant_name}/{task_name}/"
+	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"build_variant_name"+"}", url.PathEscape(parameterValueToString(r.buildVariantName, "buildVariantName")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"task_name"+"}", url.PathEscape(parameterValueToString(r.taskName, "taskName")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v HTTPValidationError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetTaskQuarantinedDataInBodyApiTestSelectionGetTaskQuarantinedPostRequest struct {
+	ctx context.Context
+	ApiService *StateTransitionAPIService
+	bodyGetTaskQuarantinedDataInBodyApiTestSelectionGetTaskQuarantinedPost *BodyGetTaskQuarantinedDataInBodyApiTestSelectionGetTaskQuarantinedPost
+}
+
+func (r ApiGetTaskQuarantinedDataInBodyApiTestSelectionGetTaskQuarantinedPostRequest) BodyGetTaskQuarantinedDataInBodyApiTestSelectionGetTaskQuarantinedPost(bodyGetTaskQuarantinedDataInBodyApiTestSelectionGetTaskQuarantinedPost BodyGetTaskQuarantinedDataInBodyApiTestSelectionGetTaskQuarantinedPost) ApiGetTaskQuarantinedDataInBodyApiTestSelectionGetTaskQuarantinedPostRequest {
+	r.bodyGetTaskQuarantinedDataInBodyApiTestSelectionGetTaskQuarantinedPost = &bodyGetTaskQuarantinedDataInBodyApiTestSelectionGetTaskQuarantinedPost
+	return r
+}
+
+func (r ApiGetTaskQuarantinedDataInBodyApiTestSelectionGetTaskQuarantinedPostRequest) Execute() (*TaskStateInfo, *http.Response, error) {
+	return r.ApiService.GetTaskQuarantinedDataInBodyApiTestSelectionGetTaskQuarantinedPostExecute(r)
+}
+
+/*
+GetTaskQuarantinedDataInBodyApiTestSelectionGetTaskQuarantinedPost Get Task Quarantined Data In Body
+
+Return the state of all quarantined tests of a single task
+:param project_id: The project id.
+:param build_variant_name: The build variant name.
+:param task_name: The task name.
+:return: All quarantined tests in the task
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetTaskQuarantinedDataInBodyApiTestSelectionGetTaskQuarantinedPostRequest
+*/
+func (a *StateTransitionAPIService) GetTaskQuarantinedDataInBodyApiTestSelectionGetTaskQuarantinedPost(ctx context.Context) ApiGetTaskQuarantinedDataInBodyApiTestSelectionGetTaskQuarantinedPostRequest {
+	return ApiGetTaskQuarantinedDataInBodyApiTestSelectionGetTaskQuarantinedPostRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return TaskStateInfo
+func (a *StateTransitionAPIService) GetTaskQuarantinedDataInBodyApiTestSelectionGetTaskQuarantinedPostExecute(r ApiGetTaskQuarantinedDataInBodyApiTestSelectionGetTaskQuarantinedPostRequest) (*TaskStateInfo, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *TaskStateInfo
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StateTransitionAPIService.GetTaskQuarantinedDataInBodyApiTestSelectionGetTaskQuarantinedPost")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/test_selection/get_task_quarantined/"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.bodyGetTaskQuarantinedDataInBodyApiTestSelectionGetTaskQuarantinedPost == nil {
+		return localVarReturnValue, nil, reportError("bodyGetTaskQuarantinedDataInBodyApiTestSelectionGetTaskQuarantinedPost is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.bodyGetTaskQuarantinedDataInBodyApiTestSelectionGetTaskQuarantinedPost
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v HTTPValidationError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiGetTestsStateApiTestSelectionGetTestsStateProjectIdBuildVariantNameTaskNamePostRequest struct {
 	ctx context.Context
 	ApiService *StateTransitionAPIService
@@ -49,7 +535,7 @@ Return the state of a single test
 :param build_variant_name: The build variant name.
 :param task_name: The task name.
 :param test_names: The test names to be transitioned.
-:return: None
+:return: get the state of all tests in the task
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param projectId
@@ -160,6 +646,374 @@ func (a *StateTransitionAPIService) GetTestsStateApiTestSelectionGetTestsStatePr
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiGetTestsStateDataInBodyApiTestSelectionGetTestsStatePostRequest struct {
+	ctx context.Context
+	ApiService *StateTransitionAPIService
+	bodyGetTestsStateDataInBodyApiTestSelectionGetTestsStatePost *BodyGetTestsStateDataInBodyApiTestSelectionGetTestsStatePost
+}
+
+func (r ApiGetTestsStateDataInBodyApiTestSelectionGetTestsStatePostRequest) BodyGetTestsStateDataInBodyApiTestSelectionGetTestsStatePost(bodyGetTestsStateDataInBodyApiTestSelectionGetTestsStatePost BodyGetTestsStateDataInBodyApiTestSelectionGetTestsStatePost) ApiGetTestsStateDataInBodyApiTestSelectionGetTestsStatePostRequest {
+	r.bodyGetTestsStateDataInBodyApiTestSelectionGetTestsStatePost = &bodyGetTestsStateDataInBodyApiTestSelectionGetTestsStatePost
+	return r
+}
+
+func (r ApiGetTestsStateDataInBodyApiTestSelectionGetTestsStatePostRequest) Execute() (*map[string]TestStateInfo, *http.Response, error) {
+	return r.ApiService.GetTestsStateDataInBodyApiTestSelectionGetTestsStatePostExecute(r)
+}
+
+/*
+GetTestsStateDataInBodyApiTestSelectionGetTestsStatePost Get Tests State Data In Body
+
+Return the state of a single test
+:param project_id: The project id.
+:param build_variant_name: The build variant name.
+:param task_name: The task name.
+:param test_names: The test names to be transitioned.
+:return: get the state of all tests in the task
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetTestsStateDataInBodyApiTestSelectionGetTestsStatePostRequest
+*/
+func (a *StateTransitionAPIService) GetTestsStateDataInBodyApiTestSelectionGetTestsStatePost(ctx context.Context) ApiGetTestsStateDataInBodyApiTestSelectionGetTestsStatePostRequest {
+	return ApiGetTestsStateDataInBodyApiTestSelectionGetTestsStatePostRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return map[string]TestStateInfo
+func (a *StateTransitionAPIService) GetTestsStateDataInBodyApiTestSelectionGetTestsStatePostExecute(r ApiGetTestsStateDataInBodyApiTestSelectionGetTestsStatePostRequest) (*map[string]TestStateInfo, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *map[string]TestStateInfo
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StateTransitionAPIService.GetTestsStateDataInBodyApiTestSelectionGetTestsStatePost")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/test_selection/get_tests_state/"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.bodyGetTestsStateDataInBodyApiTestSelectionGetTestsStatePost == nil {
+		return localVarReturnValue, nil, reportError("bodyGetTestsStateDataInBodyApiTestSelectionGetTestsStatePost is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.bodyGetTestsStateDataInBodyApiTestSelectionGetTestsStatePost
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v HTTPValidationError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetVariantQuarantinedApiTestSelectionGetVariantQuarantinedProjectIdBuildVariantNamePostRequest struct {
+	ctx context.Context
+	ApiService *StateTransitionAPIService
+	projectId string
+	buildVariantName string
+}
+
+func (r ApiGetVariantQuarantinedApiTestSelectionGetVariantQuarantinedProjectIdBuildVariantNamePostRequest) Execute() (*map[string]TaskStateInfo, *http.Response, error) {
+	return r.ApiService.GetVariantQuarantinedApiTestSelectionGetVariantQuarantinedProjectIdBuildVariantNamePostExecute(r)
+}
+
+/*
+GetVariantQuarantinedApiTestSelectionGetVariantQuarantinedProjectIdBuildVariantNamePost Get Variant Quarantined
+
+Return the state of all quarantined tests of a single variant
+:param project_id: The project id.
+:param build_variant_name: The build variant name.
+:return: All quarantined tests in the variant
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param projectId
+ @param buildVariantName
+ @return ApiGetVariantQuarantinedApiTestSelectionGetVariantQuarantinedProjectIdBuildVariantNamePostRequest
+*/
+func (a *StateTransitionAPIService) GetVariantQuarantinedApiTestSelectionGetVariantQuarantinedProjectIdBuildVariantNamePost(ctx context.Context, projectId string, buildVariantName string) ApiGetVariantQuarantinedApiTestSelectionGetVariantQuarantinedProjectIdBuildVariantNamePostRequest {
+	return ApiGetVariantQuarantinedApiTestSelectionGetVariantQuarantinedProjectIdBuildVariantNamePostRequest{
+		ApiService: a,
+		ctx: ctx,
+		projectId: projectId,
+		buildVariantName: buildVariantName,
+	}
+}
+
+// Execute executes the request
+//  @return map[string]TaskStateInfo
+func (a *StateTransitionAPIService) GetVariantQuarantinedApiTestSelectionGetVariantQuarantinedProjectIdBuildVariantNamePostExecute(r ApiGetVariantQuarantinedApiTestSelectionGetVariantQuarantinedProjectIdBuildVariantNamePostRequest) (*map[string]TaskStateInfo, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *map[string]TaskStateInfo
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StateTransitionAPIService.GetVariantQuarantinedApiTestSelectionGetVariantQuarantinedProjectIdBuildVariantNamePost")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/test_selection/get_variant_quarantined/{project_id}/{build_variant_name}/"
+	localVarPath = strings.Replace(localVarPath, "{"+"project_id"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"build_variant_name"+"}", url.PathEscape(parameterValueToString(r.buildVariantName, "buildVariantName")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v HTTPValidationError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetVariantQuarantinedDataInBodyApiTestSelectionGetVariantQuarantinedPostRequest struct {
+	ctx context.Context
+	ApiService *StateTransitionAPIService
+	bodyGetVariantQuarantinedDataInBodyApiTestSelectionGetVariantQuarantinedPost *BodyGetVariantQuarantinedDataInBodyApiTestSelectionGetVariantQuarantinedPost
+}
+
+func (r ApiGetVariantQuarantinedDataInBodyApiTestSelectionGetVariantQuarantinedPostRequest) BodyGetVariantQuarantinedDataInBodyApiTestSelectionGetVariantQuarantinedPost(bodyGetVariantQuarantinedDataInBodyApiTestSelectionGetVariantQuarantinedPost BodyGetVariantQuarantinedDataInBodyApiTestSelectionGetVariantQuarantinedPost) ApiGetVariantQuarantinedDataInBodyApiTestSelectionGetVariantQuarantinedPostRequest {
+	r.bodyGetVariantQuarantinedDataInBodyApiTestSelectionGetVariantQuarantinedPost = &bodyGetVariantQuarantinedDataInBodyApiTestSelectionGetVariantQuarantinedPost
+	return r
+}
+
+func (r ApiGetVariantQuarantinedDataInBodyApiTestSelectionGetVariantQuarantinedPostRequest) Execute() (*map[string]TaskStateInfo, *http.Response, error) {
+	return r.ApiService.GetVariantQuarantinedDataInBodyApiTestSelectionGetVariantQuarantinedPostExecute(r)
+}
+
+/*
+GetVariantQuarantinedDataInBodyApiTestSelectionGetVariantQuarantinedPost Get Variant Quarantined Data In Body
+
+Return the state of all quarantined tests of a single variant
+:param project_id: The project id.
+:param build_variant_name: The build variant name.
+:return: All quarantined tests in the variant
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetVariantQuarantinedDataInBodyApiTestSelectionGetVariantQuarantinedPostRequest
+*/
+func (a *StateTransitionAPIService) GetVariantQuarantinedDataInBodyApiTestSelectionGetVariantQuarantinedPost(ctx context.Context) ApiGetVariantQuarantinedDataInBodyApiTestSelectionGetVariantQuarantinedPostRequest {
+	return ApiGetVariantQuarantinedDataInBodyApiTestSelectionGetVariantQuarantinedPostRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return map[string]TaskStateInfo
+func (a *StateTransitionAPIService) GetVariantQuarantinedDataInBodyApiTestSelectionGetVariantQuarantinedPostExecute(r ApiGetVariantQuarantinedDataInBodyApiTestSelectionGetVariantQuarantinedPostRequest) (*map[string]TaskStateInfo, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *map[string]TaskStateInfo
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StateTransitionAPIService.GetVariantQuarantinedDataInBodyApiTestSelectionGetVariantQuarantinedPost")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/test_selection/get_variant_quarantined/"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.bodyGetVariantQuarantinedDataInBodyApiTestSelectionGetVariantQuarantinedPost == nil {
+		return localVarReturnValue, nil, reportError("bodyGetVariantQuarantinedDataInBodyApiTestSelectionGetVariantQuarantinedPost is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.bodyGetVariantQuarantinedDataInBodyApiTestSelectionGetVariantQuarantinedPost
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v HTTPValidationError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiGetVariantStateApiTestSelectionGetVariantStateProjectIdBuildVariantNamePostRequest struct {
 	ctx context.Context
 	ApiService *StateTransitionAPIService
@@ -177,7 +1031,7 @@ GetVariantStateApiTestSelectionGetVariantStateProjectIdBuildVariantNamePost Get 
 Return the state of all known tests of a single variant
 :param project_id: The project id.
 :param build_variant_name: The build variant name.
-:return: None
+:return: get the state of all tests in the variant
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param projectId
@@ -280,6 +1134,129 @@ func (a *StateTransitionAPIService) GetVariantStateApiTestSelectionGetVariantSta
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiGetVariantStateDataInBodyApiTestSelectionGetVariantStatePostRequest struct {
+	ctx context.Context
+	ApiService *StateTransitionAPIService
+	bodyGetVariantStateDataInBodyApiTestSelectionGetVariantStatePost *BodyGetVariantStateDataInBodyApiTestSelectionGetVariantStatePost
+}
+
+func (r ApiGetVariantStateDataInBodyApiTestSelectionGetVariantStatePostRequest) BodyGetVariantStateDataInBodyApiTestSelectionGetVariantStatePost(bodyGetVariantStateDataInBodyApiTestSelectionGetVariantStatePost BodyGetVariantStateDataInBodyApiTestSelectionGetVariantStatePost) ApiGetVariantStateDataInBodyApiTestSelectionGetVariantStatePostRequest {
+	r.bodyGetVariantStateDataInBodyApiTestSelectionGetVariantStatePost = &bodyGetVariantStateDataInBodyApiTestSelectionGetVariantStatePost
+	return r
+}
+
+func (r ApiGetVariantStateDataInBodyApiTestSelectionGetVariantStatePostRequest) Execute() (*map[string]TaskStateInfo, *http.Response, error) {
+	return r.ApiService.GetVariantStateDataInBodyApiTestSelectionGetVariantStatePostExecute(r)
+}
+
+/*
+GetVariantStateDataInBodyApiTestSelectionGetVariantStatePost Get Variant State Data In Body
+
+Return the state of all known tests of a single variant
+:param project_id: The project id.
+:param build_variant_name: The build variant name.
+:return: get the state of all tests in the variant
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetVariantStateDataInBodyApiTestSelectionGetVariantStatePostRequest
+*/
+func (a *StateTransitionAPIService) GetVariantStateDataInBodyApiTestSelectionGetVariantStatePost(ctx context.Context) ApiGetVariantStateDataInBodyApiTestSelectionGetVariantStatePostRequest {
+	return ApiGetVariantStateDataInBodyApiTestSelectionGetVariantStatePostRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return map[string]TaskStateInfo
+func (a *StateTransitionAPIService) GetVariantStateDataInBodyApiTestSelectionGetVariantStatePostExecute(r ApiGetVariantStateDataInBodyApiTestSelectionGetVariantStatePostRequest) (*map[string]TaskStateInfo, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *map[string]TaskStateInfo
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StateTransitionAPIService.GetVariantStateDataInBodyApiTestSelectionGetVariantStatePost")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/test_selection/get_variant_state/"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.bodyGetVariantStateDataInBodyApiTestSelectionGetVariantStatePost == nil {
+		return localVarReturnValue, nil, reportError("bodyGetVariantStateDataInBodyApiTestSelectionGetVariantStatePost is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.bodyGetVariantStateDataInBodyApiTestSelectionGetVariantStatePost
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v HTTPValidationError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiMarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePostRequest struct {
 	ctx context.Context
 	ApiService *StateTransitionAPIService
@@ -306,6 +1283,7 @@ Transition all known tests of a single task into or out of the "Manually Quarant
 :param build_variant_name: The build variant name.
 :param task_name: The task name.
 :param is_manually_quarantined: Denote if the task should be marked manually quarantined
+:param background_tasks: Background tasks to run after the request is completed.
 :return: None
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -416,6 +1394,132 @@ func (a *StateTransitionAPIService) MarkTaskAsManuallyQuarantinedApiTestSelectio
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiMarkTaskAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTaskPostRequest struct {
+	ctx context.Context
+	ApiService *StateTransitionAPIService
+	bodyMarkTaskAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTaskPost *BodyMarkTaskAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTaskPost
+}
+
+func (r ApiMarkTaskAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTaskPostRequest) BodyMarkTaskAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTaskPost(bodyMarkTaskAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTaskPost BodyMarkTaskAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTaskPost) ApiMarkTaskAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTaskPostRequest {
+	r.bodyMarkTaskAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTaskPost = &bodyMarkTaskAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTaskPost
+	return r
+}
+
+func (r ApiMarkTaskAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTaskPostRequest) Execute() (interface{}, *http.Response, error) {
+	return r.ApiService.MarkTaskAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTaskPostExecute(r)
+}
+
+/*
+MarkTaskAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTaskPost Mark Task As Manually Quarantined Data In Body
+
+Transition all known tests of a single task into or out of the "Manually Quarantined" state
+:param project_id: The project id.
+:param build_variant_name: The build variant name.
+:param task_name: The task name.
+:param is_manually_quarantined: Denote if the task should be marked manually quarantined
+:param background_tasks: Background tasks to run after the request is completed.
+:return: None
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiMarkTaskAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTaskPostRequest
+*/
+func (a *StateTransitionAPIService) MarkTaskAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTaskPost(ctx context.Context) ApiMarkTaskAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTaskPostRequest {
+	return ApiMarkTaskAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTaskPostRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return interface{}
+func (a *StateTransitionAPIService) MarkTaskAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTaskPostExecute(r ApiMarkTaskAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTaskPostRequest) (interface{}, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  interface{}
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StateTransitionAPIService.MarkTaskAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTaskPost")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/test_selection/transition_task/"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.bodyMarkTaskAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTaskPost == nil {
+		return localVarReturnValue, nil, reportError("bodyMarkTaskAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTaskPost is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.bodyMarkTaskAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTaskPost
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v HTTPValidationError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiMarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePostRequest struct {
 	ctx context.Context
 	ApiService *StateTransitionAPIService
@@ -423,7 +1527,7 @@ type ApiMarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBu
 	buildVariantName string
 	taskName string
 	isManuallyQuarantined *bool
-	requestBody *[]*string
+	requestBody *[]string
 }
 
 func (r ApiMarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePostRequest) IsManuallyQuarantined(isManuallyQuarantined bool) ApiMarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePostRequest {
@@ -431,7 +1535,7 @@ func (r ApiMarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectI
 	return r
 }
 
-func (r ApiMarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePostRequest) RequestBody(requestBody []*string) ApiMarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePostRequest {
+func (r ApiMarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePostRequest) RequestBody(requestBody []string) ApiMarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePostRequest {
 	r.requestBody = &requestBody
 	return r
 }
@@ -450,6 +1554,7 @@ If that test doesn't exist in the registry, the registry will create an entry fo
 :param task_name: The task name.
 :param test_names: The test names to be transitioned.
 :param is_manually_quarantined: Denote if the test should be marked manually quarantined or not
+:param background_tasks: Background tasks to run after the request is completed.
 :return: None
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -565,6 +1670,134 @@ func (a *StateTransitionAPIService) MarkTestsAsManuallyQuarantinedApiTestSelecti
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPostRequest struct {
+	ctx context.Context
+	ApiService *StateTransitionAPIService
+	bodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost *BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost
+}
+
+func (r ApiMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPostRequest) BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost(bodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost) ApiMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPostRequest {
+	r.bodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost = &bodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost
+	return r
+}
+
+func (r ApiMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPostRequest) Execute() (interface{}, *http.Response, error) {
+	return r.ApiService.MarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPostExecute(r)
+}
+
+/*
+MarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost Mark Tests As Manually Quarantined Data In Body
+
+Transition a single test into or out of the "Manually Quarantined" state.
+If that test doesn't exist in the registry, the registry will create an entry for it.
+:param project_id: The project id.
+:param build_variant_name: The build variant name.
+:param task_name: The task name.
+:param test_names: The test names to be transitioned.
+:param is_manually_quarantined: Denote if the test should be marked manually quarantined or not
+:param background_tasks: Background tasks to run after the request is completed.
+:return: None
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPostRequest
+*/
+func (a *StateTransitionAPIService) MarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost(ctx context.Context) ApiMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPostRequest {
+	return ApiMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPostRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return interface{}
+func (a *StateTransitionAPIService) MarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPostExecute(r ApiMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPostRequest) (interface{}, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  interface{}
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StateTransitionAPIService.MarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/test_selection/transition_tests/"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.bodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost == nil {
+		return localVarReturnValue, nil, reportError("bodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.bodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v HTTPValidationError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiMarkVariantAsManuallyQuarantinedApiTestSelectionTransitionVariantProjectIdBuildVariantNamePostRequest struct {
 	ctx context.Context
 	ApiService *StateTransitionAPIService
@@ -589,6 +1822,7 @@ Transition all known tests of a single variant into or out of the "Manually Quar
 :param project_id: The project id.
 :param build_variant_name: The build variant name.
 :param is_manually_quarantined: Denote if the variant should be marked manually quarantined
+:param background_tasks: Background tasks to run after the request is completed.
 :return: None
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -649,6 +1883,131 @@ func (a *StateTransitionAPIService) MarkVariantAsManuallyQuarantinedApiTestSelec
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v HTTPValidationError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPostRequest struct {
+	ctx context.Context
+	ApiService *StateTransitionAPIService
+	bodyMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost *BodyMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost
+}
+
+func (r ApiMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPostRequest) BodyMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost(bodyMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost BodyMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost) ApiMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPostRequest {
+	r.bodyMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost = &bodyMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost
+	return r
+}
+
+func (r ApiMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPostRequest) Execute() (interface{}, *http.Response, error) {
+	return r.ApiService.MarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPostExecute(r)
+}
+
+/*
+MarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost Mark Variant As Manually Quarantined Data In Body
+
+Transition all known tests of a single variant into or out of the "Manually Quarantined" state
+:param project_id: The project id.
+:param build_variant_name: The build variant name.
+:param is_manually_quarantined: Denote if the variant should be marked manually quarantined
+:param background_tasks: Background tasks to run after the request is completed.
+:return: None
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPostRequest
+*/
+func (a *StateTransitionAPIService) MarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost(ctx context.Context) ApiMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPostRequest {
+	return ApiMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPostRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return interface{}
+func (a *StateTransitionAPIService) MarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPostExecute(r ApiMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPostRequest) (interface{}, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  interface{}
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StateTransitionAPIService.MarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/test_selection/transition_variant/"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.bodyMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost == nil {
+		return localVarReturnValue, nil, reportError("bodyMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.bodyMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

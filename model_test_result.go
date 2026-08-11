@@ -25,6 +25,7 @@ type TestResult struct {
 	Status string `json:"status"`
 	TaskId string `json:"task_id"`
 	Execution int32 `json:"execution"`
+	DurationSeconds *float32 `json:"duration_seconds,omitempty"`
 }
 
 type _TestResult TestResult
@@ -39,6 +40,8 @@ func NewTestResult(testName string, status string, taskId string, execution int3
 	this.Status = status
 	this.TaskId = taskId
 	this.Execution = execution
+	var durationSeconds float32 = 0.0
+	this.DurationSeconds = &durationSeconds
 	return &this
 }
 
@@ -47,6 +50,8 @@ func NewTestResult(testName string, status string, taskId string, execution int3
 // but it doesn't guarantee that properties required by API are set
 func NewTestResultWithDefaults() *TestResult {
 	this := TestResult{}
+	var durationSeconds float32 = 0.0
+	this.DurationSeconds = &durationSeconds
 	return &this
 }
 
@@ -146,6 +151,38 @@ func (o *TestResult) SetExecution(v int32) {
 	o.Execution = v
 }
 
+// GetDurationSeconds returns the DurationSeconds field value if set, zero value otherwise.
+func (o *TestResult) GetDurationSeconds() float32 {
+	if o == nil || IsNil(o.DurationSeconds) {
+		var ret float32
+		return ret
+	}
+	return *o.DurationSeconds
+}
+
+// GetDurationSecondsOk returns a tuple with the DurationSeconds field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TestResult) GetDurationSecondsOk() (*float32, bool) {
+	if o == nil || IsNil(o.DurationSeconds) {
+		return nil, false
+	}
+	return o.DurationSeconds, true
+}
+
+// HasDurationSeconds returns a boolean if a field has been set.
+func (o *TestResult) HasDurationSeconds() bool {
+	if o != nil && !IsNil(o.DurationSeconds) {
+		return true
+	}
+
+	return false
+}
+
+// SetDurationSeconds gets a reference to the given float32 and assigns it to the DurationSeconds field.
+func (o *TestResult) SetDurationSeconds(v float32) {
+	o.DurationSeconds = &v
+}
+
 func (o TestResult) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -160,6 +197,9 @@ func (o TestResult) ToMap() (map[string]interface{}, error) {
 	toSerialize["status"] = o.Status
 	toSerialize["task_id"] = o.TaskId
 	toSerialize["execution"] = o.Execution
+	if !IsNil(o.DurationSeconds) {
+		toSerialize["duration_seconds"] = o.DurationSeconds
+	}
 	return toSerialize, nil
 }
 

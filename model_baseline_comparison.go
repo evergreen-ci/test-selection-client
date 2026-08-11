@@ -28,7 +28,12 @@ type BaselineComparison struct {
 	TaskId string `json:"task_id"`
 	ExecutionNumber *int32 `json:"execution_number,omitempty"`
 	BaseCommitSha NullableString `json:"base_commit_sha,omitempty"`
+	BaselineVersionId NullableString `json:"baseline_version_id,omitempty"`
 	SubsequentCommitSha NullableString `json:"subsequent_commit_sha,omitempty"`
+	SubsequentTaskId NullableString `json:"subsequent_task_id,omitempty"`
+	BaselineTaskId NullableString `json:"baseline_task_id,omitempty"`
+	BaselineOrder NullableInt32 `json:"baseline_order,omitempty"`
+	SubsequentOrder NullableInt32 `json:"subsequent_order,omitempty"`
 	Status ComparisonStatus `json:"status"`
 	CreatedAt time.Time `json:"created_at"`
 	UpdatedAt time.Time `json:"updated_at"`
@@ -39,6 +44,7 @@ type BaselineComparison struct {
 	StrategyMetrics map[string]StrategyMetrics `json:"strategy_metrics,omitempty"`
 	RetroactiveCorrections []string `json:"retroactive_corrections,omitempty"`
 	TotalTestsAcrossAllTasks *int32 `json:"total_tests_across_all_tasks,omitempty"`
+	TestNamesHashes []string `json:"test_names_hashes,omitempty"`
 }
 
 type _BaselineComparison BaselineComparison
@@ -264,6 +270,48 @@ func (o *BaselineComparison) UnsetBaseCommitSha() {
 	o.BaseCommitSha.Unset()
 }
 
+// GetBaselineVersionId returns the BaselineVersionId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *BaselineComparison) GetBaselineVersionId() string {
+	if o == nil || IsNil(o.BaselineVersionId.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.BaselineVersionId.Get()
+}
+
+// GetBaselineVersionIdOk returns a tuple with the BaselineVersionId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *BaselineComparison) GetBaselineVersionIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.BaselineVersionId.Get(), o.BaselineVersionId.IsSet()
+}
+
+// HasBaselineVersionId returns a boolean if a field has been set.
+func (o *BaselineComparison) HasBaselineVersionId() bool {
+	if o != nil && o.BaselineVersionId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetBaselineVersionId gets a reference to the given NullableString and assigns it to the BaselineVersionId field.
+func (o *BaselineComparison) SetBaselineVersionId(v string) {
+	o.BaselineVersionId.Set(&v)
+}
+// SetBaselineVersionIdNil sets the value for BaselineVersionId to be an explicit nil
+func (o *BaselineComparison) SetBaselineVersionIdNil() {
+	o.BaselineVersionId.Set(nil)
+}
+
+// UnsetBaselineVersionId ensures that no value is present for BaselineVersionId, not even an explicit nil
+func (o *BaselineComparison) UnsetBaselineVersionId() {
+	o.BaselineVersionId.Unset()
+}
+
 // GetSubsequentCommitSha returns the SubsequentCommitSha field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *BaselineComparison) GetSubsequentCommitSha() string {
 	if o == nil || IsNil(o.SubsequentCommitSha.Get()) {
@@ -304,6 +352,174 @@ func (o *BaselineComparison) SetSubsequentCommitShaNil() {
 // UnsetSubsequentCommitSha ensures that no value is present for SubsequentCommitSha, not even an explicit nil
 func (o *BaselineComparison) UnsetSubsequentCommitSha() {
 	o.SubsequentCommitSha.Unset()
+}
+
+// GetSubsequentTaskId returns the SubsequentTaskId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *BaselineComparison) GetSubsequentTaskId() string {
+	if o == nil || IsNil(o.SubsequentTaskId.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.SubsequentTaskId.Get()
+}
+
+// GetSubsequentTaskIdOk returns a tuple with the SubsequentTaskId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *BaselineComparison) GetSubsequentTaskIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.SubsequentTaskId.Get(), o.SubsequentTaskId.IsSet()
+}
+
+// HasSubsequentTaskId returns a boolean if a field has been set.
+func (o *BaselineComparison) HasSubsequentTaskId() bool {
+	if o != nil && o.SubsequentTaskId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSubsequentTaskId gets a reference to the given NullableString and assigns it to the SubsequentTaskId field.
+func (o *BaselineComparison) SetSubsequentTaskId(v string) {
+	o.SubsequentTaskId.Set(&v)
+}
+// SetSubsequentTaskIdNil sets the value for SubsequentTaskId to be an explicit nil
+func (o *BaselineComparison) SetSubsequentTaskIdNil() {
+	o.SubsequentTaskId.Set(nil)
+}
+
+// UnsetSubsequentTaskId ensures that no value is present for SubsequentTaskId, not even an explicit nil
+func (o *BaselineComparison) UnsetSubsequentTaskId() {
+	o.SubsequentTaskId.Unset()
+}
+
+// GetBaselineTaskId returns the BaselineTaskId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *BaselineComparison) GetBaselineTaskId() string {
+	if o == nil || IsNil(o.BaselineTaskId.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.BaselineTaskId.Get()
+}
+
+// GetBaselineTaskIdOk returns a tuple with the BaselineTaskId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *BaselineComparison) GetBaselineTaskIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.BaselineTaskId.Get(), o.BaselineTaskId.IsSet()
+}
+
+// HasBaselineTaskId returns a boolean if a field has been set.
+func (o *BaselineComparison) HasBaselineTaskId() bool {
+	if o != nil && o.BaselineTaskId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetBaselineTaskId gets a reference to the given NullableString and assigns it to the BaselineTaskId field.
+func (o *BaselineComparison) SetBaselineTaskId(v string) {
+	o.BaselineTaskId.Set(&v)
+}
+// SetBaselineTaskIdNil sets the value for BaselineTaskId to be an explicit nil
+func (o *BaselineComparison) SetBaselineTaskIdNil() {
+	o.BaselineTaskId.Set(nil)
+}
+
+// UnsetBaselineTaskId ensures that no value is present for BaselineTaskId, not even an explicit nil
+func (o *BaselineComparison) UnsetBaselineTaskId() {
+	o.BaselineTaskId.Unset()
+}
+
+// GetBaselineOrder returns the BaselineOrder field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *BaselineComparison) GetBaselineOrder() int32 {
+	if o == nil || IsNil(o.BaselineOrder.Get()) {
+		var ret int32
+		return ret
+	}
+	return *o.BaselineOrder.Get()
+}
+
+// GetBaselineOrderOk returns a tuple with the BaselineOrder field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *BaselineComparison) GetBaselineOrderOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.BaselineOrder.Get(), o.BaselineOrder.IsSet()
+}
+
+// HasBaselineOrder returns a boolean if a field has been set.
+func (o *BaselineComparison) HasBaselineOrder() bool {
+	if o != nil && o.BaselineOrder.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetBaselineOrder gets a reference to the given NullableInt32 and assigns it to the BaselineOrder field.
+func (o *BaselineComparison) SetBaselineOrder(v int32) {
+	o.BaselineOrder.Set(&v)
+}
+// SetBaselineOrderNil sets the value for BaselineOrder to be an explicit nil
+func (o *BaselineComparison) SetBaselineOrderNil() {
+	o.BaselineOrder.Set(nil)
+}
+
+// UnsetBaselineOrder ensures that no value is present for BaselineOrder, not even an explicit nil
+func (o *BaselineComparison) UnsetBaselineOrder() {
+	o.BaselineOrder.Unset()
+}
+
+// GetSubsequentOrder returns the SubsequentOrder field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *BaselineComparison) GetSubsequentOrder() int32 {
+	if o == nil || IsNil(o.SubsequentOrder.Get()) {
+		var ret int32
+		return ret
+	}
+	return *o.SubsequentOrder.Get()
+}
+
+// GetSubsequentOrderOk returns a tuple with the SubsequentOrder field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *BaselineComparison) GetSubsequentOrderOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.SubsequentOrder.Get(), o.SubsequentOrder.IsSet()
+}
+
+// HasSubsequentOrder returns a boolean if a field has been set.
+func (o *BaselineComparison) HasSubsequentOrder() bool {
+	if o != nil && o.SubsequentOrder.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSubsequentOrder gets a reference to the given NullableInt32 and assigns it to the SubsequentOrder field.
+func (o *BaselineComparison) SetSubsequentOrder(v int32) {
+	o.SubsequentOrder.Set(&v)
+}
+// SetSubsequentOrderNil sets the value for SubsequentOrder to be an explicit nil
+func (o *BaselineComparison) SetSubsequentOrderNil() {
+	o.SubsequentOrder.Set(nil)
+}
+
+// UnsetSubsequentOrder ensures that no value is present for SubsequentOrder, not even an explicit nil
+func (o *BaselineComparison) UnsetSubsequentOrder() {
+	o.SubsequentOrder.Unset()
 }
 
 // GetStatus returns the Status field value
@@ -596,6 +812,38 @@ func (o *BaselineComparison) SetTotalTestsAcrossAllTasks(v int32) {
 	o.TotalTestsAcrossAllTasks = &v
 }
 
+// GetTestNamesHashes returns the TestNamesHashes field value if set, zero value otherwise.
+func (o *BaselineComparison) GetTestNamesHashes() []string {
+	if o == nil || IsNil(o.TestNamesHashes) {
+		var ret []string
+		return ret
+	}
+	return o.TestNamesHashes
+}
+
+// GetTestNamesHashesOk returns a tuple with the TestNamesHashes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *BaselineComparison) GetTestNamesHashesOk() ([]string, bool) {
+	if o == nil || IsNil(o.TestNamesHashes) {
+		return nil, false
+	}
+	return o.TestNamesHashes, true
+}
+
+// HasTestNamesHashes returns a boolean if a field has been set.
+func (o *BaselineComparison) HasTestNamesHashes() bool {
+	if o != nil && !IsNil(o.TestNamesHashes) {
+		return true
+	}
+
+	return false
+}
+
+// SetTestNamesHashes gets a reference to the given []string and assigns it to the TestNamesHashes field.
+func (o *BaselineComparison) SetTestNamesHashes(v []string) {
+	o.TestNamesHashes = v
+}
+
 func (o BaselineComparison) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -618,8 +866,23 @@ func (o BaselineComparison) ToMap() (map[string]interface{}, error) {
 	if o.BaseCommitSha.IsSet() {
 		toSerialize["base_commit_sha"] = o.BaseCommitSha.Get()
 	}
+	if o.BaselineVersionId.IsSet() {
+		toSerialize["baseline_version_id"] = o.BaselineVersionId.Get()
+	}
 	if o.SubsequentCommitSha.IsSet() {
 		toSerialize["subsequent_commit_sha"] = o.SubsequentCommitSha.Get()
+	}
+	if o.SubsequentTaskId.IsSet() {
+		toSerialize["subsequent_task_id"] = o.SubsequentTaskId.Get()
+	}
+	if o.BaselineTaskId.IsSet() {
+		toSerialize["baseline_task_id"] = o.BaselineTaskId.Get()
+	}
+	if o.BaselineOrder.IsSet() {
+		toSerialize["baseline_order"] = o.BaselineOrder.Get()
+	}
+	if o.SubsequentOrder.IsSet() {
+		toSerialize["subsequent_order"] = o.SubsequentOrder.Get()
 	}
 	toSerialize["status"] = o.Status
 	toSerialize["created_at"] = o.CreatedAt
@@ -640,6 +903,9 @@ func (o BaselineComparison) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.TotalTestsAcrossAllTasks) {
 		toSerialize["total_tests_across_all_tasks"] = o.TotalTestsAcrossAllTasks
+	}
+	if !IsNil(o.TestNamesHashes) {
+		toSerialize["test_names_hashes"] = o.TestNamesHashes
 	}
 	return toSerialize, nil
 }

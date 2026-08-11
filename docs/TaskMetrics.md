@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **TotalTests** | **int32** |  | 
 **TestsSelected** | **int32** |  | 
 **TestsFiltered** | **int32** |  | 
+**TestsSelectedByStrategy** | Pointer to **map[string]int32** |  | [optional] [default to {}]
+**TestsFilteredByStrategy** | Pointer to **map[string]int32** |  | [optional] [default to {}]
 **TestMetrics** | [**[]StrategyTestMetrics**](StrategyTestMetrics.md) |  | 
 
 ## Methods
@@ -129,6 +131,56 @@ and a boolean to check if the value has been set.
 
 SetTestsFiltered sets TestsFiltered field to given value.
 
+
+### GetTestsSelectedByStrategy
+
+`func (o *TaskMetrics) GetTestsSelectedByStrategy() map[string]int32`
+
+GetTestsSelectedByStrategy returns the TestsSelectedByStrategy field if non-nil, zero value otherwise.
+
+### GetTestsSelectedByStrategyOk
+
+`func (o *TaskMetrics) GetTestsSelectedByStrategyOk() (*map[string]int32, bool)`
+
+GetTestsSelectedByStrategyOk returns a tuple with the TestsSelectedByStrategy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTestsSelectedByStrategy
+
+`func (o *TaskMetrics) SetTestsSelectedByStrategy(v map[string]int32)`
+
+SetTestsSelectedByStrategy sets TestsSelectedByStrategy field to given value.
+
+### HasTestsSelectedByStrategy
+
+`func (o *TaskMetrics) HasTestsSelectedByStrategy() bool`
+
+HasTestsSelectedByStrategy returns a boolean if a field has been set.
+
+### GetTestsFilteredByStrategy
+
+`func (o *TaskMetrics) GetTestsFilteredByStrategy() map[string]int32`
+
+GetTestsFilteredByStrategy returns the TestsFilteredByStrategy field if non-nil, zero value otherwise.
+
+### GetTestsFilteredByStrategyOk
+
+`func (o *TaskMetrics) GetTestsFilteredByStrategyOk() (*map[string]int32, bool)`
+
+GetTestsFilteredByStrategyOk returns a tuple with the TestsFilteredByStrategy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTestsFilteredByStrategy
+
+`func (o *TaskMetrics) SetTestsFilteredByStrategy(v map[string]int32)`
+
+SetTestsFilteredByStrategy sets TestsFilteredByStrategy field to given value.
+
+### HasTestsFilteredByStrategy
+
+`func (o *TaskMetrics) HasTestsFilteredByStrategy() bool`
+
+HasTestsFilteredByStrategy returns a boolean if a field has been set.
 
 ### GetTestMetrics
 
