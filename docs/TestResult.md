@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Status** | **string** |  | 
 **TaskId** | **string** |  | 
 **Execution** | **int32** |  | 
+**DurationSeconds** | Pointer to **float32** |  | [optional] [default to 0.0]
 
 ## Methods
 
@@ -107,6 +108,31 @@ and a boolean to check if the value has been set.
 
 SetExecution sets Execution field to given value.
 
+
+### GetDurationSeconds
+
+`func (o *TestResult) GetDurationSeconds() float32`
+
+GetDurationSeconds returns the DurationSeconds field if non-nil, zero value otherwise.
+
+### GetDurationSecondsOk
+
+`func (o *TestResult) GetDurationSecondsOk() (*float32, bool)`
+
+GetDurationSecondsOk returns a tuple with the DurationSeconds field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDurationSeconds
+
+`func (o *TestResult) SetDurationSeconds(v float32)`
+
+SetDurationSeconds sets DurationSeconds field to given value.
+
+### HasDurationSeconds
+
+`func (o *TestResult) HasDurationSeconds() bool`
+
+HasDurationSeconds returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

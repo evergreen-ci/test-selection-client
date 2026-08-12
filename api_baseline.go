@@ -22,6 +22,146 @@ import (
 // BaselineAPIService BaselineAPI service
 type BaselineAPIService service
 
+type ApiComputeMetricsApiBaselineComputePostRequest struct {
+	ctx context.Context
+	ApiService *BaselineAPIService
+	project *string
+	lookbackDays *int32
+}
+
+// Optional project filter
+func (r ApiComputeMetricsApiBaselineComputePostRequest) Project(project string) ApiComputeMetricsApiBaselineComputePostRequest {
+	r.project = &project
+	return r
+}
+
+// Days of pending comparisons to process
+func (r ApiComputeMetricsApiBaselineComputePostRequest) LookbackDays(lookbackDays int32) ApiComputeMetricsApiBaselineComputePostRequest {
+	r.lookbackDays = &lookbackDays
+	return r
+}
+
+func (r ApiComputeMetricsApiBaselineComputePostRequest) Execute() (map[string]interface{}, *http.Response, error) {
+	return r.ApiService.ComputeMetricsApiBaselineComputePostExecute(r)
+}
+
+/*
+ComputeMetricsApiBaselineComputePost Compute Metrics
+
+Debug/manual trigger for the metrics-computation workflow.
+
+Runs the same path as the metrics-computation cron against pending
+comparisons and returns a summary of what was processed.
+
+:param project: Optional project filter
+:param lookback_days: Days of pending comparisons to process
+:return: Summary of processed/successful/failed counts and any errors
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiComputeMetricsApiBaselineComputePostRequest
+*/
+func (a *BaselineAPIService) ComputeMetricsApiBaselineComputePost(ctx context.Context) ApiComputeMetricsApiBaselineComputePostRequest {
+	return ApiComputeMetricsApiBaselineComputePostRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return map[string]interface{}
+func (a *BaselineAPIService) ComputeMetricsApiBaselineComputePostExecute(r ApiComputeMetricsApiBaselineComputePostRequest) (map[string]interface{}, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  map[string]interface{}
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BaselineAPIService.ComputeMetricsApiBaselineComputePost")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/baseline/compute"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.project != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "project", r.project, "form", "")
+	}
+	if r.lookbackDays != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "lookback_days", r.lookbackDays, "form", "")
+	} else {
+		var defaultValue int32 = 14
+		parameterAddToHeaderOrQuery(localVarQueryParams, "lookback_days", defaultValue, "form", "")
+		r.lookbackDays = &defaultValue
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v HTTPValidationError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiGetBaselineStatusApiBaselineStatusGetRequest struct {
 	ctx context.Context
 	ApiService *BaselineAPIService

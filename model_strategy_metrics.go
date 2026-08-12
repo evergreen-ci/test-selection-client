@@ -30,6 +30,11 @@ type StrategyMetrics struct {
 	TotalTests int32 `json:"total_tests"`
 	TestsSelected int32 `json:"tests_selected"`
 	TestsFiltered int32 `json:"tests_filtered"`
+	BaselineRedness *int32 `json:"baseline_redness,omitempty"`
+	StrategyRedness *int32 `json:"strategy_redness,omitempty"`
+	ActualRedness *int32 `json:"actual_redness,omitempty"`
+	RednessSaved *float32 `json:"redness_saved,omitempty"`
+	TimeSavedSeconds *float32 `json:"time_saved_seconds,omitempty"`
 }
 
 type _StrategyMetrics StrategyMetrics
@@ -54,6 +59,16 @@ func NewStrategyMetrics(strategyName StrategyEnum, totalTests int32, testsSelect
 	this.TotalTests = totalTests
 	this.TestsSelected = testsSelected
 	this.TestsFiltered = testsFiltered
+	var baselineRedness int32 = 0
+	this.BaselineRedness = &baselineRedness
+	var strategyRedness int32 = 0
+	this.StrategyRedness = &strategyRedness
+	var actualRedness int32 = 0
+	this.ActualRedness = &actualRedness
+	var rednessSaved float32 = 0.0
+	this.RednessSaved = &rednessSaved
+	var timeSavedSeconds float32 = 0.0
+	this.TimeSavedSeconds = &timeSavedSeconds
 	return &this
 }
 
@@ -72,6 +87,16 @@ func NewStrategyMetricsWithDefaults() *StrategyMetrics {
 	this.FalseNegatives = &falseNegatives
 	var unknown int32 = 0
 	this.Unknown = &unknown
+	var baselineRedness int32 = 0
+	this.BaselineRedness = &baselineRedness
+	var strategyRedness int32 = 0
+	this.StrategyRedness = &strategyRedness
+	var actualRedness int32 = 0
+	this.ActualRedness = &actualRedness
+	var rednessSaved float32 = 0.0
+	this.RednessSaved = &rednessSaved
+	var timeSavedSeconds float32 = 0.0
+	this.TimeSavedSeconds = &timeSavedSeconds
 	return &this
 }
 
@@ -331,6 +356,166 @@ func (o *StrategyMetrics) SetTestsFiltered(v int32) {
 	o.TestsFiltered = v
 }
 
+// GetBaselineRedness returns the BaselineRedness field value if set, zero value otherwise.
+func (o *StrategyMetrics) GetBaselineRedness() int32 {
+	if o == nil || IsNil(o.BaselineRedness) {
+		var ret int32
+		return ret
+	}
+	return *o.BaselineRedness
+}
+
+// GetBaselineRednessOk returns a tuple with the BaselineRedness field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *StrategyMetrics) GetBaselineRednessOk() (*int32, bool) {
+	if o == nil || IsNil(o.BaselineRedness) {
+		return nil, false
+	}
+	return o.BaselineRedness, true
+}
+
+// HasBaselineRedness returns a boolean if a field has been set.
+func (o *StrategyMetrics) HasBaselineRedness() bool {
+	if o != nil && !IsNil(o.BaselineRedness) {
+		return true
+	}
+
+	return false
+}
+
+// SetBaselineRedness gets a reference to the given int32 and assigns it to the BaselineRedness field.
+func (o *StrategyMetrics) SetBaselineRedness(v int32) {
+	o.BaselineRedness = &v
+}
+
+// GetStrategyRedness returns the StrategyRedness field value if set, zero value otherwise.
+func (o *StrategyMetrics) GetStrategyRedness() int32 {
+	if o == nil || IsNil(o.StrategyRedness) {
+		var ret int32
+		return ret
+	}
+	return *o.StrategyRedness
+}
+
+// GetStrategyRednessOk returns a tuple with the StrategyRedness field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *StrategyMetrics) GetStrategyRednessOk() (*int32, bool) {
+	if o == nil || IsNil(o.StrategyRedness) {
+		return nil, false
+	}
+	return o.StrategyRedness, true
+}
+
+// HasStrategyRedness returns a boolean if a field has been set.
+func (o *StrategyMetrics) HasStrategyRedness() bool {
+	if o != nil && !IsNil(o.StrategyRedness) {
+		return true
+	}
+
+	return false
+}
+
+// SetStrategyRedness gets a reference to the given int32 and assigns it to the StrategyRedness field.
+func (o *StrategyMetrics) SetStrategyRedness(v int32) {
+	o.StrategyRedness = &v
+}
+
+// GetActualRedness returns the ActualRedness field value if set, zero value otherwise.
+func (o *StrategyMetrics) GetActualRedness() int32 {
+	if o == nil || IsNil(o.ActualRedness) {
+		var ret int32
+		return ret
+	}
+	return *o.ActualRedness
+}
+
+// GetActualRednessOk returns a tuple with the ActualRedness field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *StrategyMetrics) GetActualRednessOk() (*int32, bool) {
+	if o == nil || IsNil(o.ActualRedness) {
+		return nil, false
+	}
+	return o.ActualRedness, true
+}
+
+// HasActualRedness returns a boolean if a field has been set.
+func (o *StrategyMetrics) HasActualRedness() bool {
+	if o != nil && !IsNil(o.ActualRedness) {
+		return true
+	}
+
+	return false
+}
+
+// SetActualRedness gets a reference to the given int32 and assigns it to the ActualRedness field.
+func (o *StrategyMetrics) SetActualRedness(v int32) {
+	o.ActualRedness = &v
+}
+
+// GetRednessSaved returns the RednessSaved field value if set, zero value otherwise.
+func (o *StrategyMetrics) GetRednessSaved() float32 {
+	if o == nil || IsNil(o.RednessSaved) {
+		var ret float32
+		return ret
+	}
+	return *o.RednessSaved
+}
+
+// GetRednessSavedOk returns a tuple with the RednessSaved field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *StrategyMetrics) GetRednessSavedOk() (*float32, bool) {
+	if o == nil || IsNil(o.RednessSaved) {
+		return nil, false
+	}
+	return o.RednessSaved, true
+}
+
+// HasRednessSaved returns a boolean if a field has been set.
+func (o *StrategyMetrics) HasRednessSaved() bool {
+	if o != nil && !IsNil(o.RednessSaved) {
+		return true
+	}
+
+	return false
+}
+
+// SetRednessSaved gets a reference to the given float32 and assigns it to the RednessSaved field.
+func (o *StrategyMetrics) SetRednessSaved(v float32) {
+	o.RednessSaved = &v
+}
+
+// GetTimeSavedSeconds returns the TimeSavedSeconds field value if set, zero value otherwise.
+func (o *StrategyMetrics) GetTimeSavedSeconds() float32 {
+	if o == nil || IsNil(o.TimeSavedSeconds) {
+		var ret float32
+		return ret
+	}
+	return *o.TimeSavedSeconds
+}
+
+// GetTimeSavedSecondsOk returns a tuple with the TimeSavedSeconds field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *StrategyMetrics) GetTimeSavedSecondsOk() (*float32, bool) {
+	if o == nil || IsNil(o.TimeSavedSeconds) {
+		return nil, false
+	}
+	return o.TimeSavedSeconds, true
+}
+
+// HasTimeSavedSeconds returns a boolean if a field has been set.
+func (o *StrategyMetrics) HasTimeSavedSeconds() bool {
+	if o != nil && !IsNil(o.TimeSavedSeconds) {
+		return true
+	}
+
+	return false
+}
+
+// SetTimeSavedSeconds gets a reference to the given float32 and assigns it to the TimeSavedSeconds field.
+func (o *StrategyMetrics) SetTimeSavedSeconds(v float32) {
+	o.TimeSavedSeconds = &v
+}
+
 func (o StrategyMetrics) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -360,6 +545,21 @@ func (o StrategyMetrics) ToMap() (map[string]interface{}, error) {
 	toSerialize["total_tests"] = o.TotalTests
 	toSerialize["tests_selected"] = o.TestsSelected
 	toSerialize["tests_filtered"] = o.TestsFiltered
+	if !IsNil(o.BaselineRedness) {
+		toSerialize["baseline_redness"] = o.BaselineRedness
+	}
+	if !IsNil(o.StrategyRedness) {
+		toSerialize["strategy_redness"] = o.StrategyRedness
+	}
+	if !IsNil(o.ActualRedness) {
+		toSerialize["actual_redness"] = o.ActualRedness
+	}
+	if !IsNil(o.RednessSaved) {
+		toSerialize["redness_saved"] = o.RednessSaved
+	}
+	if !IsNil(o.TimeSavedSeconds) {
+		toSerialize["time_saved_seconds"] = o.TimeSavedSeconds
+	}
 	return toSerialize, nil
 }
 

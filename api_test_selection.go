@@ -173,6 +173,136 @@ func (a *TestSelectionAPIService) ExplainSelectTestsApiTestSelectionExplainTests
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiExplainSelectTestsWithDataInBodyApiTestSelectionExplainTestsPostRequest struct {
+	ctx context.Context
+	ApiService *TestSelectionAPIService
+	bodyExplainSelectTestsWithDataInBodyApiTestSelectionExplainTestsPost *BodyExplainSelectTestsWithDataInBodyApiTestSelectionExplainTestsPost
+}
+
+func (r ApiExplainSelectTestsWithDataInBodyApiTestSelectionExplainTestsPostRequest) BodyExplainSelectTestsWithDataInBodyApiTestSelectionExplainTestsPost(bodyExplainSelectTestsWithDataInBodyApiTestSelectionExplainTestsPost BodyExplainSelectTestsWithDataInBodyApiTestSelectionExplainTestsPost) ApiExplainSelectTestsWithDataInBodyApiTestSelectionExplainTestsPostRequest {
+	r.bodyExplainSelectTestsWithDataInBodyApiTestSelectionExplainTestsPost = &bodyExplainSelectTestsWithDataInBodyApiTestSelectionExplainTestsPost
+	return r
+}
+
+func (r ApiExplainSelectTestsWithDataInBodyApiTestSelectionExplainTestsPostRequest) Execute() (*map[string]map[string]Explanation, *http.Response, error) {
+	return r.ApiService.ExplainSelectTestsWithDataInBodyApiTestSelectionExplainTestsPostExecute(r)
+}
+
+/*
+ExplainSelectTestsWithDataInBodyApiTestSelectionExplainTestsPost Explain Select Tests With Data In Body
+
+Get the results of the default strategy as well as the explanation.
+:param project_id: The project id.
+:param requester: The requester.
+:param build_variant_name: The build variant name.
+:param task_id: The task id.
+:param task_name: The task name.
+:param test_names: The test names.
+:param background_tasks: Background tasks to run after the request is completed.
+:param strategies: The set of strategies to use
+:return: A mapping from {Build variant x task x test} to a
+         full explanation of the reasons behind the test selection
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiExplainSelectTestsWithDataInBodyApiTestSelectionExplainTestsPostRequest
+*/
+func (a *TestSelectionAPIService) ExplainSelectTestsWithDataInBodyApiTestSelectionExplainTestsPost(ctx context.Context) ApiExplainSelectTestsWithDataInBodyApiTestSelectionExplainTestsPostRequest {
+	return ApiExplainSelectTestsWithDataInBodyApiTestSelectionExplainTestsPostRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return map[string]map[string]Explanation
+func (a *TestSelectionAPIService) ExplainSelectTestsWithDataInBodyApiTestSelectionExplainTestsPostExecute(r ApiExplainSelectTestsWithDataInBodyApiTestSelectionExplainTestsPostRequest) (*map[string]map[string]Explanation, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *map[string]map[string]Explanation
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TestSelectionAPIService.ExplainSelectTestsWithDataInBodyApiTestSelectionExplainTestsPost")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/test_selection/explain_tests/"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.bodyExplainSelectTestsWithDataInBodyApiTestSelectionExplainTestsPost == nil {
+		return localVarReturnValue, nil, reportError("bodyExplainSelectTestsWithDataInBodyApiTestSelectionExplainTestsPost is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.bodyExplainSelectTestsWithDataInBodyApiTestSelectionExplainTestsPost
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v HTTPValidationError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiSelectAllKnownTestsOfATaskApiTestSelectionSelectKnownTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest struct {
 	ctx context.Context
 	ApiService *TestSelectionAPIService
@@ -272,6 +402,135 @@ func (a *TestSelectionAPIService) SelectAllKnownTestsOfATaskApiTestSelectionSele
 	}
 	// body params
 	localVarPostBody = r.strategyEnum
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v HTTPValidationError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiSelectAllKnownTestsOfATaskWithDataInBodyApiTestSelectionSelectKnownTestsPostRequest struct {
+	ctx context.Context
+	ApiService *TestSelectionAPIService
+	bodySelectAllKnownTestsOfATaskWithDataInBodyApiTestSelectionSelectKnownTestsPost *BodySelectAllKnownTestsOfATaskWithDataInBodyApiTestSelectionSelectKnownTestsPost
+}
+
+func (r ApiSelectAllKnownTestsOfATaskWithDataInBodyApiTestSelectionSelectKnownTestsPostRequest) BodySelectAllKnownTestsOfATaskWithDataInBodyApiTestSelectionSelectKnownTestsPost(bodySelectAllKnownTestsOfATaskWithDataInBodyApiTestSelectionSelectKnownTestsPost BodySelectAllKnownTestsOfATaskWithDataInBodyApiTestSelectionSelectKnownTestsPost) ApiSelectAllKnownTestsOfATaskWithDataInBodyApiTestSelectionSelectKnownTestsPostRequest {
+	r.bodySelectAllKnownTestsOfATaskWithDataInBodyApiTestSelectionSelectKnownTestsPost = &bodySelectAllKnownTestsOfATaskWithDataInBodyApiTestSelectionSelectKnownTestsPost
+	return r
+}
+
+func (r ApiSelectAllKnownTestsOfATaskWithDataInBodyApiTestSelectionSelectKnownTestsPostRequest) Execute() ([]*string, *http.Response, error) {
+	return r.ApiService.SelectAllKnownTestsOfATaskWithDataInBodyApiTestSelectionSelectKnownTestsPostExecute(r)
+}
+
+/*
+SelectAllKnownTestsOfATaskWithDataInBodyApiTestSelectionSelectKnownTestsPost Select All Known Tests Of A Task With Data In Body
+
+Get the results of the default strategy for known tests of a task.
+:param project_id: The project id.
+:param requester: The requester.
+:param build_variant_name: The build variant name.
+:param task_id: The task id.
+:param task_name: The task name.
+:param background_tasks: Background tasks to run after the request is completed.
+:param strategies: The set of strategies to use
+:return: A set of strings representing the names of known tests
+         that should run for the specified task based on the selected strategies.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiSelectAllKnownTestsOfATaskWithDataInBodyApiTestSelectionSelectKnownTestsPostRequest
+*/
+func (a *TestSelectionAPIService) SelectAllKnownTestsOfATaskWithDataInBodyApiTestSelectionSelectKnownTestsPost(ctx context.Context) ApiSelectAllKnownTestsOfATaskWithDataInBodyApiTestSelectionSelectKnownTestsPostRequest {
+	return ApiSelectAllKnownTestsOfATaskWithDataInBodyApiTestSelectionSelectKnownTestsPostRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return []*string
+func (a *TestSelectionAPIService) SelectAllKnownTestsOfATaskWithDataInBodyApiTestSelectionSelectKnownTestsPostExecute(r ApiSelectAllKnownTestsOfATaskWithDataInBodyApiTestSelectionSelectKnownTestsPostRequest) ([]*string, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  []*string
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TestSelectionAPIService.SelectAllKnownTestsOfATaskWithDataInBodyApiTestSelectionSelectKnownTestsPost")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/test_selection/select_known_tests/"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.bodySelectAllKnownTestsOfATaskWithDataInBodyApiTestSelectionSelectKnownTestsPost == nil {
+		return localVarReturnValue, nil, reportError("bodySelectAllKnownTestsOfATaskWithDataInBodyApiTestSelectionSelectKnownTestsPost is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.bodySelectAllKnownTestsOfATaskWithDataInBodyApiTestSelectionSelectKnownTestsPost
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -422,6 +681,136 @@ func (a *TestSelectionAPIService) SelectTestsApiTestSelectionSelectTestsProjectI
 	}
 	// body params
 	localVarPostBody = r.bodySelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v HTTPValidationError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiSelectTestsWithDataInBodyApiTestSelectionSelectTestsPostRequest struct {
+	ctx context.Context
+	ApiService *TestSelectionAPIService
+	bodySelectTestsWithDataInBodyApiTestSelectionSelectTestsPost *BodySelectTestsWithDataInBodyApiTestSelectionSelectTestsPost
+}
+
+func (r ApiSelectTestsWithDataInBodyApiTestSelectionSelectTestsPostRequest) BodySelectTestsWithDataInBodyApiTestSelectionSelectTestsPost(bodySelectTestsWithDataInBodyApiTestSelectionSelectTestsPost BodySelectTestsWithDataInBodyApiTestSelectionSelectTestsPost) ApiSelectTestsWithDataInBodyApiTestSelectionSelectTestsPostRequest {
+	r.bodySelectTestsWithDataInBodyApiTestSelectionSelectTestsPost = &bodySelectTestsWithDataInBodyApiTestSelectionSelectTestsPost
+	return r
+}
+
+func (r ApiSelectTestsWithDataInBodyApiTestSelectionSelectTestsPostRequest) Execute() ([]*string, *http.Response, error) {
+	return r.ApiService.SelectTestsWithDataInBodyApiTestSelectionSelectTestsPostExecute(r)
+}
+
+/*
+SelectTestsWithDataInBodyApiTestSelectionSelectTestsPost Select Tests With Data In Body
+
+Get the results of the default strategy.
+:param project_id: The project id.
+:param requester: The requester.
+:param build_variant_name: The build variant name.
+:param task_id: The task id.
+:param task_name: The task name.
+:param test_names: The test names.
+:param background_tasks: Background tasks to run after the request is completed.
+:param strategies: The set of strategies to use
+:return: A set of strings representing the names of tests
+         that should run for the specified task based on the selected strategies.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiSelectTestsWithDataInBodyApiTestSelectionSelectTestsPostRequest
+*/
+func (a *TestSelectionAPIService) SelectTestsWithDataInBodyApiTestSelectionSelectTestsPost(ctx context.Context) ApiSelectTestsWithDataInBodyApiTestSelectionSelectTestsPostRequest {
+	return ApiSelectTestsWithDataInBodyApiTestSelectionSelectTestsPostRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return []*string
+func (a *TestSelectionAPIService) SelectTestsWithDataInBodyApiTestSelectionSelectTestsPostExecute(r ApiSelectTestsWithDataInBodyApiTestSelectionSelectTestsPostRequest) ([]*string, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  []*string
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TestSelectionAPIService.SelectTestsWithDataInBodyApiTestSelectionSelectTestsPost")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/test_selection/select_tests/"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.bodySelectTestsWithDataInBodyApiTestSelectionSelectTestsPost == nil {
+		return localVarReturnValue, nil, reportError("bodySelectTestsWithDataInBodyApiTestSelectionSelectTestsPost is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.bodySelectTestsWithDataInBodyApiTestSelectionSelectTestsPost
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

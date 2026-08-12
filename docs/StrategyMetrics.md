@@ -13,6 +13,11 @@ Name | Type | Description | Notes
 **TotalTests** | **int32** |  | 
 **TestsSelected** | **int32** |  | 
 **TestsFiltered** | **int32** |  | 
+**BaselineRedness** | Pointer to **int32** |  | [optional] [default to 0]
+**StrategyRedness** | Pointer to **int32** |  | [optional] [default to 0]
+**ActualRedness** | Pointer to **int32** |  | [optional] [default to 0]
+**RednessSaved** | Pointer to **float32** |  | [optional] [default to 0.0]
+**TimeSavedSeconds** | Pointer to **float32** |  | [optional] [default to 0.0]
 
 ## Methods
 
@@ -237,6 +242,131 @@ and a boolean to check if the value has been set.
 
 SetTestsFiltered sets TestsFiltered field to given value.
 
+
+### GetBaselineRedness
+
+`func (o *StrategyMetrics) GetBaselineRedness() int32`
+
+GetBaselineRedness returns the BaselineRedness field if non-nil, zero value otherwise.
+
+### GetBaselineRednessOk
+
+`func (o *StrategyMetrics) GetBaselineRednessOk() (*int32, bool)`
+
+GetBaselineRednessOk returns a tuple with the BaselineRedness field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBaselineRedness
+
+`func (o *StrategyMetrics) SetBaselineRedness(v int32)`
+
+SetBaselineRedness sets BaselineRedness field to given value.
+
+### HasBaselineRedness
+
+`func (o *StrategyMetrics) HasBaselineRedness() bool`
+
+HasBaselineRedness returns a boolean if a field has been set.
+
+### GetStrategyRedness
+
+`func (o *StrategyMetrics) GetStrategyRedness() int32`
+
+GetStrategyRedness returns the StrategyRedness field if non-nil, zero value otherwise.
+
+### GetStrategyRednessOk
+
+`func (o *StrategyMetrics) GetStrategyRednessOk() (*int32, bool)`
+
+GetStrategyRednessOk returns a tuple with the StrategyRedness field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStrategyRedness
+
+`func (o *StrategyMetrics) SetStrategyRedness(v int32)`
+
+SetStrategyRedness sets StrategyRedness field to given value.
+
+### HasStrategyRedness
+
+`func (o *StrategyMetrics) HasStrategyRedness() bool`
+
+HasStrategyRedness returns a boolean if a field has been set.
+
+### GetActualRedness
+
+`func (o *StrategyMetrics) GetActualRedness() int32`
+
+GetActualRedness returns the ActualRedness field if non-nil, zero value otherwise.
+
+### GetActualRednessOk
+
+`func (o *StrategyMetrics) GetActualRednessOk() (*int32, bool)`
+
+GetActualRednessOk returns a tuple with the ActualRedness field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetActualRedness
+
+`func (o *StrategyMetrics) SetActualRedness(v int32)`
+
+SetActualRedness sets ActualRedness field to given value.
+
+### HasActualRedness
+
+`func (o *StrategyMetrics) HasActualRedness() bool`
+
+HasActualRedness returns a boolean if a field has been set.
+
+### GetRednessSaved
+
+`func (o *StrategyMetrics) GetRednessSaved() float32`
+
+GetRednessSaved returns the RednessSaved field if non-nil, zero value otherwise.
+
+### GetRednessSavedOk
+
+`func (o *StrategyMetrics) GetRednessSavedOk() (*float32, bool)`
+
+GetRednessSavedOk returns a tuple with the RednessSaved field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRednessSaved
+
+`func (o *StrategyMetrics) SetRednessSaved(v float32)`
+
+SetRednessSaved sets RednessSaved field to given value.
+
+### HasRednessSaved
+
+`func (o *StrategyMetrics) HasRednessSaved() bool`
+
+HasRednessSaved returns a boolean if a field has been set.
+
+### GetTimeSavedSeconds
+
+`func (o *StrategyMetrics) GetTimeSavedSeconds() float32`
+
+GetTimeSavedSeconds returns the TimeSavedSeconds field if non-nil, zero value otherwise.
+
+### GetTimeSavedSecondsOk
+
+`func (o *StrategyMetrics) GetTimeSavedSecondsOk() (*float32, bool)`
+
+GetTimeSavedSecondsOk returns a tuple with the TimeSavedSeconds field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTimeSavedSeconds
+
+`func (o *StrategyMetrics) SetTimeSavedSeconds(v float32)`
+
+SetTimeSavedSeconds sets TimeSavedSeconds field to given value.
+
+### HasTimeSavedSeconds
+
+`func (o *StrategyMetrics) HasTimeSavedSeconds() bool`
+
+HasTimeSavedSeconds returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

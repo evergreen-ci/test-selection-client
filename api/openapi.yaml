@@ -6,6 +6,51 @@ info:
 servers:
 - url: /
 paths:
+  /api/test_selection/select_tests/:
+    post:
+      description: |-
+        Get the results of the default strategy.
+        :param project_id: The project id.
+        :param requester: The requester.
+        :param build_variant_name: The build variant name.
+        :param task_id: The task id.
+        :param task_name: The task name.
+        :param test_names: The test names.
+        :param background_tasks: Background tasks to run after the request is completed.
+        :param strategies: The set of strategies to use
+        :return: A set of strings representing the names of tests
+                 that should run for the specified task based on the selected strategies.
+      operationId: select_tests_with_data_in_body_api_test_selection_select_tests__post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Body_select_tests_with_data_in_body_api_test_selection_select_tests__post"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  description: Optional project filter
+                  nullable: true
+                  type: string
+                title: Response Select Tests With Data In Body Api Test Selection
+                  Select Tests  Post
+                type: array
+                uniqueItems: true
+                default: null
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      summary: Select Tests With Data In Body
+      tags:
+      - test_selection
   /api/test_selection/select_tests/{project_id}/{requester}/{build_variant_name}/{task_id}/{task_name}/:
     post:
       description: |-
@@ -74,12 +119,14 @@ paths:
             application/json:
               schema:
                 items:
+                  description: Optional project filter
                   nullable: true
                   type: string
                 title: Response Select Tests Api Test Selection Select Tests  Project
                   Id   Requester   Build Variant Name   Task Id   Task Name   Post
                 type: array
                 uniqueItems: true
+                default: null
           description: Successful Response
         "422":
           content:
@@ -88,6 +135,50 @@ paths:
                 $ref: "#/components/schemas/HTTPValidationError"
           description: Validation Error
       summary: Select Tests
+      tags:
+      - test_selection
+  /api/test_selection/select_known_tests/:
+    post:
+      description: |-
+        Get the results of the default strategy for known tests of a task.
+        :param project_id: The project id.
+        :param requester: The requester.
+        :param build_variant_name: The build variant name.
+        :param task_id: The task id.
+        :param task_name: The task name.
+        :param background_tasks: Background tasks to run after the request is completed.
+        :param strategies: The set of strategies to use
+        :return: A set of strings representing the names of known tests
+                 that should run for the specified task based on the selected strategies.
+      operationId: select_all_known_tests_of_a_task_with_data_in_body_api_test_selection_select_known_tests__post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Body_select_all_known_tests_of_a_task_with_data_in_body_api_test_selection_select_known_tests__post"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  description: Optional project filter
+                  nullable: true
+                  type: string
+                title: Response Select All Known Tests Of A Task With Data In Body
+                  Api Test Selection Select Known Tests  Post
+                type: array
+                uniqueItems: true
+                default: null
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      summary: Select All Known Tests Of A Task With Data In Body
       tags:
       - test_selection
   /api/test_selection/select_known_tests/{project_id}/{requester}/{build_variant_name}/{task_id}/{task_name}/:
@@ -161,6 +252,7 @@ paths:
             application/json:
               schema:
                 items:
+                  description: Optional project filter
                   nullable: true
                   type: string
                 title: Response Select All Known Tests Of A Task Api Test Selection
@@ -168,6 +260,7 @@ paths:
                   Id   Task Name   Post
                 type: array
                 uniqueItems: true
+                default: null
           description: Successful Response
         "422":
           content:
@@ -176,6 +269,47 @@ paths:
                 $ref: "#/components/schemas/HTTPValidationError"
           description: Validation Error
       summary: Select All Known Tests Of A Task
+      tags:
+      - test_selection
+  /api/test_selection/explain_tests/:
+    post:
+      description: |-
+        Get the results of the default strategy as well as the explanation.
+        :param project_id: The project id.
+        :param requester: The requester.
+        :param build_variant_name: The build variant name.
+        :param task_id: The task id.
+        :param task_name: The task name.
+        :param test_names: The test names.
+        :param background_tasks: Background tasks to run after the request is completed.
+        :param strategies: The set of strategies to use
+        :return: A mapping from {Build variant x task x test} to a
+                 full explanation of the reasons behind the test selection
+      operationId: explain_select_tests_with_data_in_body_api_test_selection_explain_tests__post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Body_explain_select_tests_with_data_in_body_api_test_selection_explain_tests__post"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  additionalProperties:
+                    $ref: "#/components/schemas/Explanation"
+                title: Response Explain Select Tests With Data In Body Api Test Selection
+                  Explain Tests  Post
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      summary: Explain Select Tests With Data In Body
       tags:
       - test_selection
   /api/test_selection/explain_tests/{project_id}/{requester}/{build_variant_name}/{task_id}/{task_name}/:
@@ -260,6 +394,40 @@ paths:
       summary: Explain Select Tests
       tags:
       - test_selection
+  /api/test_selection/transition_tests/:
+    post:
+      description: |-
+        Transition a single test into or out of the "Manually Quarantined" state.
+        If that test doesn't exist in the registry, the registry will create an entry for it.
+        :param project_id: The project id.
+        :param build_variant_name: The build variant name.
+        :param task_name: The task name.
+        :param test_names: The test names to be transitioned.
+        :param is_manually_quarantined: Denote if the test should be marked manually quarantined or not
+        :param background_tasks: Background tasks to run after the request is completed.
+        :return: None
+      operationId: mark_tests_as_manually_quarantined_data_in_body_api_test_selection_transition_tests__post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Body_mark_tests_as_manually_quarantined_data_in_body_api_test_selection_transition_tests__post"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      summary: Mark Tests As Manually Quarantined Data In Body
+      tags:
+      - state_transition
   /api/test_selection/transition_tests/{project_id}/{build_variant_name}/{task_name}/:
     post:
       description: |-
@@ -270,6 +438,7 @@ paths:
         :param task_name: The task name.
         :param test_names: The test names to be transitioned.
         :param is_manually_quarantined: Denote if the test should be marked manually quarantined or not
+        :param background_tasks: Background tasks to run after the request is completed.
         :return: None
       operationId: mark_tests_as_manually_quarantined_api_test_selection_transition_tests__project_id___build_variant_name___task_name___post
       parameters:
@@ -310,11 +479,11 @@ paths:
           application/json:
             schema:
               items:
-                nullable: true
                 type: string
               title: Test Names
               type: array
               uniqueItems: true
+              default: null
         required: true
       responses:
         "200":
@@ -331,6 +500,38 @@ paths:
       summary: Mark Tests As Manually Quarantined
       tags:
       - state_transition
+  /api/test_selection/transition_task/:
+    post:
+      description: |-
+        Transition all known tests of a single task into or out of the "Manually Quarantined" state
+        :param project_id: The project id.
+        :param build_variant_name: The build variant name.
+        :param task_name: The task name.
+        :param is_manually_quarantined: Denote if the task should be marked manually quarantined
+        :param background_tasks: Background tasks to run after the request is completed.
+        :return: None
+      operationId: mark_task_as_manually_quarantined_data_in_body_api_test_selection_transition_task__post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Body_mark_task_as_manually_quarantined_data_in_body_api_test_selection_transition_task__post"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      summary: Mark Task As Manually Quarantined Data In Body
+      tags:
+      - state_transition
   /api/test_selection/transition_task/{project_id}/{build_variant_name}/{task_name}/:
     post:
       description: |-
@@ -339,6 +540,7 @@ paths:
         :param build_variant_name: The build variant name.
         :param task_name: The task name.
         :param is_manually_quarantined: Denote if the task should be marked manually quarantined
+        :param background_tasks: Background tasks to run after the request is completed.
         :return: None
       operationId: mark_task_as_manually_quarantined_api_test_selection_transition_task__project_id___build_variant_name___task_name___post
       parameters:
@@ -389,6 +591,37 @@ paths:
       summary: Mark Task As Manually Quarantined
       tags:
       - state_transition
+  /api/test_selection/transition_variant/:
+    post:
+      description: |-
+        Transition all known tests of a single variant into or out of the "Manually Quarantined" state
+        :param project_id: The project id.
+        :param build_variant_name: The build variant name.
+        :param is_manually_quarantined: Denote if the variant should be marked manually quarantined
+        :param background_tasks: Background tasks to run after the request is completed.
+        :return: None
+      operationId: mark_variant_as_manually_quarantined_data_in_body_api_test_selection_transition_variant__post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Body_mark_variant_as_manually_quarantined_data_in_body_api_test_selection_transition_variant__post"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      summary: Mark Variant As Manually Quarantined Data In Body
+      tags:
+      - state_transition
   /api/test_selection/transition_variant/{project_id}/{build_variant_name}/:
     post:
       description: |-
@@ -396,6 +629,7 @@ paths:
         :param project_id: The project id.
         :param build_variant_name: The build variant name.
         :param is_manually_quarantined: Denote if the variant should be marked manually quarantined
+        :param background_tasks: Background tasks to run after the request is completed.
         :return: None
       operationId: mark_variant_as_manually_quarantined_api_test_selection_transition_variant__project_id___build_variant_name___post
       parameters:
@@ -438,6 +672,41 @@ paths:
       summary: Mark Variant As Manually Quarantined
       tags:
       - state_transition
+  /api/test_selection/get_tests_state/:
+    post:
+      description: |-
+        Return the state of a single test
+        :param project_id: The project id.
+        :param build_variant_name: The build variant name.
+        :param task_name: The task name.
+        :param test_names: The test names to be transitioned.
+        :return: get the state of all tests in the task
+      operationId: get_tests_state_data_in_body_api_test_selection_get_tests_state__post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Body_get_tests_state_data_in_body_api_test_selection_get_tests_state__post"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  $ref: "#/components/schemas/TestStateInfo"
+                title: Response Get Tests State Data In Body Api Test Selection Get
+                  Tests State  Post
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      summary: Get Tests State Data In Body
+      tags:
+      - state_transition
   /api/test_selection/get_tests_state/{project_id}/{build_variant_name}/{task_name}/:
     post:
       description: |-
@@ -446,7 +715,7 @@ paths:
         :param build_variant_name: The build variant name.
         :param task_name: The task name.
         :param test_names: The test names to be transitioned.
-        :return: None
+        :return: get the state of all tests in the task
       operationId: get_tests_state_api_test_selection_get_tests_state__project_id___build_variant_name___task_name___post
       parameters:
       - explode: false
@@ -482,6 +751,7 @@ paths:
               title: Test Names
               type: array
               uniqueItems: true
+              default: null
         required: true
       responses:
         "200":
@@ -502,13 +772,46 @@ paths:
       summary: Get Tests State
       tags:
       - state_transition
+  /api/test_selection/get_variant_state/:
+    post:
+      description: |-
+        Return the state of all known tests of a single variant
+        :param project_id: The project id.
+        :param build_variant_name: The build variant name.
+        :return: get the state of all tests in the variant
+      operationId: get_variant_state_data_in_body_api_test_selection_get_variant_state__post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Body_get_variant_state_data_in_body_api_test_selection_get_variant_state__post"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  $ref: "#/components/schemas/TaskStateInfo"
+                title: Response Get Variant State Data In Body Api Test Selection
+                  Get Variant State  Post
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      summary: Get Variant State Data In Body
+      tags:
+      - state_transition
   /api/test_selection/get_variant_state/{project_id}/{build_variant_name}/:
     post:
       description: |-
         Return the state of all known tests of a single variant
         :param project_id: The project id.
         :param build_variant_name: The build variant name.
-        :return: None
+        :return: get the state of all tests in the variant
       operationId: get_variant_state_api_test_selection_get_variant_state__project_id___build_variant_name___post
       parameters:
       - explode: false
@@ -544,6 +847,231 @@ paths:
                 $ref: "#/components/schemas/HTTPValidationError"
           description: Validation Error
       summary: Get Variant State
+      tags:
+      - state_transition
+  /api/test_selection/get_variant_quarantined/:
+    post:
+      description: |-
+        Return the state of all quarantined tests of a single variant
+        :param project_id: The project id.
+        :param build_variant_name: The build variant name.
+        :return: All quarantined tests in the variant
+      operationId: get_variant_quarantined_data_in_body_api_test_selection_get_variant_quarantined__post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Body_get_variant_quarantined_data_in_body_api_test_selection_get_variant_quarantined__post"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  $ref: "#/components/schemas/TaskStateInfo"
+                title: Response Get Variant Quarantined Data In Body Api Test Selection
+                  Get Variant Quarantined  Post
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      summary: Get Variant Quarantined Data In Body
+      tags:
+      - state_transition
+  /api/test_selection/get_variant_quarantined/{project_id}/{build_variant_name}/:
+    post:
+      description: |-
+        Return the state of all quarantined tests of a single variant
+        :param project_id: The project id.
+        :param build_variant_name: The build variant name.
+        :return: All quarantined tests in the variant
+      operationId: get_variant_quarantined_api_test_selection_get_variant_quarantined__project_id___build_variant_name___post
+      parameters:
+      - explode: false
+        in: path
+        name: project_id
+        required: true
+        schema:
+          title: Project Id
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: build_variant_name
+        required: true
+        schema:
+          title: Build Variant Name
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  $ref: "#/components/schemas/TaskStateInfo"
+                title: Response Get Variant Quarantined Api Test Selection Get Variant
+                  Quarantined  Project Id   Build Variant Name   Post
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      summary: Get Variant Quarantined
+      tags:
+      - state_transition
+  /api/test_selection/get_task_quarantined/:
+    post:
+      description: |-
+        Return the state of all quarantined tests of a single task
+        :param project_id: The project id.
+        :param build_variant_name: The build variant name.
+        :param task_name: The task name.
+        :return: All quarantined tests in the task
+      operationId: get_task_quarantined_data_in_body_api_test_selection_get_task_quarantined__post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Body_get_task_quarantined_data_in_body_api_test_selection_get_task_quarantined__post"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TaskStateInfo"
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      summary: Get Task Quarantined Data In Body
+      tags:
+      - state_transition
+  /api/test_selection/get_task_quarantined/{project_id}/{build_variant_name}/{task_name}/:
+    post:
+      description: |-
+        Return the state of all quarantined tests of a single task
+        :param project_id: The project id.
+        :param build_variant_name: The build variant name.
+        :param task_name: The task name.
+        :return: All quarantined tests in the task
+      operationId: get_task_quarantined_api_test_selection_get_task_quarantined__project_id___build_variant_name___task_name___post
+      parameters:
+      - explode: false
+        in: path
+        name: project_id
+        required: true
+        schema:
+          title: Project Id
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: build_variant_name
+        required: true
+        schema:
+          title: Build Variant Name
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: task_name
+        required: true
+        schema:
+          title: Task Name
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TaskStateInfo"
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      summary: Get Task Quarantined
+      tags:
+      - state_transition
+  /api/test_selection/get_project_quarantined/:
+    post:
+      description: |-
+        Return the state of all quarantined tests of a single project
+        :param project_id: The project id.
+        :return: All quarantined tests in the project
+      operationId: get_project_quarantined_data_in_body_api_test_selection_get_project_quarantined__post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Body_get_project_quarantined_data_in_body_api_test_selection_get_project_quarantined__post"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  $ref: "#/components/schemas/VariantStateInfo"
+                title: Response Get Project Quarantined Data In Body Api Test Selection
+                  Get Project Quarantined  Post
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      summary: Get Project Quarantined Data In Body
+      tags:
+      - state_transition
+  /api/test_selection/get_project_quarantined/{project_id}/:
+    post:
+      description: |-
+        Return the state of all quarantined tests of a single project
+        :param project_id: The project id.
+        :return: All quarantined tests in the project
+      operationId: get_project_quarantined_api_test_selection_get_project_quarantined__project_id___post
+      parameters:
+      - explode: false
+        in: path
+        name: project_id
+        required: true
+        schema:
+          title: Project Id
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  $ref: "#/components/schemas/VariantStateInfo"
+                title: Response Get Project Quarantined Api Test Selection Get Project
+                  Quarantined  Project Id   Post
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      summary: Get Project Quarantined
       tags:
       - state_transition
   /api/test_selection/patch_scanner/{project_id}:
@@ -633,6 +1161,57 @@ paths:
       summary: Scan Single Patch
       tags:
       - patch_scanner_initiation
+  /api/baseline/compute:
+    post:
+      description: |-
+        Debug/manual trigger for the metrics-computation workflow.
+
+        Runs the same path as the metrics-computation cron against pending
+        comparisons and returns a summary of what was processed.
+
+        :param project: Optional project filter
+        :param lookback_days: Days of pending comparisons to process
+        :return: Summary of processed/successful/failed counts and any errors
+      operationId: compute_metrics_api_baseline_compute_post
+      parameters:
+      - description: Optional project filter
+        explode: true
+        in: query
+        name: project
+        required: false
+        schema:
+          description: Optional project filter
+          nullable: true
+          type: string
+        style: form
+      - description: Days of pending comparisons to process
+        explode: true
+        in: query
+        name: lookback_days
+        required: false
+        schema:
+          default: 14
+          description: Days of pending comparisons to process
+          title: Lookback Days
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                title: Response Compute Metrics Api Baseline Compute Post
+                type: object
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      summary: Compute Metrics
+      tags:
+      - baseline
   /api/baseline/status:
     get:
       description: |-
@@ -652,6 +1231,7 @@ paths:
         name: task_id
         required: false
         schema:
+          description: Optional project filter
           nullable: true
           type: string
         style: form
@@ -661,6 +1241,7 @@ paths:
         name: comparison_id
         required: false
         schema:
+          description: Optional project filter
           nullable: true
           type: string
         style: form
@@ -685,111 +1266,132 @@ components:
     BaselineComparison:
       description: Main model for baseline comparison tracking and results.
       example:
+        comparison_id: comparison_id
+        project: project
+        strategy_patch_id: strategy_patch_id
+        task_id: task_id
+        execution_number: 0
+        base_commit_sha: base_commit_sha
+        baseline_version_id: baseline_version_id
+        subsequent_commit_sha: subsequent_commit_sha
+        subsequent_task_id: subsequent_task_id
+        baseline_task_id: baseline_task_id
+        baseline_order: 6
+        subsequent_order: 1
+        status: pending
+        created_at: 2000-01-23T04:56:07.000+00:00
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        completed_at: 2000-01-23T04:56:07.000+00:00
         strategies:
         - strategies
         - strategies
-        project: project
-        execution_number: 0
-        created_at: 2000-01-23T04:56:07.000+00:00
-        task_id: task_id
-        strategy_patch_id: strategy_patch_id
-        task_metrics:
-        - task_name: task_name
-          tests_selected: 1
-          tests_filtered: 5
-          test_metrics:
-          - known_issues:
-            - source: test_registry
-              discovered_at: 2000-01-23T04:56:07.000+00:00
-            - source: test_registry
-              discovered_at: 2000-01-23T04:56:07.000+00:00
-            subsequent_result: ""
-            baseline_result: ""
-            explanation: explanation
-            classification: true_positive
-            is_known_issue: true
-            test_name: test_name
-            strategy_name: null
-            strategy_result: ""
-            was_filtered: true
-            expected_outcome: expected_outcome
-          - known_issues:
-            - source: test_registry
-              discovered_at: 2000-01-23T04:56:07.000+00:00
-            - source: test_registry
-              discovered_at: 2000-01-23T04:56:07.000+00:00
-            subsequent_result: ""
-            baseline_result: ""
-            explanation: explanation
-            classification: true_positive
-            is_known_issue: true
-            test_name: test_name
-            strategy_name: null
-            strategy_result: ""
-            was_filtered: true
-            expected_outcome: expected_outcome
-          variant: variant
-          total_tests: 6
-        - task_name: task_name
-          tests_selected: 1
-          tests_filtered: 5
-          test_metrics:
-          - known_issues:
-            - source: test_registry
-              discovered_at: 2000-01-23T04:56:07.000+00:00
-            - source: test_registry
-              discovered_at: 2000-01-23T04:56:07.000+00:00
-            subsequent_result: ""
-            baseline_result: ""
-            explanation: explanation
-            classification: true_positive
-            is_known_issue: true
-            test_name: test_name
-            strategy_name: null
-            strategy_result: ""
-            was_filtered: true
-            expected_outcome: expected_outcome
-          - known_issues:
-            - source: test_registry
-              discovered_at: 2000-01-23T04:56:07.000+00:00
-            - source: test_registry
-              discovered_at: 2000-01-23T04:56:07.000+00:00
-            subsequent_result: ""
-            baseline_result: ""
-            explanation: explanation
-            classification: true_positive
-            is_known_issue: true
-            test_name: test_name
-            strategy_name: null
-            strategy_result: ""
-            was_filtered: true
-            expected_outcome: expected_outcome
-          variant: variant
-          total_tests: 6
-        subsequent_commit_sha: subsequent_commit_sha
-        completed_at: 2000-01-23T04:56:07.000+00:00
-        comparison_id: comparison_id
-        updated_at: 2000-01-23T04:56:07.000+00:00
-        strategy_metrics:
-          key:
-            tests_selected: 4
-            true_negatives: 7
-            tests_filtered: 7
-            false_positives: 2
-            total_tests: 2
-            true_positives: 5
-            false_negatives: 9
-            strategy_name: null
-            unknown: 3
-        retroactive_corrections:
-        - retroactive_corrections
-        - retroactive_corrections
         strategy_execution_order:
         - ExcludeManuallyQuarantined
         - ExcludeManuallyQuarantined
-        base_commit_sha: base_commit_sha
-        total_tests_across_all_tasks: 1
-        status: pending
+        task_metrics:
+        - task_name: task_name
+          variant: variant
+          total_tests: 5
+          tests_selected: 5
+          tests_filtered: 2
+          tests_selected_by_strategy:
+            key: 7
+          tests_filtered_by_strategy:
+            key: 9
+          test_metrics:
+          - test_name: test_name
+            was_filtered: true
+            strategy_name: null
+            expected_outcome: expected_outcome
+            explanation: explanation
+            baseline_result: ""
+            strategy_result: ""
+            subsequent_result: ""
+            classification: true_positive
+            known_issues:
+            - source: test_registry
+              discovered_at: 2000-01-23T04:56:07.000+00:00
+            - source: test_registry
+              discovered_at: 2000-01-23T04:56:07.000+00:00
+            is_known_issue: true
+          - test_name: test_name
+            was_filtered: true
+            strategy_name: null
+            expected_outcome: expected_outcome
+            explanation: explanation
+            baseline_result: ""
+            strategy_result: ""
+            subsequent_result: ""
+            classification: true_positive
+            known_issues:
+            - source: test_registry
+              discovered_at: 2000-01-23T04:56:07.000+00:00
+            - source: test_registry
+              discovered_at: 2000-01-23T04:56:07.000+00:00
+            is_known_issue: true
+        - task_name: task_name
+          variant: variant
+          total_tests: 5
+          tests_selected: 5
+          tests_filtered: 2
+          tests_selected_by_strategy:
+            key: 7
+          tests_filtered_by_strategy:
+            key: 9
+          test_metrics:
+          - test_name: test_name
+            was_filtered: true
+            strategy_name: null
+            expected_outcome: expected_outcome
+            explanation: explanation
+            baseline_result: ""
+            strategy_result: ""
+            subsequent_result: ""
+            classification: true_positive
+            known_issues:
+            - source: test_registry
+              discovered_at: 2000-01-23T04:56:07.000+00:00
+            - source: test_registry
+              discovered_at: 2000-01-23T04:56:07.000+00:00
+            is_known_issue: true
+          - test_name: test_name
+            was_filtered: true
+            strategy_name: null
+            expected_outcome: expected_outcome
+            explanation: explanation
+            baseline_result: ""
+            strategy_result: ""
+            subsequent_result: ""
+            classification: true_positive
+            known_issues:
+            - source: test_registry
+              discovered_at: 2000-01-23T04:56:07.000+00:00
+            - source: test_registry
+              discovered_at: 2000-01-23T04:56:07.000+00:00
+            is_known_issue: true
+        strategy_metrics:
+          key:
+            strategy_name: null
+            true_positives: 3
+            false_positives: 2
+            true_negatives: 4
+            false_negatives: 7
+            unknown: 1
+            total_tests: 1
+            tests_selected: 1
+            tests_filtered: 6
+            baseline_redness: 7
+            strategy_redness: 1
+            actual_redness: 4
+            redness_saved: 5.025004791520295
+            time_saved_seconds: 9.965781217890562
+        retroactive_corrections:
+        - retroactive_corrections
+        - retroactive_corrections
+        total_tests_across_all_tasks: 9
+        test_names_hashes:
+        - test_names_hashes
+        - test_names_hashes
       properties:
         comparison_id:
           title: Comparison Id
@@ -810,9 +1412,24 @@ components:
         base_commit_sha:
           nullable: true
           type: string
+        baseline_version_id:
+          nullable: true
+          type: string
         subsequent_commit_sha:
           nullable: true
           type: string
+        subsequent_task_id:
+          nullable: true
+          type: string
+        baseline_task_id:
+          nullable: true
+          type: string
+        baseline_order:
+          nullable: true
+          type: integer
+        subsequent_order:
+          nullable: true
+          type: integer
         status:
           $ref: "#/components/schemas/ComparisonStatus"
         created_at:
@@ -832,16 +1449,19 @@ components:
             type: string
           title: Strategies
           type: array
+          default: null
         strategy_execution_order:
           items:
             $ref: "#/components/schemas/StrategyEnum"
           title: Strategy Execution Order
           type: array
+          default: null
         task_metrics:
           items:
             $ref: "#/components/schemas/TaskMetrics"
           title: Task Metrics
           type: array
+          default: null
         strategy_metrics:
           additionalProperties:
             $ref: "#/components/schemas/StrategyMetrics"
@@ -851,10 +1471,17 @@ components:
             type: string
           title: Retroactive Corrections
           type: array
+          default: null
         total_tests_across_all_tasks:
           default: 0
           title: Total Tests Across All Tasks
           type: integer
+        test_names_hashes:
+          items:
+            type: string
+          title: Test Names Hashes
+          type: array
+          default: null
       required:
       - comparison_id
       - created_at
@@ -872,6 +1499,8 @@ components:
             type: string
           title: Test Names
           type: array
+          uniqueItems: true
+          default: null
         strategies:
           default:
           - Optimistic
@@ -882,6 +1511,212 @@ components:
       required:
       - test_names
       title: Body_explain_select_tests_api_test_selection_explain_tests__project_id___requester___build_variant_name___task_id___task_name___post
+    Body_explain_select_tests_with_data_in_body_api_test_selection_explain_tests__post:
+      properties:
+        project_id:
+          title: Project Id
+          type: string
+        requester:
+          title: Requester
+          type: string
+        build_variant_name:
+          title: Build Variant Name
+          type: string
+        task_id:
+          title: Task Id
+          type: string
+        task_name:
+          title: Task Name
+          type: string
+        test_names:
+          items:
+            type: string
+          title: Test Names
+          type: array
+          uniqueItems: true
+          default: null
+        strategies:
+          default:
+          - Optimistic
+          items:
+            $ref: "#/components/schemas/StrategyEnum"
+          title: Strategies
+          type: array
+      required:
+      - build_variant_name
+      - project_id
+      - requester
+      - task_id
+      - task_name
+      - test_names
+      title: Body_explain_select_tests_with_data_in_body_api_test_selection_explain_tests__post
+    Body_get_project_quarantined_data_in_body_api_test_selection_get_project_quarantined__post:
+      properties:
+        project_id:
+          title: Project Id
+          type: string
+      required:
+      - project_id
+      title: Body_get_project_quarantined_data_in_body_api_test_selection_get_project_quarantined__post
+    Body_get_task_quarantined_data_in_body_api_test_selection_get_task_quarantined__post:
+      properties:
+        project_id:
+          title: Project Id
+          type: string
+        build_variant_name:
+          title: Build Variant Name
+          type: string
+        task_name:
+          title: Task Name
+          type: string
+      required:
+      - build_variant_name
+      - project_id
+      - task_name
+      title: Body_get_task_quarantined_data_in_body_api_test_selection_get_task_quarantined__post
+    Body_get_tests_state_data_in_body_api_test_selection_get_tests_state__post:
+      properties:
+        project_id:
+          title: Project Id
+          type: string
+        build_variant_name:
+          title: Build Variant Name
+          type: string
+        task_name:
+          title: Task Name
+          type: string
+        test_names:
+          items:
+            type: string
+          title: Test Names
+          type: array
+          uniqueItems: true
+          default: null
+      required:
+      - build_variant_name
+      - project_id
+      - task_name
+      - test_names
+      title: Body_get_tests_state_data_in_body_api_test_selection_get_tests_state__post
+    Body_get_variant_quarantined_data_in_body_api_test_selection_get_variant_quarantined__post:
+      properties:
+        project_id:
+          title: Project Id
+          type: string
+        build_variant_name:
+          title: Build Variant Name
+          type: string
+      required:
+      - build_variant_name
+      - project_id
+      title: Body_get_variant_quarantined_data_in_body_api_test_selection_get_variant_quarantined__post
+    Body_get_variant_state_data_in_body_api_test_selection_get_variant_state__post:
+      properties:
+        project_id:
+          title: Project Id
+          type: string
+        build_variant_name:
+          title: Build Variant Name
+          type: string
+      required:
+      - build_variant_name
+      - project_id
+      title: Body_get_variant_state_data_in_body_api_test_selection_get_variant_state__post
+    Body_mark_task_as_manually_quarantined_data_in_body_api_test_selection_transition_task__post:
+      properties:
+        project_id:
+          title: Project Id
+          type: string
+        build_variant_name:
+          title: Build Variant Name
+          type: string
+        task_name:
+          title: Task Name
+          type: string
+        is_manually_quarantined:
+          title: Is Manually Quarantined
+          type: boolean
+      required:
+      - build_variant_name
+      - is_manually_quarantined
+      - project_id
+      - task_name
+      title: Body_mark_task_as_manually_quarantined_data_in_body_api_test_selection_transition_task__post
+    Body_mark_tests_as_manually_quarantined_data_in_body_api_test_selection_transition_tests__post:
+      properties:
+        project_id:
+          title: Project Id
+          type: string
+        build_variant_name:
+          title: Build Variant Name
+          type: string
+        task_name:
+          title: Task Name
+          type: string
+        test_names:
+          items:
+            type: string
+          title: Test Names
+          type: array
+          uniqueItems: true
+          default: null
+        is_manually_quarantined:
+          title: Is Manually Quarantined
+          type: boolean
+      required:
+      - build_variant_name
+      - is_manually_quarantined
+      - project_id
+      - task_name
+      - test_names
+      title: Body_mark_tests_as_manually_quarantined_data_in_body_api_test_selection_transition_tests__post
+    Body_mark_variant_as_manually_quarantined_data_in_body_api_test_selection_transition_variant__post:
+      properties:
+        project_id:
+          title: Project Id
+          type: string
+        build_variant_name:
+          title: Build Variant Name
+          type: string
+        is_manually_quarantined:
+          title: Is Manually Quarantined
+          type: boolean
+      required:
+      - build_variant_name
+      - is_manually_quarantined
+      - project_id
+      title: Body_mark_variant_as_manually_quarantined_data_in_body_api_test_selection_transition_variant__post
+    Body_select_all_known_tests_of_a_task_with_data_in_body_api_test_selection_select_known_tests__post:
+      properties:
+        project_id:
+          title: Project Id
+          type: string
+        requester:
+          title: Requester
+          type: string
+        build_variant_name:
+          title: Build Variant Name
+          type: string
+        task_id:
+          title: Task Id
+          type: string
+        task_name:
+          title: Task Name
+          type: string
+        strategies:
+          default:
+          - Optimistic
+          items:
+            $ref: "#/components/schemas/StrategyEnum"
+          title: Strategies
+          type: array
+      required:
+      - build_variant_name
+      - project_id
+      - requester
+      - task_id
+      - task_name
+      title: Body_select_all_known_tests_of_a_task_with_data_in_body_api_test_selection_select_known_tests__post
     Body_select_tests_api_test_selection_select_tests__project_id___requester___build_variant_name___task_id___task_name___post:
       properties:
         test_names:
@@ -889,6 +1724,8 @@ components:
             type: string
           title: Test Names
           type: array
+          uniqueItems: true
+          default: null
         strategies:
           default:
           - Optimistic
@@ -899,6 +1736,45 @@ components:
       required:
       - test_names
       title: Body_select_tests_api_test_selection_select_tests__project_id___requester___build_variant_name___task_id___task_name___post
+    Body_select_tests_with_data_in_body_api_test_selection_select_tests__post:
+      properties:
+        project_id:
+          title: Project Id
+          type: string
+        requester:
+          title: Requester
+          type: string
+        build_variant_name:
+          title: Build Variant Name
+          type: string
+        task_id:
+          title: Task Id
+          type: string
+        task_name:
+          title: Task Name
+          type: string
+        test_names:
+          items:
+            type: string
+          title: Test Names
+          type: array
+          uniqueItems: true
+          default: null
+        strategies:
+          default:
+          - Optimistic
+          items:
+            $ref: "#/components/schemas/StrategyEnum"
+          title: Strategies
+          type: array
+      required:
+      - build_variant_name
+      - project_id
+      - requester
+      - task_id
+      - task_name
+      - test_names
+      title: Body_select_tests_with_data_in_body_api_test_selection_select_tests__post
     BuildExplanation:
       description: Explanation of the results of a single build variant
       properties:
@@ -957,22 +1833,27 @@ components:
     HTTPValidationError:
       example:
         detail:
-        - msg: msg
-          loc:
+        - loc:
           - Location_inner
           - Location_inner
+          msg: msg
           type: type
-        - msg: msg
-          loc:
+          input: ""
+          ctx: "{}"
+        - loc:
           - Location_inner
           - Location_inner
+          msg: msg
           type: type
+          input: ""
+          ctx: "{}"
       properties:
         detail:
           items:
             $ref: "#/components/schemas/ValidationError"
           title: Detail
           type: array
+          default: null
       title: HTTPValidationError
     KnownIssue:
       description: Represents a known test issue from Test Registry or Build Baron.
@@ -1047,15 +1928,20 @@ components:
     StrategyMetrics:
       description: Aggregated metrics for a strategy across all tasks.
       example:
-        tests_selected: 4
-        true_negatives: 7
-        tests_filtered: 7
-        false_positives: 2
-        total_tests: 2
-        true_positives: 5
-        false_negatives: 9
         strategy_name: null
-        unknown: 3
+        true_positives: 3
+        false_positives: 2
+        true_negatives: 4
+        false_negatives: 7
+        unknown: 1
+        total_tests: 1
+        tests_selected: 1
+        tests_filtered: 6
+        baseline_redness: 7
+        strategy_redness: 1
+        actual_redness: 4
+        redness_saved: 5.025004791520295
+        time_saved_seconds: 9.965781217890562
       properties:
         strategy_name:
           $ref: "#/components/schemas/StrategyEnum"
@@ -1088,6 +1974,26 @@ components:
         tests_filtered:
           title: Tests Filtered
           type: integer
+        baseline_redness:
+          default: 0
+          title: Baseline Redness
+          type: integer
+        strategy_redness:
+          default: 0
+          title: Strategy Redness
+          type: integer
+        actual_redness:
+          default: 0
+          title: Actual Redness
+          type: integer
+        redness_saved:
+          default: 0.0
+          title: Redness Saved
+          type: number
+        time_saved_seconds:
+          default: 0.0
+          title: Time Saved Seconds
+          type: number
       required:
       - strategy_name
       - tests_filtered
@@ -1097,21 +2003,21 @@ components:
     StrategyTestMetrics:
       description: Metrics for a specific test evaluated by a strategy.
       example:
+        test_name: test_name
+        was_filtered: true
+        strategy_name: null
+        expected_outcome: expected_outcome
+        explanation: explanation
+        baseline_result: ""
+        strategy_result: ""
+        subsequent_result: ""
+        classification: true_positive
         known_issues:
         - source: test_registry
           discovered_at: 2000-01-23T04:56:07.000+00:00
         - source: test_registry
           discovered_at: 2000-01-23T04:56:07.000+00:00
-        subsequent_result: ""
-        baseline_result: ""
-        explanation: explanation
-        classification: true_positive
         is_known_issue: true
-        test_name: test_name
-        strategy_name: null
-        strategy_result: ""
-        was_filtered: true
-        expected_outcome: expected_outcome
       properties:
         test_name:
           title: Test Name
@@ -1146,6 +2052,7 @@ components:
             $ref: "#/components/schemas/KnownIssue"
           title: Known Issues
           type: array
+          default: null
         is_known_issue:
           title: Is Known Issue
           type: boolean
@@ -1224,41 +2131,45 @@ components:
       description: Aggregated metrics for a task.
       example:
         task_name: task_name
-        tests_selected: 1
-        tests_filtered: 5
-        test_metrics:
-        - known_issues:
-          - source: test_registry
-            discovered_at: 2000-01-23T04:56:07.000+00:00
-          - source: test_registry
-            discovered_at: 2000-01-23T04:56:07.000+00:00
-          subsequent_result: ""
-          baseline_result: ""
-          explanation: explanation
-          classification: true_positive
-          is_known_issue: true
-          test_name: test_name
-          strategy_name: null
-          strategy_result: ""
-          was_filtered: true
-          expected_outcome: expected_outcome
-        - known_issues:
-          - source: test_registry
-            discovered_at: 2000-01-23T04:56:07.000+00:00
-          - source: test_registry
-            discovered_at: 2000-01-23T04:56:07.000+00:00
-          subsequent_result: ""
-          baseline_result: ""
-          explanation: explanation
-          classification: true_positive
-          is_known_issue: true
-          test_name: test_name
-          strategy_name: null
-          strategy_result: ""
-          was_filtered: true
-          expected_outcome: expected_outcome
         variant: variant
-        total_tests: 6
+        total_tests: 5
+        tests_selected: 5
+        tests_filtered: 2
+        tests_selected_by_strategy:
+          key: 7
+        tests_filtered_by_strategy:
+          key: 9
+        test_metrics:
+        - test_name: test_name
+          was_filtered: true
+          strategy_name: null
+          expected_outcome: expected_outcome
+          explanation: explanation
+          baseline_result: ""
+          strategy_result: ""
+          subsequent_result: ""
+          classification: true_positive
+          known_issues:
+          - source: test_registry
+            discovered_at: 2000-01-23T04:56:07.000+00:00
+          - source: test_registry
+            discovered_at: 2000-01-23T04:56:07.000+00:00
+          is_known_issue: true
+        - test_name: test_name
+          was_filtered: true
+          strategy_name: null
+          expected_outcome: expected_outcome
+          explanation: explanation
+          baseline_result: ""
+          strategy_result: ""
+          subsequent_result: ""
+          classification: true_positive
+          known_issues:
+          - source: test_registry
+            discovered_at: 2000-01-23T04:56:07.000+00:00
+          - source: test_registry
+            discovered_at: 2000-01-23T04:56:07.000+00:00
+          is_known_issue: true
       properties:
         task_name:
           title: Task Name
@@ -1275,11 +2186,22 @@ components:
         tests_filtered:
           title: Tests Filtered
           type: integer
+        tests_selected_by_strategy:
+          additionalProperties:
+            type: integer
+          default: {}
+          title: Tests Selected By Strategy
+        tests_filtered_by_strategy:
+          additionalProperties:
+            type: integer
+          default: {}
+          title: Tests Filtered By Strategy
         test_metrics:
           items:
             $ref: "#/components/schemas/StrategyTestMetrics"
           title: Test Metrics
           type: array
+          default: null
       required:
       - task_name
       - test_metrics
@@ -1290,6 +2212,12 @@ components:
       title: TaskMetrics
     TaskStateInfo:
       description: Information about test states and override states of a task.
+      example:
+        task_name: task_name
+        test_stats:
+          key:
+            state: "n"
+            override_state: ""
       properties:
         task_name:
           title: Task Name
@@ -1356,6 +2284,10 @@ components:
         execution:
           title: Execution
           type: integer
+        duration_seconds:
+          default: 0.0
+          title: Duration Seconds
+          type: number
       required:
       - execution
       - status
@@ -1364,6 +2296,9 @@ components:
       title: TestResult
     TestStateInfo:
       description: Information about a test state and override state.
+      example:
+        state: "n"
+        override_state: ""
       properties:
         state:
           $ref: "#/components/schemas/StateMachineEnum"
@@ -1376,28 +2311,50 @@ components:
       title: TestStateInfo
     ValidationError:
       example:
-        msg: msg
         loc:
         - Location_inner
         - Location_inner
+        msg: msg
         type: type
+        input: ""
+        ctx: "{}"
       properties:
         loc:
           items:
             $ref: "#/components/schemas/Location_inner"
           title: Location
           type: array
+          default: null
         msg:
           title: Message
           type: string
         type:
           title: Error Type
           type: string
+        input:
+          title: Input
+        ctx:
+          title: Context
+          type: object
       required:
       - loc
       - msg
       - type
       title: ValidationError
+    VariantStateInfo:
+      description: Information about test states and override states of a variant.
+      properties:
+        variant_name:
+          title: Variant Name
+          type: string
+        task_stats:
+          additionalProperties:
+            $ref: "#/components/schemas/TaskStateInfo"
+          title: Task Stats
+      required:
+      - task_stats
+      - variant_name
+      title: VariantStateInfo
     Location_inner:
       anyOf:
       - type: string
