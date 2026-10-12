@@ -869,7 +869,7 @@ No authorization required
 
 ## MarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePost
 
-> interface{} MarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePost(ctx, projectId, buildVariantName, taskName).IsManuallyQuarantined(isManuallyQuarantined).RequestBody(requestBody).Execute()
+> interface{} MarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePost(ctx, projectId, buildVariantName, taskName).IsManuallyQuarantined(isManuallyQuarantined).TaskId(taskId).User(user).Comment(comment).RequestBody(requestBody).Execute()
 
 Mark Tests As Manually Quarantined
 
@@ -892,11 +892,14 @@ func main() {
 	buildVariantName := "buildVariantName_example" // string | 
 	taskName := "taskName_example" // string | 
 	isManuallyQuarantined := true // bool | 
+	taskId := "taskId_example" // string | 
+	user := "user_example" // string | 
+	comment := "comment_example" // string | 
 	requestBody := []string{"Property_example"} // []string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StateTransitionAPI.MarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePost(context.Background(), projectId, buildVariantName, taskName).IsManuallyQuarantined(isManuallyQuarantined).RequestBody(requestBody).Execute()
+	resp, r, err := apiClient.StateTransitionAPI.MarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePost(context.Background(), projectId, buildVariantName, taskName).IsManuallyQuarantined(isManuallyQuarantined).TaskId(taskId).User(user).Comment(comment).RequestBody(requestBody).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StateTransitionAPI.MarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePost``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -927,6 +930,9 @@ Name | Type | Description  | Notes
 
 
  **isManuallyQuarantined** | **bool** |  | 
+ **taskId** | **string** |  | 
+ **user** | **string** |  | 
+ **comment** | **string** |  | 
  **requestBody** | **[]string** |  | 
 
 ### Return type
@@ -968,7 +974,7 @@ import (
 )
 
 func main() {
-	bodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost := *openapiclient.NewBodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost("ProjectId_example", "BuildVariantName_example", "TaskName_example", []string{"TestNames_example"}, false) // BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost | 
+	bodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost := *openapiclient.NewBodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost("ProjectId_example", "BuildVariantName_example", "TaskName_example", []string{"TestNames_example"}, false, "TaskId_example", "User_example", "Comment_example") // BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

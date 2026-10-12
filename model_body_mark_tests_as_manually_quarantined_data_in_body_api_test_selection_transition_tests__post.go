@@ -26,6 +26,9 @@ type BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTests
 	TaskName string `json:"task_name"`
 	TestNames []string `json:"test_names"`
 	IsManuallyQuarantined bool `json:"is_manually_quarantined"`
+	TaskId *string `json:"task_id,omitempty"`
+	User *string `json:"user,omitempty"`
+	Comment *string `json:"comment,omitempty"`
 }
 
 type _BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost
@@ -172,6 +175,102 @@ func (o *BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionT
 	o.IsManuallyQuarantined = v
 }
 
+// GetTaskId returns the TaskId field value if set, zero value otherwise.
+func (o *BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost) GetTaskId() string {
+	if o == nil || IsNil(o.TaskId) {
+		var ret string
+		return ret
+	}
+	return *o.TaskId
+}
+
+// GetTaskIdOk returns a tuple with the TaskId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost) GetTaskIdOk() (*string, bool) {
+	if o == nil || IsNil(o.TaskId) {
+		return nil, false
+	}
+	return o.TaskId, true
+}
+
+// HasTaskId returns a boolean if a field has been set.
+func (o *BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost) HasTaskId() bool {
+	if o != nil && !IsNil(o.TaskId) {
+		return true
+	}
+
+	return false
+}
+
+// SetTaskId gets a reference to the given string and assigns it to the TaskId field.
+func (o *BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost) SetTaskId(v string) {
+	o.TaskId = &v
+}
+
+// GetUser returns the User field value if set, zero value otherwise.
+func (o *BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost) GetUser() string {
+	if o == nil || IsNil(o.User) {
+		var ret string
+		return ret
+	}
+	return *o.User
+}
+
+// GetUserOk returns a tuple with the User field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost) GetUserOk() (*string, bool) {
+	if o == nil || IsNil(o.User) {
+		return nil, false
+	}
+	return o.User, true
+}
+
+// HasUser returns a boolean if a field has been set.
+func (o *BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost) HasUser() bool {
+	if o != nil && !IsNil(o.User) {
+		return true
+	}
+
+	return false
+}
+
+// SetUser gets a reference to the given string and assigns it to the User field.
+func (o *BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost) SetUser(v string) {
+	o.User = &v
+}
+
+// GetComment returns the Comment field value if set, zero value otherwise.
+func (o *BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost) GetComment() string {
+	if o == nil || IsNil(o.Comment) {
+		var ret string
+		return ret
+	}
+	return *o.Comment
+}
+
+// GetCommentOk returns a tuple with the Comment field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost) GetCommentOk() (*string, bool) {
+	if o == nil || IsNil(o.Comment) {
+		return nil, false
+	}
+	return o.Comment, true
+}
+
+// HasComment returns a boolean if a field has been set.
+func (o *BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost) HasComment() bool {
+	if o != nil && !IsNil(o.Comment) {
+		return true
+	}
+
+	return false
+}
+
+// SetComment gets a reference to the given string and assigns it to the Comment field.
+func (o *BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost) SetComment(v string) {
+	o.Comment = &v
+}
+
 func (o BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -187,6 +286,15 @@ func (o BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTe
 	toSerialize["task_name"] = o.TaskName
 	toSerialize["test_names"] = o.TestNames
 	toSerialize["is_manually_quarantined"] = o.IsManuallyQuarantined
+	if !IsNil(o.TaskId) {
+		toSerialize["task_id"] = o.TaskId
+	}
+	if !IsNil(o.User) {
+		toSerialize["user"] = o.User
+	}
+	if !IsNil(o.Comment) {
+		toSerialize["comment"] = o.Comment
+	}
 	return toSerialize, nil
 }
 

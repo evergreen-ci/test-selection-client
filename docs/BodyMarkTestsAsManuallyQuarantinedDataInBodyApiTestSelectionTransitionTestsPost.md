@@ -9,12 +9,15 @@ Name | Type | Description | Notes
 **TaskName** | **string** |  | 
 **TestNames** | **[]string** |  | 
 **IsManuallyQuarantined** | **bool** |  | 
+**TaskId** | **string** |  | 
+**User** | **string** |  | 
+**Comment** | **string** |  | 
 
 ## Methods
 
 ### NewBodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost
 
-`func NewBodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost(projectId string, buildVariantName string, taskName string, testNames []string, isManuallyQuarantined bool, ) *BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost`
+`func NewBodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost(projectId string, buildVariantName string, taskName string, testNames []string, isManuallyQuarantined bool, taskId string, user string, comment string) *BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost`
 
 NewBodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost instantiates a new BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost object
 This constructor will assign default values to properties that have it defined,
@@ -127,6 +130,66 @@ and a boolean to check if the value has been set.
 `func (o *BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost) SetIsManuallyQuarantined(v bool)`
 
 SetIsManuallyQuarantined sets IsManuallyQuarantined field to given value.
+
+
+### GetTaskId
+
+`func (o *BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost) GetTaskId() string`
+
+GetTaskId returns the TaskId field if non-nil, zero value otherwise.
+
+### GetTaskIdOk
+
+`func (o *BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost) GetTaskIdOk() (*string, bool)`
+
+GetTaskIdOk returns a tuple with the TaskId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTaskId
+
+`func (o *BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost) SetTaskId(v string)`
+
+SetTaskId sets TaskId field to given value.
+
+
+### GetUser
+
+`func (o *BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost) GetUser() string`
+
+GetUser returns the User field if non-nil, zero value otherwise.
+
+### GetUserOk
+
+`func (o *BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost) GetUserOk() (*string, bool)`
+
+GetUserOk returns a tuple with the User field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUser
+
+`func (o *BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost) SetUser(v string)`
+
+SetUser sets User field to given value.
+
+
+### GetComment
+
+`func (o *BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost) GetComment() string`
+
+GetComment returns the Comment field if non-nil, zero value otherwise.
+
+### GetCommentOk
+
+`func (o *BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost) GetCommentOk() (*string, bool)`
+
+GetCommentOk returns a tuple with the Comment field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetComment
+
+`func (o *BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost) SetComment(v string)`
+
+SetComment sets Comment field to given value.
 
 
 

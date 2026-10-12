@@ -474,6 +474,30 @@ paths:
           title: Is Manually Quarantined
           type: boolean
         style: form
+      - explode: true
+        in: query
+        name: task_id
+        required: false
+        schema:
+          title: Task Id
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: user
+        required: false
+        schema:
+          title: User
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: comment
+        required: false
+        schema:
+          title: Comment
+          type: string
+        style: form
       requestBody:
         content:
           application/json:
@@ -1663,6 +1687,15 @@ components:
         is_manually_quarantined:
           title: Is Manually Quarantined
           type: boolean
+        task_id:
+          title: Task Id
+          type: string
+        user:
+          title: User
+          type: string
+        comment:
+          title: Comment
+          type: string
       required:
       - build_variant_name
       - is_manually_quarantined
