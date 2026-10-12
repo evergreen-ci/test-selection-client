@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **TaskName** | **string** |  | 
 **TestNames** | **[]string** |  | 
 **IsManuallyQuarantined** | **bool** |  | 
+**DisplayTaskName** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
@@ -129,6 +130,41 @@ and a boolean to check if the value has been set.
 SetIsManuallyQuarantined sets IsManuallyQuarantined field to given value.
 
 
+### GetDisplayTaskName
+
+`func (o *BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost) GetDisplayTaskName() string`
+
+GetDisplayTaskName returns the DisplayTaskName field if non-nil, zero value otherwise.
+
+### GetDisplayTaskNameOk
+
+`func (o *BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost) GetDisplayTaskNameOk() (*string, bool)`
+
+GetDisplayTaskNameOk returns a tuple with the DisplayTaskName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDisplayTaskName
+
+`func (o *BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost) SetDisplayTaskName(v string)`
+
+SetDisplayTaskName sets DisplayTaskName field to given value.
+
+### HasDisplayTaskName
+
+`func (o *BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost) HasDisplayTaskName() bool`
+
+HasDisplayTaskName returns a boolean if a field has been set.
+
+### SetDisplayTaskNameNil
+
+`func (o *BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost) SetDisplayTaskNameNil(b bool)`
+
+ SetDisplayTaskNameNil sets the value for DisplayTaskName to be an explicit nil
+
+### UnsetDisplayTaskName
+`func (o *BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost) UnsetDisplayTaskName()`
+
+UnsetDisplayTaskName ensures that no value is present for DisplayTaskName, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

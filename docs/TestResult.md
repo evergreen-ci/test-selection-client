@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Status** | **string** |  | 
 **TaskId** | **string** |  | 
 **Execution** | **int32** |  | 
-**DurationSeconds** | Pointer to **float32** |  | [optional] [default to 0.0]
+**DurationSeconds** | Pointer to **float32** |  | [optional] [default to 0]
 
 ## Methods
 

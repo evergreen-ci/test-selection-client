@@ -31,7 +31,7 @@ import (
 
 func main() {
 	project := "project_example" // string | Optional project filter (optional)
-	lookbackDays := int32(56) // int32 | Days of pending comparisons to process (optional) (default to 14)
+	lookbackDays := int32(56) // int32 | Days of pending comparisons to process (optional) (default to 5)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -57,7 +57,7 @@ Other parameters are passed through a pointer to a apiComputeMetricsApiBaselineC
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **project** | **string** | Optional project filter | 
- **lookbackDays** | **int32** | Days of pending comparisons to process | [default to 14]
+ **lookbackDays** | **int32** | Days of pending comparisons to process | [default to 5]
 
 ### Return type
 

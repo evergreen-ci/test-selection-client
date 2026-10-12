@@ -24,6 +24,7 @@ type BodyGetTaskQuarantinedDataInBodyApiTestSelectionGetTaskQuarantinedPost stru
 	ProjectId string `json:"project_id"`
 	BuildVariantName string `json:"build_variant_name"`
 	TaskName string `json:"task_name"`
+	DisplayTaskName NullableString `json:"display_task_name,omitempty"`
 }
 
 type _BodyGetTaskQuarantinedDataInBodyApiTestSelectionGetTaskQuarantinedPost BodyGetTaskQuarantinedDataInBodyApiTestSelectionGetTaskQuarantinedPost
@@ -120,6 +121,48 @@ func (o *BodyGetTaskQuarantinedDataInBodyApiTestSelectionGetTaskQuarantinedPost)
 	o.TaskName = v
 }
 
+// GetDisplayTaskName returns the DisplayTaskName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *BodyGetTaskQuarantinedDataInBodyApiTestSelectionGetTaskQuarantinedPost) GetDisplayTaskName() string {
+	if o == nil || IsNil(o.DisplayTaskName.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.DisplayTaskName.Get()
+}
+
+// GetDisplayTaskNameOk returns a tuple with the DisplayTaskName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *BodyGetTaskQuarantinedDataInBodyApiTestSelectionGetTaskQuarantinedPost) GetDisplayTaskNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.DisplayTaskName.Get(), o.DisplayTaskName.IsSet()
+}
+
+// HasDisplayTaskName returns a boolean if a field has been set.
+func (o *BodyGetTaskQuarantinedDataInBodyApiTestSelectionGetTaskQuarantinedPost) HasDisplayTaskName() bool {
+	if o != nil && o.DisplayTaskName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDisplayTaskName gets a reference to the given NullableString and assigns it to the DisplayTaskName field.
+func (o *BodyGetTaskQuarantinedDataInBodyApiTestSelectionGetTaskQuarantinedPost) SetDisplayTaskName(v string) {
+	o.DisplayTaskName.Set(&v)
+}
+// SetDisplayTaskNameNil sets the value for DisplayTaskName to be an explicit nil
+func (o *BodyGetTaskQuarantinedDataInBodyApiTestSelectionGetTaskQuarantinedPost) SetDisplayTaskNameNil() {
+	o.DisplayTaskName.Set(nil)
+}
+
+// UnsetDisplayTaskName ensures that no value is present for DisplayTaskName, not even an explicit nil
+func (o *BodyGetTaskQuarantinedDataInBodyApiTestSelectionGetTaskQuarantinedPost) UnsetDisplayTaskName() {
+	o.DisplayTaskName.Unset()
+}
+
 func (o BodyGetTaskQuarantinedDataInBodyApiTestSelectionGetTaskQuarantinedPost) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -133,6 +176,9 @@ func (o BodyGetTaskQuarantinedDataInBodyApiTestSelectionGetTaskQuarantinedPost) 
 	toSerialize["project_id"] = o.ProjectId
 	toSerialize["build_variant_name"] = o.BuildVariantName
 	toSerialize["task_name"] = o.TaskName
+	if o.DisplayTaskName.IsSet() {
+		toSerialize["display_task_name"] = o.DisplayTaskName.Get()
+	}
 	return toSerialize, nil
 }
 

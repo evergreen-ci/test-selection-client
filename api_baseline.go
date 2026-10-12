@@ -94,7 +94,7 @@ func (a *BaselineAPIService) ComputeMetricsApiBaselineComputePostExecute(r ApiCo
 	if r.lookbackDays != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "lookback_days", r.lookbackDays, "form", "")
 	} else {
-		var defaultValue int32 = 14
+		var defaultValue int32 = 5
 		parameterAddToHeaderOrQuery(localVarQueryParams, "lookback_days", defaultValue, "form", "")
 		r.lookbackDays = &defaultValue
 	}
