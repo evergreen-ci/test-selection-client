@@ -32,10 +32,16 @@ type ApiExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVar
 	taskId string
 	taskName string
 	bodyExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost *BodyExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost
+	displayTaskName *string
 }
 
 func (r ApiExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest) BodyExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost(bodyExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost BodyExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost) ApiExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest {
 	r.bodyExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost = &bodyExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost
+	return r
+}
+
+func (r ApiExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest) DisplayTaskName(displayTaskName string) ApiExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest {
+	r.displayTaskName = &displayTaskName
 	return r
 }
 
@@ -55,6 +61,7 @@ Get the results of the default strategy as well as the explanation.
 :param test_names: The test names.
 :param background_tasks: Background tasks to run after the request is completed.
 :param strategies: The set of strategies to use
+:param display_task_name: Optional - the display task name (that contains execution tasks).
 :return: A mapping from {Build variant x task x test} to a
          full explanation of the reasons behind the test selection
 
@@ -107,6 +114,9 @@ func (a *TestSelectionAPIService) ExplainSelectTestsApiTestSelectionExplainTests
 		return localVarReturnValue, nil, reportError("bodyExplainSelectTestsApiTestSelectionExplainTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost is required and must be specified")
 	}
 
+	if r.displayTaskName != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "display_task_name", r.displayTaskName, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -200,6 +210,7 @@ Get the results of the default strategy as well as the explanation.
 :param test_names: The test names.
 :param background_tasks: Background tasks to run after the request is completed.
 :param strategies: The set of strategies to use
+:param display_task_name: Optional - the display task name (that contains execution tasks).
 :return: A mapping from {Build variant x task x test} to a
          full explanation of the reasons behind the test selection
 
@@ -311,7 +322,13 @@ type ApiSelectAllKnownTestsOfATaskApiTestSelectionSelectKnownTestsProjectIdReque
 	buildVariantName string
 	taskId string
 	taskName string
+	displayTaskName *string
 	strategyEnum *[]StrategyEnum
+}
+
+func (r ApiSelectAllKnownTestsOfATaskApiTestSelectionSelectKnownTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest) DisplayTaskName(displayTaskName string) ApiSelectAllKnownTestsOfATaskApiTestSelectionSelectKnownTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest {
+	r.displayTaskName = &displayTaskName
+	return r
 }
 
 func (r ApiSelectAllKnownTestsOfATaskApiTestSelectionSelectKnownTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest) StrategyEnum(strategyEnum []StrategyEnum) ApiSelectAllKnownTestsOfATaskApiTestSelectionSelectKnownTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest {
@@ -334,6 +351,7 @@ Get the results of the default strategy for known tests of a task.
 :param task_name: The task name.
 :param background_tasks: Background tasks to run after the request is completed.
 :param strategies: The set of strategies to use
+:param display_task_name: Optional - the display task name (that contains execution tasks).
 :return: A set of strings representing the names of known tests
          that should run for the specified task based on the selected strategies.
 
@@ -383,6 +401,9 @@ func (a *TestSelectionAPIService) SelectAllKnownTestsOfATaskApiTestSelectionSele
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.displayTaskName != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "display_task_name", r.displayTaskName, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -475,6 +496,7 @@ Get the results of the default strategy for known tests of a task.
 :param task_name: The task name.
 :param background_tasks: Background tasks to run after the request is completed.
 :param strategies: The set of strategies to use
+:param display_task_name: Optional - the display task name (that contains execution tasks).
 :return: A set of strings representing the names of known tests
          that should run for the specified task based on the selected strategies.
 
@@ -587,10 +609,16 @@ type ApiSelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantName
 	taskId string
 	taskName string
 	bodySelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost *BodySelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost
+	displayTaskName *string
 }
 
 func (r ApiSelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest) BodySelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost(bodySelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost BodySelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost) ApiSelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest {
 	r.bodySelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost = &bodySelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost
+	return r
+}
+
+func (r ApiSelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest) DisplayTaskName(displayTaskName string) ApiSelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePostRequest {
+	r.displayTaskName = &displayTaskName
 	return r
 }
 
@@ -610,6 +638,7 @@ Get the results of the default strategy.
 :param test_names: The test names.
 :param background_tasks: Background tasks to run after the request is completed.
 :param strategies: The set of strategies to use
+:param display_task_name: Optional - the display task name (that contains execution tasks).
 :return: A set of strings representing the names of tests
          that should run for the specified task based on the selected strategies.
 
@@ -662,6 +691,9 @@ func (a *TestSelectionAPIService) SelectTestsApiTestSelectionSelectTestsProjectI
 		return localVarReturnValue, nil, reportError("bodySelectTestsApiTestSelectionSelectTestsProjectIdRequesterBuildVariantNameTaskIdTaskNamePost is required and must be specified")
 	}
 
+	if r.displayTaskName != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "display_task_name", r.displayTaskName, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -755,6 +787,7 @@ Get the results of the default strategy.
 :param test_names: The test names.
 :param background_tasks: Background tasks to run after the request is completed.
 :param strategies: The set of strategies to use
+:param display_task_name: Optional - the display task name (that contains execution tasks).
 :return: A set of strings representing the names of tests
          that should run for the specified task based on the selected strategies.
 

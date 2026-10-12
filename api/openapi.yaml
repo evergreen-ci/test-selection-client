@@ -18,6 +18,7 @@ paths:
         :param test_names: The test names.
         :param background_tasks: Background tasks to run after the request is completed.
         :param strategies: The set of strategies to use
+        :param display_task_name: Optional - the display task name (that contains execution tasks).
         :return: A set of strings representing the names of tests
                  that should run for the specified task based on the selected strategies.
       operationId: select_tests_with_data_in_body_api_test_selection_select_tests__post
@@ -63,6 +64,7 @@ paths:
         :param test_names: The test names.
         :param background_tasks: Background tasks to run after the request is completed.
         :param strategies: The set of strategies to use
+        :param display_task_name: Optional - the display task name (that contains execution tasks).
         :return: A set of strings representing the names of tests
                  that should run for the specified task based on the selected strategies.
       operationId: select_tests_api_test_selection_select_tests__project_id___requester___build_variant_name___task_id___task_name___post
@@ -107,6 +109,14 @@ paths:
           title: Task Name
           type: string
         style: simple
+      - explode: true
+        in: query
+        name: display_task_name
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: form
       requestBody:
         content:
           application/json:
@@ -148,6 +158,7 @@ paths:
         :param task_name: The task name.
         :param background_tasks: Background tasks to run after the request is completed.
         :param strategies: The set of strategies to use
+        :param display_task_name: Optional - the display task name (that contains execution tasks).
         :return: A set of strings representing the names of known tests
                  that should run for the specified task based on the selected strategies.
       operationId: select_all_known_tests_of_a_task_with_data_in_body_api_test_selection_select_known_tests__post
@@ -192,6 +203,7 @@ paths:
         :param task_name: The task name.
         :param background_tasks: Background tasks to run after the request is completed.
         :param strategies: The set of strategies to use
+        :param display_task_name: Optional - the display task name (that contains execution tasks).
         :return: A set of strings representing the names of known tests
                  that should run for the specified task based on the selected strategies.
       operationId: select_all_known_tests_of_a_task_api_test_selection_select_known_tests__project_id___requester___build_variant_name___task_id___task_name___post
@@ -236,6 +248,14 @@ paths:
           title: Task Name
           type: string
         style: simple
+      - explode: true
+        in: query
+        name: display_task_name
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: form
       requestBody:
         content:
           application/json:
@@ -283,6 +303,7 @@ paths:
         :param test_names: The test names.
         :param background_tasks: Background tasks to run after the request is completed.
         :param strategies: The set of strategies to use
+        :param display_task_name: Optional - the display task name (that contains execution tasks).
         :return: A mapping from {Build variant x task x test} to a
                  full explanation of the reasons behind the test selection
       operationId: explain_select_tests_with_data_in_body_api_test_selection_explain_tests__post
@@ -324,6 +345,7 @@ paths:
         :param test_names: The test names.
         :param background_tasks: Background tasks to run after the request is completed.
         :param strategies: The set of strategies to use
+        :param display_task_name: Optional - the display task name (that contains execution tasks).
         :return: A mapping from {Build variant x task x test} to a
                  full explanation of the reasons behind the test selection
       operationId: explain_select_tests_api_test_selection_explain_tests__project_id___requester___build_variant_name___task_id___task_name___post
@@ -368,6 +390,14 @@ paths:
           title: Task Name
           type: string
         style: simple
+      - explode: true
+        in: query
+        name: display_task_name
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: form
       requestBody:
         content:
           application/json:
@@ -405,6 +435,7 @@ paths:
         :param test_names: The test names to be transitioned.
         :param is_manually_quarantined: Denote if the test should be marked manually quarantined or not
         :param background_tasks: Background tasks to run after the request is completed.
+        :param display_task_name: Optional - the display task name (that contains execution tasks).
         :return: None
       operationId: mark_tests_as_manually_quarantined_data_in_body_api_test_selection_transition_tests__post
       requestBody:
@@ -439,6 +470,7 @@ paths:
         :param test_names: The test names to be transitioned.
         :param is_manually_quarantined: Denote if the test should be marked manually quarantined or not
         :param background_tasks: Background tasks to run after the request is completed.
+        :param display_task_name: Optional - the display task name (that contains execution tasks).
         :return: None
       operationId: mark_tests_as_manually_quarantined_api_test_selection_transition_tests__project_id___build_variant_name___task_name___post
       parameters:
@@ -473,6 +505,14 @@ paths:
         schema:
           title: Is Manually Quarantined
           type: boolean
+        style: form
+      - explode: true
+        in: query
+        name: display_task_name
+        required: false
+        schema:
+          nullable: true
+          type: string
         style: form
       requestBody:
         content:
@@ -509,6 +549,7 @@ paths:
         :param task_name: The task name.
         :param is_manually_quarantined: Denote if the task should be marked manually quarantined
         :param background_tasks: Background tasks to run after the request is completed.
+        :param display_task_name: Optional - the display task name (that contains execution tasks).
         :return: None
       operationId: mark_task_as_manually_quarantined_data_in_body_api_test_selection_transition_task__post
       requestBody:
@@ -541,6 +582,7 @@ paths:
         :param task_name: The task name.
         :param is_manually_quarantined: Denote if the task should be marked manually quarantined
         :param background_tasks: Background tasks to run after the request is completed.
+        :param display_task_name: Optional - the display task name (that contains execution tasks).
         :return: None
       operationId: mark_task_as_manually_quarantined_api_test_selection_transition_task__project_id___build_variant_name___task_name___post
       parameters:
@@ -575,6 +617,14 @@ paths:
         schema:
           title: Is Manually Quarantined
           type: boolean
+        style: form
+      - explode: true
+        in: query
+        name: display_task_name
+        required: false
+        schema:
+          nullable: true
+          type: string
         style: form
       responses:
         "200":
@@ -680,6 +730,7 @@ paths:
         :param build_variant_name: The build variant name.
         :param task_name: The task name.
         :param test_names: The test names to be transitioned.
+        :param display_task_name: Optional - the display task name (that contains execution tasks).
         :return: get the state of all tests in the task
       operationId: get_tests_state_data_in_body_api_test_selection_get_tests_state__post
       requestBody:
@@ -715,6 +766,7 @@ paths:
         :param build_variant_name: The build variant name.
         :param task_name: The task name.
         :param test_names: The test names to be transitioned.
+        :param display_task_name: Optional - the display task name (that contains execution tasks).
         :return: get the state of all tests in the task
       operationId: get_tests_state_api_test_selection_get_tests_state__project_id___build_variant_name___task_name___post
       parameters:
@@ -742,6 +794,14 @@ paths:
           title: Task Name
           type: string
         style: simple
+      - explode: true
+        in: query
+        name: display_task_name
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: form
       requestBody:
         content:
           application/json:
@@ -933,6 +993,7 @@ paths:
         :param project_id: The project id.
         :param build_variant_name: The build variant name.
         :param task_name: The task name.
+        :param display_task_name: Optional - the display task name (that contains execution tasks).
         :return: All quarantined tests in the task
       operationId: get_task_quarantined_data_in_body_api_test_selection_get_task_quarantined__post
       requestBody:
@@ -964,6 +1025,7 @@ paths:
         :param project_id: The project id.
         :param build_variant_name: The build variant name.
         :param task_name: The task name.
+        :param display_task_name: Optional - the display task name (that contains execution tasks).
         :return: All quarantined tests in the task
       operationId: get_task_quarantined_api_test_selection_get_task_quarantined__project_id___build_variant_name___task_name___post
       parameters:
@@ -991,6 +1053,14 @@ paths:
           title: Task Name
           type: string
         style: simple
+      - explode: true
+        in: query
+        name: display_task_name
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -1190,7 +1260,7 @@ paths:
         name: lookback_days
         required: false
         schema:
-          default: 14
+          default: 5
           description: Days of pending comparisons to process
           title: Lookback Days
           type: integer
@@ -1542,6 +1612,9 @@ components:
             $ref: "#/components/schemas/StrategyEnum"
           title: Strategies
           type: array
+        display_task_name:
+          nullable: true
+          type: string
       required:
       - build_variant_name
       - project_id
@@ -1569,6 +1642,9 @@ components:
         task_name:
           title: Task Name
           type: string
+        display_task_name:
+          nullable: true
+          type: string
       required:
       - build_variant_name
       - project_id
@@ -1592,6 +1668,9 @@ components:
           type: array
           uniqueItems: true
           default: null
+        display_task_name:
+          nullable: true
+          type: string
       required:
       - build_variant_name
       - project_id
@@ -1636,6 +1715,9 @@ components:
         is_manually_quarantined:
           title: Is Manually Quarantined
           type: boolean
+        display_task_name:
+          nullable: true
+          type: string
       required:
       - build_variant_name
       - is_manually_quarantined
@@ -1663,6 +1745,9 @@ components:
         is_manually_quarantined:
           title: Is Manually Quarantined
           type: boolean
+        display_task_name:
+          nullable: true
+          type: string
       required:
       - build_variant_name
       - is_manually_quarantined
@@ -1710,6 +1795,9 @@ components:
             $ref: "#/components/schemas/StrategyEnum"
           title: Strategies
           type: array
+        display_task_name:
+          nullable: true
+          type: string
       required:
       - build_variant_name
       - project_id
@@ -1767,6 +1855,9 @@ components:
             $ref: "#/components/schemas/StrategyEnum"
           title: Strategies
           type: array
+        display_task_name:
+          nullable: true
+          type: string
       required:
       - build_variant_name
       - project_id
@@ -1987,11 +2078,11 @@ components:
           title: Actual Redness
           type: integer
         redness_saved:
-          default: 0.0
+          default: 0
           title: Redness Saved
           type: number
         time_saved_seconds:
-          default: 0.0
+          default: 0
           title: Time Saved Seconds
           type: number
       required:
@@ -2285,7 +2376,7 @@ components:
           title: Execution
           type: integer
         duration_seconds:
-          default: 0.0
+          default: 0
           title: Duration Seconds
           type: number
       required:

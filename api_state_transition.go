@@ -266,6 +266,12 @@ type ApiGetTaskQuarantinedApiTestSelectionGetTaskQuarantinedProjectIdBuildVarian
 	projectId string
 	buildVariantName string
 	taskName string
+	displayTaskName *string
+}
+
+func (r ApiGetTaskQuarantinedApiTestSelectionGetTaskQuarantinedProjectIdBuildVariantNameTaskNamePostRequest) DisplayTaskName(displayTaskName string) ApiGetTaskQuarantinedApiTestSelectionGetTaskQuarantinedProjectIdBuildVariantNameTaskNamePostRequest {
+	r.displayTaskName = &displayTaskName
+	return r
 }
 
 func (r ApiGetTaskQuarantinedApiTestSelectionGetTaskQuarantinedProjectIdBuildVariantNameTaskNamePostRequest) Execute() (*TaskStateInfo, *http.Response, error) {
@@ -279,6 +285,7 @@ Return the state of all quarantined tests of a single task
 :param project_id: The project id.
 :param build_variant_name: The build variant name.
 :param task_name: The task name.
+:param display_task_name: Optional - the display task name (that contains execution tasks).
 :return: All quarantined tests in the task
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -321,6 +328,9 @@ func (a *StateTransitionAPIService) GetTaskQuarantinedApiTestSelectionGetTaskQua
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.displayTaskName != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "display_task_name", r.displayTaskName, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -407,6 +417,7 @@ Return the state of all quarantined tests of a single task
 :param project_id: The project id.
 :param build_variant_name: The build variant name.
 :param task_name: The task name.
+:param display_task_name: Optional - the display task name (that contains execution tasks).
 :return: All quarantined tests in the task
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -516,10 +527,16 @@ type ApiGetTestsStateApiTestSelectionGetTestsStateProjectIdBuildVariantNameTaskN
 	buildVariantName string
 	taskName string
 	requestBody *[]string
+	displayTaskName *string
 }
 
 func (r ApiGetTestsStateApiTestSelectionGetTestsStateProjectIdBuildVariantNameTaskNamePostRequest) RequestBody(requestBody []string) ApiGetTestsStateApiTestSelectionGetTestsStateProjectIdBuildVariantNameTaskNamePostRequest {
 	r.requestBody = &requestBody
+	return r
+}
+
+func (r ApiGetTestsStateApiTestSelectionGetTestsStateProjectIdBuildVariantNameTaskNamePostRequest) DisplayTaskName(displayTaskName string) ApiGetTestsStateApiTestSelectionGetTestsStateProjectIdBuildVariantNameTaskNamePostRequest {
+	r.displayTaskName = &displayTaskName
 	return r
 }
 
@@ -535,6 +552,7 @@ Return the state of a single test
 :param build_variant_name: The build variant name.
 :param task_name: The task name.
 :param test_names: The test names to be transitioned.
+:param display_task_name: Optional - the display task name (that contains execution tasks).
 :return: get the state of all tests in the task
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -580,6 +598,9 @@ func (a *StateTransitionAPIService) GetTestsStateApiTestSelectionGetTestsStatePr
 		return localVarReturnValue, nil, reportError("requestBody is required and must be specified")
 	}
 
+	if r.displayTaskName != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "display_task_name", r.displayTaskName, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -669,6 +690,7 @@ Return the state of a single test
 :param build_variant_name: The build variant name.
 :param task_name: The task name.
 :param test_names: The test names to be transitioned.
+:param display_task_name: Optional - the display task name (that contains execution tasks).
 :return: get the state of all tests in the task
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -1264,10 +1286,16 @@ type ApiMarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuil
 	buildVariantName string
 	taskName string
 	isManuallyQuarantined *bool
+	displayTaskName *string
 }
 
 func (r ApiMarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePostRequest) IsManuallyQuarantined(isManuallyQuarantined bool) ApiMarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePostRequest {
 	r.isManuallyQuarantined = &isManuallyQuarantined
+	return r
+}
+
+func (r ApiMarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePostRequest) DisplayTaskName(displayTaskName string) ApiMarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePostRequest {
+	r.displayTaskName = &displayTaskName
 	return r
 }
 
@@ -1284,6 +1312,7 @@ Transition all known tests of a single task into or out of the "Manually Quarant
 :param task_name: The task name.
 :param is_manually_quarantined: Denote if the task should be marked manually quarantined
 :param background_tasks: Background tasks to run after the request is completed.
+:param display_task_name: Optional - the display task name (that contains execution tasks).
 :return: None
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -1330,6 +1359,9 @@ func (a *StateTransitionAPIService) MarkTaskAsManuallyQuarantinedApiTestSelectio
 	}
 
 	parameterAddToHeaderOrQuery(localVarQueryParams, "is_manually_quarantined", r.isManuallyQuarantined, "form", "")
+	if r.displayTaskName != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "display_task_name", r.displayTaskName, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1418,6 +1450,7 @@ Transition all known tests of a single task into or out of the "Manually Quarant
 :param task_name: The task name.
 :param is_manually_quarantined: Denote if the task should be marked manually quarantined
 :param background_tasks: Background tasks to run after the request is completed.
+:param display_task_name: Optional - the display task name (that contains execution tasks).
 :return: None
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -1528,6 +1561,7 @@ type ApiMarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBu
 	taskName string
 	isManuallyQuarantined *bool
 	requestBody *[]string
+	displayTaskName *string
 }
 
 func (r ApiMarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePostRequest) IsManuallyQuarantined(isManuallyQuarantined bool) ApiMarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePostRequest {
@@ -1537,6 +1571,11 @@ func (r ApiMarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectI
 
 func (r ApiMarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePostRequest) RequestBody(requestBody []string) ApiMarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePostRequest {
 	r.requestBody = &requestBody
+	return r
+}
+
+func (r ApiMarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePostRequest) DisplayTaskName(displayTaskName string) ApiMarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePostRequest {
+	r.displayTaskName = &displayTaskName
 	return r
 }
 
@@ -1555,6 +1594,7 @@ If that test doesn't exist in the registry, the registry will create an entry fo
 :param test_names: The test names to be transitioned.
 :param is_manually_quarantined: Denote if the test should be marked manually quarantined or not
 :param background_tasks: Background tasks to run after the request is completed.
+:param display_task_name: Optional - the display task name (that contains execution tasks).
 :return: None
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -1604,6 +1644,9 @@ func (a *StateTransitionAPIService) MarkTestsAsManuallyQuarantinedApiTestSelecti
 	}
 
 	parameterAddToHeaderOrQuery(localVarQueryParams, "is_manually_quarantined", r.isManuallyQuarantined, "form", "")
+	if r.displayTaskName != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "display_task_name", r.displayTaskName, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -1696,6 +1739,7 @@ If that test doesn't exist in the registry, the registry will create an entry fo
 :param test_names: The test names to be transitioned.
 :param is_manually_quarantined: Denote if the test should be marked manually quarantined or not
 :param background_tasks: Background tasks to run after the request is completed.
+:param display_task_name: Optional - the display task name (that contains execution tasks).
 :return: None
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().

@@ -25,6 +25,7 @@ type BodyGetTestsStateDataInBodyApiTestSelectionGetTestsStatePost struct {
 	BuildVariantName string `json:"build_variant_name"`
 	TaskName string `json:"task_name"`
 	TestNames []string `json:"test_names"`
+	DisplayTaskName NullableString `json:"display_task_name,omitempty"`
 }
 
 type _BodyGetTestsStateDataInBodyApiTestSelectionGetTestsStatePost BodyGetTestsStateDataInBodyApiTestSelectionGetTestsStatePost
@@ -146,6 +147,48 @@ func (o *BodyGetTestsStateDataInBodyApiTestSelectionGetTestsStatePost) SetTestNa
 	o.TestNames = v
 }
 
+// GetDisplayTaskName returns the DisplayTaskName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *BodyGetTestsStateDataInBodyApiTestSelectionGetTestsStatePost) GetDisplayTaskName() string {
+	if o == nil || IsNil(o.DisplayTaskName.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.DisplayTaskName.Get()
+}
+
+// GetDisplayTaskNameOk returns a tuple with the DisplayTaskName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *BodyGetTestsStateDataInBodyApiTestSelectionGetTestsStatePost) GetDisplayTaskNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.DisplayTaskName.Get(), o.DisplayTaskName.IsSet()
+}
+
+// HasDisplayTaskName returns a boolean if a field has been set.
+func (o *BodyGetTestsStateDataInBodyApiTestSelectionGetTestsStatePost) HasDisplayTaskName() bool {
+	if o != nil && o.DisplayTaskName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDisplayTaskName gets a reference to the given NullableString and assigns it to the DisplayTaskName field.
+func (o *BodyGetTestsStateDataInBodyApiTestSelectionGetTestsStatePost) SetDisplayTaskName(v string) {
+	o.DisplayTaskName.Set(&v)
+}
+// SetDisplayTaskNameNil sets the value for DisplayTaskName to be an explicit nil
+func (o *BodyGetTestsStateDataInBodyApiTestSelectionGetTestsStatePost) SetDisplayTaskNameNil() {
+	o.DisplayTaskName.Set(nil)
+}
+
+// UnsetDisplayTaskName ensures that no value is present for DisplayTaskName, not even an explicit nil
+func (o *BodyGetTestsStateDataInBodyApiTestSelectionGetTestsStatePost) UnsetDisplayTaskName() {
+	o.DisplayTaskName.Unset()
+}
+
 func (o BodyGetTestsStateDataInBodyApiTestSelectionGetTestsStatePost) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -160,6 +203,9 @@ func (o BodyGetTestsStateDataInBodyApiTestSelectionGetTestsStatePost) ToMap() (m
 	toSerialize["build_variant_name"] = o.BuildVariantName
 	toSerialize["task_name"] = o.TaskName
 	toSerialize["test_names"] = o.TestNames
+	if o.DisplayTaskName.IsSet() {
+		toSerialize["display_task_name"] = o.DisplayTaskName.Get()
+	}
 	return toSerialize, nil
 }
 
