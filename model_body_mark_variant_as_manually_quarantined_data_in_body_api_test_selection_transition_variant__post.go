@@ -24,6 +24,9 @@ type BodyMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVar
 	ProjectId string `json:"project_id"`
 	BuildVariantName string `json:"build_variant_name"`
 	IsManuallyQuarantined bool `json:"is_manually_quarantined"`
+	Justification NullableString `json:"justification,omitempty"`
+	JiraTicket NullableString `json:"jira_ticket,omitempty"`
+	TaskInitiatedFrom NullableString `json:"task_initiated_from,omitempty"`
 }
 
 type _BodyMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost BodyMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost
@@ -120,6 +123,132 @@ func (o *BodyMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitio
 	o.IsManuallyQuarantined = v
 }
 
+// GetJustification returns the Justification field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *BodyMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost) GetJustification() string {
+	if o == nil || IsNil(o.Justification.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Justification.Get()
+}
+
+// GetJustificationOk returns a tuple with the Justification field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *BodyMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost) GetJustificationOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Justification.Get(), o.Justification.IsSet()
+}
+
+// HasJustification returns a boolean if a field has been set.
+func (o *BodyMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost) HasJustification() bool {
+	if o != nil && o.Justification.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetJustification gets a reference to the given NullableString and assigns it to the Justification field.
+func (o *BodyMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost) SetJustification(v string) {
+	o.Justification.Set(&v)
+}
+// SetJustificationNil sets the value for Justification to be an explicit nil
+func (o *BodyMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost) SetJustificationNil() {
+	o.Justification.Set(nil)
+}
+
+// UnsetJustification ensures that no value is present for Justification, not even an explicit nil
+func (o *BodyMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost) UnsetJustification() {
+	o.Justification.Unset()
+}
+
+// GetJiraTicket returns the JiraTicket field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *BodyMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost) GetJiraTicket() string {
+	if o == nil || IsNil(o.JiraTicket.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.JiraTicket.Get()
+}
+
+// GetJiraTicketOk returns a tuple with the JiraTicket field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *BodyMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost) GetJiraTicketOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.JiraTicket.Get(), o.JiraTicket.IsSet()
+}
+
+// HasJiraTicket returns a boolean if a field has been set.
+func (o *BodyMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost) HasJiraTicket() bool {
+	if o != nil && o.JiraTicket.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetJiraTicket gets a reference to the given NullableString and assigns it to the JiraTicket field.
+func (o *BodyMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost) SetJiraTicket(v string) {
+	o.JiraTicket.Set(&v)
+}
+// SetJiraTicketNil sets the value for JiraTicket to be an explicit nil
+func (o *BodyMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost) SetJiraTicketNil() {
+	o.JiraTicket.Set(nil)
+}
+
+// UnsetJiraTicket ensures that no value is present for JiraTicket, not even an explicit nil
+func (o *BodyMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost) UnsetJiraTicket() {
+	o.JiraTicket.Unset()
+}
+
+// GetTaskInitiatedFrom returns the TaskInitiatedFrom field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *BodyMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost) GetTaskInitiatedFrom() string {
+	if o == nil || IsNil(o.TaskInitiatedFrom.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.TaskInitiatedFrom.Get()
+}
+
+// GetTaskInitiatedFromOk returns a tuple with the TaskInitiatedFrom field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *BodyMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost) GetTaskInitiatedFromOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.TaskInitiatedFrom.Get(), o.TaskInitiatedFrom.IsSet()
+}
+
+// HasTaskInitiatedFrom returns a boolean if a field has been set.
+func (o *BodyMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost) HasTaskInitiatedFrom() bool {
+	if o != nil && o.TaskInitiatedFrom.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTaskInitiatedFrom gets a reference to the given NullableString and assigns it to the TaskInitiatedFrom field.
+func (o *BodyMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost) SetTaskInitiatedFrom(v string) {
+	o.TaskInitiatedFrom.Set(&v)
+}
+// SetTaskInitiatedFromNil sets the value for TaskInitiatedFrom to be an explicit nil
+func (o *BodyMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost) SetTaskInitiatedFromNil() {
+	o.TaskInitiatedFrom.Set(nil)
+}
+
+// UnsetTaskInitiatedFrom ensures that no value is present for TaskInitiatedFrom, not even an explicit nil
+func (o *BodyMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost) UnsetTaskInitiatedFrom() {
+	o.TaskInitiatedFrom.Unset()
+}
+
 func (o BodyMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -133,6 +262,15 @@ func (o BodyMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransition
 	toSerialize["project_id"] = o.ProjectId
 	toSerialize["build_variant_name"] = o.BuildVariantName
 	toSerialize["is_manually_quarantined"] = o.IsManuallyQuarantined
+	if o.Justification.IsSet() {
+		toSerialize["justification"] = o.Justification.Get()
+	}
+	if o.JiraTicket.IsSet() {
+		toSerialize["jira_ticket"] = o.JiraTicket.Get()
+	}
+	if o.TaskInitiatedFrom.IsSet() {
+		toSerialize["task_initiated_from"] = o.TaskInitiatedFrom.Get()
+	}
 	return toSerialize, nil
 }
 
