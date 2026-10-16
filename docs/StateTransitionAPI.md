@@ -729,7 +729,7 @@ No authorization required
 
 ## MarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePost
 
-> interface{} MarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePost(ctx, projectId, buildVariantName, taskName).IsManuallyQuarantined(isManuallyQuarantined).DisplayTaskName(displayTaskName).Execute()
+> interface{} MarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePost(ctx, projectId, buildVariantName, taskName).IsManuallyQuarantined(isManuallyQuarantined).DisplayTaskName(displayTaskName).Justification(justification).JiraTicket(jiraTicket).TaskInitiatedFrom(taskInitiatedFrom).InitiatedBy(initiatedBy).Execute()
 
 Mark Task As Manually Quarantined
 
@@ -753,10 +753,14 @@ func main() {
 	taskName := "taskName_example" // string | 
 	isManuallyQuarantined := true // bool | 
 	displayTaskName := "displayTaskName_example" // string |  (optional)
+	justification := "justification_example" // string |  (optional)
+	jiraTicket := "jiraTicket_example" // string |  (optional)
+	taskInitiatedFrom := "taskInitiatedFrom_example" // string |  (optional)
+	initiatedBy := "initiatedBy_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StateTransitionAPI.MarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePost(context.Background(), projectId, buildVariantName, taskName).IsManuallyQuarantined(isManuallyQuarantined).DisplayTaskName(displayTaskName).Execute()
+	resp, r, err := apiClient.StateTransitionAPI.MarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePost(context.Background(), projectId, buildVariantName, taskName).IsManuallyQuarantined(isManuallyQuarantined).DisplayTaskName(displayTaskName).Justification(justification).JiraTicket(jiraTicket).TaskInitiatedFrom(taskInitiatedFrom).InitiatedBy(initiatedBy).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StateTransitionAPI.MarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePost``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -788,6 +792,10 @@ Name | Type | Description  | Notes
 
  **isManuallyQuarantined** | **bool** |  | 
  **displayTaskName** | **string** |  | 
+ **justification** | **string** |  | 
+ **jiraTicket** | **string** |  | 
+ **taskInitiatedFrom** | **string** |  | 
+ **initiatedBy** | **string** |  | 
 
 ### Return type
 
@@ -809,7 +817,7 @@ No authorization required
 
 ## MarkTaskAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTaskPost
 
-> interface{} MarkTaskAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTaskPost(ctx).BodyMarkTaskAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTaskPost(bodyMarkTaskAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTaskPost).Execute()
+> interface{} MarkTaskAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTaskPost(ctx).BodyMarkTaskAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTaskPost(bodyMarkTaskAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTaskPost).InitiatedBy(initiatedBy).Execute()
 
 Mark Task As Manually Quarantined Data In Body
 
@@ -829,10 +837,11 @@ import (
 
 func main() {
 	bodyMarkTaskAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTaskPost := *openapiclient.NewBodyMarkTaskAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTaskPost("ProjectId_example", "BuildVariantName_example", "TaskName_example", false) // BodyMarkTaskAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTaskPost | 
+	initiatedBy := "initiatedBy_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StateTransitionAPI.MarkTaskAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTaskPost(context.Background()).BodyMarkTaskAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTaskPost(bodyMarkTaskAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTaskPost).Execute()
+	resp, r, err := apiClient.StateTransitionAPI.MarkTaskAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTaskPost(context.Background()).BodyMarkTaskAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTaskPost(bodyMarkTaskAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTaskPost).InitiatedBy(initiatedBy).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StateTransitionAPI.MarkTaskAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTaskPost``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -854,6 +863,7 @@ Other parameters are passed through a pointer to a apiMarkTaskAsManuallyQuaranti
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **bodyMarkTaskAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTaskPost** | [**BodyMarkTaskAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTaskPost**](BodyMarkTaskAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTaskPost.md) |  | 
+ **initiatedBy** | **string** |  | 
 
 ### Return type
 
@@ -875,7 +885,7 @@ No authorization required
 
 ## MarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePost
 
-> interface{} MarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePost(ctx, projectId, buildVariantName, taskName).IsManuallyQuarantined(isManuallyQuarantined).RequestBody(requestBody).DisplayTaskName(displayTaskName).Execute()
+> interface{} MarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePost(ctx, projectId, buildVariantName, taskName).IsManuallyQuarantined(isManuallyQuarantined).RequestBody(requestBody).DisplayTaskName(displayTaskName).Justification(justification).JiraTicket(jiraTicket).TaskInitiatedFrom(taskInitiatedFrom).InitiatedBy(initiatedBy).Execute()
 
 Mark Tests As Manually Quarantined
 
@@ -900,10 +910,14 @@ func main() {
 	isManuallyQuarantined := true // bool | 
 	requestBody := []string{"Property_example"} // []string | 
 	displayTaskName := "displayTaskName_example" // string |  (optional)
+	justification := "justification_example" // string |  (optional)
+	jiraTicket := "jiraTicket_example" // string |  (optional)
+	taskInitiatedFrom := "taskInitiatedFrom_example" // string |  (optional)
+	initiatedBy := "initiatedBy_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StateTransitionAPI.MarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePost(context.Background(), projectId, buildVariantName, taskName).IsManuallyQuarantined(isManuallyQuarantined).RequestBody(requestBody).DisplayTaskName(displayTaskName).Execute()
+	resp, r, err := apiClient.StateTransitionAPI.MarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePost(context.Background(), projectId, buildVariantName, taskName).IsManuallyQuarantined(isManuallyQuarantined).RequestBody(requestBody).DisplayTaskName(displayTaskName).Justification(justification).JiraTicket(jiraTicket).TaskInitiatedFrom(taskInitiatedFrom).InitiatedBy(initiatedBy).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StateTransitionAPI.MarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePost``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -936,6 +950,10 @@ Name | Type | Description  | Notes
  **isManuallyQuarantined** | **bool** |  | 
  **requestBody** | **[]string** |  | 
  **displayTaskName** | **string** |  | 
+ **justification** | **string** |  | 
+ **jiraTicket** | **string** |  | 
+ **taskInitiatedFrom** | **string** |  | 
+ **initiatedBy** | **string** |  | 
 
 ### Return type
 
@@ -957,7 +975,7 @@ No authorization required
 
 ## MarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost
 
-> interface{} MarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost(ctx).BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost(bodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost).Execute()
+> interface{} MarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost(ctx).BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost(bodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost).InitiatedBy(initiatedBy).Execute()
 
 Mark Tests As Manually Quarantined Data In Body
 
@@ -977,10 +995,11 @@ import (
 
 func main() {
 	bodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost := *openapiclient.NewBodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost("ProjectId_example", "BuildVariantName_example", "TaskName_example", []string{"TestNames_example"}, false) // BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost | 
+	initiatedBy := "initiatedBy_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StateTransitionAPI.MarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost(context.Background()).BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost(bodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost).Execute()
+	resp, r, err := apiClient.StateTransitionAPI.MarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost(context.Background()).BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost(bodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost).InitiatedBy(initiatedBy).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StateTransitionAPI.MarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1002,6 +1021,7 @@ Other parameters are passed through a pointer to a apiMarkTestsAsManuallyQuarant
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **bodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost** | [**BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost**](BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost.md) |  | 
+ **initiatedBy** | **string** |  | 
 
 ### Return type
 
@@ -1023,7 +1043,7 @@ No authorization required
 
 ## MarkVariantAsManuallyQuarantinedApiTestSelectionTransitionVariantProjectIdBuildVariantNamePost
 
-> interface{} MarkVariantAsManuallyQuarantinedApiTestSelectionTransitionVariantProjectIdBuildVariantNamePost(ctx, projectId, buildVariantName).IsManuallyQuarantined(isManuallyQuarantined).Execute()
+> interface{} MarkVariantAsManuallyQuarantinedApiTestSelectionTransitionVariantProjectIdBuildVariantNamePost(ctx, projectId, buildVariantName).IsManuallyQuarantined(isManuallyQuarantined).Justification(justification).JiraTicket(jiraTicket).TaskInitiatedFrom(taskInitiatedFrom).InitiatedBy(initiatedBy).Execute()
 
 Mark Variant As Manually Quarantined
 
@@ -1045,10 +1065,14 @@ func main() {
 	projectId := "projectId_example" // string | 
 	buildVariantName := "buildVariantName_example" // string | 
 	isManuallyQuarantined := true // bool | 
+	justification := "justification_example" // string |  (optional)
+	jiraTicket := "jiraTicket_example" // string |  (optional)
+	taskInitiatedFrom := "taskInitiatedFrom_example" // string |  (optional)
+	initiatedBy := "initiatedBy_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StateTransitionAPI.MarkVariantAsManuallyQuarantinedApiTestSelectionTransitionVariantProjectIdBuildVariantNamePost(context.Background(), projectId, buildVariantName).IsManuallyQuarantined(isManuallyQuarantined).Execute()
+	resp, r, err := apiClient.StateTransitionAPI.MarkVariantAsManuallyQuarantinedApiTestSelectionTransitionVariantProjectIdBuildVariantNamePost(context.Background(), projectId, buildVariantName).IsManuallyQuarantined(isManuallyQuarantined).Justification(justification).JiraTicket(jiraTicket).TaskInitiatedFrom(taskInitiatedFrom).InitiatedBy(initiatedBy).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StateTransitionAPI.MarkVariantAsManuallyQuarantinedApiTestSelectionTransitionVariantProjectIdBuildVariantNamePost``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1077,6 +1101,10 @@ Name | Type | Description  | Notes
 
 
  **isManuallyQuarantined** | **bool** |  | 
+ **justification** | **string** |  | 
+ **jiraTicket** | **string** |  | 
+ **taskInitiatedFrom** | **string** |  | 
+ **initiatedBy** | **string** |  | 
 
 ### Return type
 
@@ -1098,7 +1126,7 @@ No authorization required
 
 ## MarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost
 
-> interface{} MarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost(ctx).BodyMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost(bodyMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost).Execute()
+> interface{} MarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost(ctx).BodyMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost(bodyMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost).InitiatedBy(initiatedBy).Execute()
 
 Mark Variant As Manually Quarantined Data In Body
 
@@ -1118,10 +1146,11 @@ import (
 
 func main() {
 	bodyMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost := *openapiclient.NewBodyMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost("ProjectId_example", "BuildVariantName_example", false) // BodyMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost | 
+	initiatedBy := "initiatedBy_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StateTransitionAPI.MarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost(context.Background()).BodyMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost(bodyMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost).Execute()
+	resp, r, err := apiClient.StateTransitionAPI.MarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost(context.Background()).BodyMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost(bodyMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost).InitiatedBy(initiatedBy).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StateTransitionAPI.MarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1143,6 +1172,7 @@ Other parameters are passed through a pointer to a apiMarkVariantAsManuallyQuara
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **bodyMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost** | [**BodyMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost**](BodyMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost.md) |  | 
+ **initiatedBy** | **string** |  | 
 
 ### Return type
 
