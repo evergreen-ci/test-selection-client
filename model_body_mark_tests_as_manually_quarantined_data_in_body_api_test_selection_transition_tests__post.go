@@ -27,6 +27,7 @@ type BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTests
 	TestNames []string `json:"test_names"`
 	IsManuallyQuarantined bool `json:"is_manually_quarantined"`
 	DisplayTaskName NullableString `json:"display_task_name,omitempty"`
+	Metadata *QuarantineMetadata `json:"metadata,omitempty"`
 }
 
 type _BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost
@@ -42,6 +43,8 @@ func NewBodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTe
 	this.TaskName = taskName
 	this.TestNames = testNames
 	this.IsManuallyQuarantined = isManuallyQuarantined
+	var metadata QuarantineMetadata = {}
+	this.Metadata = &metadata
 	return &this
 }
 
@@ -50,6 +53,8 @@ func NewBodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTe
 // but it doesn't guarantee that properties required by API are set
 func NewBodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPostWithDefaults() *BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost {
 	this := BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost{}
+	var metadata QuarantineMetadata = {}
+	this.Metadata = &metadata
 	return &this
 }
 
@@ -215,6 +220,38 @@ func (o *BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionT
 	o.DisplayTaskName.Unset()
 }
 
+// GetMetadata returns the Metadata field value if set, zero value otherwise.
+func (o *BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost) GetMetadata() QuarantineMetadata {
+	if o == nil || IsNil(o.Metadata) {
+		var ret QuarantineMetadata
+		return ret
+	}
+	return *o.Metadata
+}
+
+// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost) GetMetadataOk() (*QuarantineMetadata, bool) {
+	if o == nil || IsNil(o.Metadata) {
+		return nil, false
+	}
+	return o.Metadata, true
+}
+
+// HasMetadata returns a boolean if a field has been set.
+func (o *BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost) HasMetadata() bool {
+	if o != nil && !IsNil(o.Metadata) {
+		return true
+	}
+
+	return false
+}
+
+// SetMetadata gets a reference to the given QuarantineMetadata and assigns it to the Metadata field.
+func (o *BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost) SetMetadata(v QuarantineMetadata) {
+	o.Metadata = &v
+}
+
 func (o BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -232,6 +269,9 @@ func (o BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTe
 	toSerialize["is_manually_quarantined"] = o.IsManuallyQuarantined
 	if o.DisplayTaskName.IsSet() {
 		toSerialize["display_task_name"] = o.DisplayTaskName.Get()
+	}
+	if !IsNil(o.Metadata) {
+		toSerialize["metadata"] = o.Metadata
 	}
 	return toSerialize, nil
 }
