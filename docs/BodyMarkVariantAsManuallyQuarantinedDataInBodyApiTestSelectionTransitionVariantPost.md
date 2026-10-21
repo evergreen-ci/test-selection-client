@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **ProjectId** | **string** |  | 
 **BuildVariantName** | **string** |  | 
 **IsManuallyQuarantined** | **bool** |  | 
-**Metadata** | Pointer to [**QuarantineMetadata**](QuarantineMetadata.md) |  | [optional] [default to {}]
+**Metadata** | Pointer to [**QuarantineMetadata**](QuarantineMetadata.md) |  | [optional] 
 
 ## Methods
 

@@ -38,8 +38,6 @@ func NewBodyMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransition
 	this.ProjectId = projectId
 	this.BuildVariantName = buildVariantName
 	this.IsManuallyQuarantined = isManuallyQuarantined
-	var metadata QuarantineMetadata = {}
-	this.Metadata = &metadata
 	return &this
 }
 
@@ -48,8 +46,6 @@ func NewBodyMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransition
 // but it doesn't guarantee that properties required by API are set
 func NewBodyMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPostWithDefaults() *BodyMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost {
 	this := BodyMarkVariantAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionVariantPost{}
-	var metadata QuarantineMetadata = {}
-	this.Metadata = &metadata
 	return &this
 }
 

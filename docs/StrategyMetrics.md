@@ -16,8 +16,8 @@ Name | Type | Description | Notes
 **BaselineRedness** | Pointer to **int32** |  | [optional] [default to 0]
 **StrategyRedness** | Pointer to **int32** |  | [optional] [default to 0]
 **ActualRedness** | Pointer to **int32** |  | [optional] [default to 0]
-**RednessSaved** | Pointer to **float32** |  | [optional] [default to 0]
-**TimeSavedSeconds** | Pointer to **float32** |  | [optional] [default to 0]
+**RednessSaved** | Pointer to **float32** |  | [optional] [default to 0.0]
+**TimeSavedSeconds** | Pointer to **float32** |  | [optional] [default to 0.0]
 
 ## Methods
 
