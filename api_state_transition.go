@@ -17,6 +17,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"reflect"
 )
 
 
@@ -1287,6 +1288,11 @@ type ApiMarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuil
 	taskName string
 	isManuallyQuarantined *bool
 	displayTaskName *string
+	justification *string
+	jiraTicketsToLinkTo *[]string
+	taskInitiatedFrom *string
+	jiraAssignTo *string
+	initiatedBy *string
 }
 
 func (r ApiMarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePostRequest) IsManuallyQuarantined(isManuallyQuarantined bool) ApiMarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePostRequest {
@@ -1296,6 +1302,31 @@ func (r ApiMarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdB
 
 func (r ApiMarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePostRequest) DisplayTaskName(displayTaskName string) ApiMarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePostRequest {
 	r.displayTaskName = &displayTaskName
+	return r
+}
+
+func (r ApiMarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePostRequest) Justification(justification string) ApiMarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePostRequest {
+	r.justification = &justification
+	return r
+}
+
+func (r ApiMarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePostRequest) JiraTicketsToLinkTo(jiraTicketsToLinkTo []string) ApiMarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePostRequest {
+	r.jiraTicketsToLinkTo = &jiraTicketsToLinkTo
+	return r
+}
+
+func (r ApiMarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePostRequest) TaskInitiatedFrom(taskInitiatedFrom string) ApiMarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePostRequest {
+	r.taskInitiatedFrom = &taskInitiatedFrom
+	return r
+}
+
+func (r ApiMarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePostRequest) JiraAssignTo(jiraAssignTo string) ApiMarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePostRequest {
+	r.jiraAssignTo = &jiraAssignTo
+	return r
+}
+
+func (r ApiMarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePostRequest) InitiatedBy(initiatedBy string) ApiMarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePostRequest {
+	r.initiatedBy = &initiatedBy
 	return r
 }
 
@@ -1313,6 +1344,7 @@ Transition all known tests of a single task into or out of the "Manually Quarant
 :param is_manually_quarantined: Denote if the task should be marked manually quarantined
 :param background_tasks: Background tasks to run after the request is completed.
 :param display_task_name: Optional - the display task name (that contains execution tasks).
+:param metadata: Optional - details about the quarantine to record.
 :return: None
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -1361,6 +1393,29 @@ func (a *StateTransitionAPIService) MarkTaskAsManuallyQuarantinedApiTestSelectio
 	parameterAddToHeaderOrQuery(localVarQueryParams, "is_manually_quarantined", r.isManuallyQuarantined, "form", "")
 	if r.displayTaskName != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "display_task_name", r.displayTaskName, "form", "")
+	}
+	if r.justification != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "justification", r.justification, "form", "")
+	}
+	if r.jiraTicketsToLinkTo != nil {
+		t := *r.jiraTicketsToLinkTo
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "jira_tickets_to_link_to", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "jira_tickets_to_link_to", t, "form", "multi")
+		}
+	}
+	if r.taskInitiatedFrom != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "task_initiated_from", r.taskInitiatedFrom, "form", "")
+	}
+	if r.jiraAssignTo != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "jira_assign_to", r.jiraAssignTo, "form", "")
+	}
+	if r.initiatedBy != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "initiated_by", r.initiatedBy, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1451,6 +1506,7 @@ Transition all known tests of a single task into or out of the "Manually Quarant
 :param is_manually_quarantined: Denote if the task should be marked manually quarantined
 :param background_tasks: Background tasks to run after the request is completed.
 :param display_task_name: Optional - the display task name (that contains execution tasks).
+:param metadata: Optional - details about the quarantine to record.
 :return: None
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -1562,6 +1618,11 @@ type ApiMarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBu
 	isManuallyQuarantined *bool
 	requestBody *[]string
 	displayTaskName *string
+	justification *string
+	jiraTicketsToLinkTo *[]string
+	taskInitiatedFrom *string
+	jiraAssignTo *string
+	initiatedBy *string
 }
 
 func (r ApiMarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePostRequest) IsManuallyQuarantined(isManuallyQuarantined bool) ApiMarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePostRequest {
@@ -1576,6 +1637,31 @@ func (r ApiMarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectI
 
 func (r ApiMarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePostRequest) DisplayTaskName(displayTaskName string) ApiMarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePostRequest {
 	r.displayTaskName = &displayTaskName
+	return r
+}
+
+func (r ApiMarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePostRequest) Justification(justification string) ApiMarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePostRequest {
+	r.justification = &justification
+	return r
+}
+
+func (r ApiMarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePostRequest) JiraTicketsToLinkTo(jiraTicketsToLinkTo []string) ApiMarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePostRequest {
+	r.jiraTicketsToLinkTo = &jiraTicketsToLinkTo
+	return r
+}
+
+func (r ApiMarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePostRequest) TaskInitiatedFrom(taskInitiatedFrom string) ApiMarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePostRequest {
+	r.taskInitiatedFrom = &taskInitiatedFrom
+	return r
+}
+
+func (r ApiMarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePostRequest) JiraAssignTo(jiraAssignTo string) ApiMarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePostRequest {
+	r.jiraAssignTo = &jiraAssignTo
+	return r
+}
+
+func (r ApiMarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePostRequest) InitiatedBy(initiatedBy string) ApiMarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePostRequest {
+	r.initiatedBy = &initiatedBy
 	return r
 }
 
@@ -1595,6 +1681,7 @@ If that test doesn't exist in the registry, the registry will create an entry fo
 :param is_manually_quarantined: Denote if the test should be marked manually quarantined or not
 :param background_tasks: Background tasks to run after the request is completed.
 :param display_task_name: Optional - the display task name (that contains execution tasks).
+:param metadata: Optional - details about the quarantine to record.
 :return: None
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -1646,6 +1733,29 @@ func (a *StateTransitionAPIService) MarkTestsAsManuallyQuarantinedApiTestSelecti
 	parameterAddToHeaderOrQuery(localVarQueryParams, "is_manually_quarantined", r.isManuallyQuarantined, "form", "")
 	if r.displayTaskName != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "display_task_name", r.displayTaskName, "form", "")
+	}
+	if r.justification != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "justification", r.justification, "form", "")
+	}
+	if r.jiraTicketsToLinkTo != nil {
+		t := *r.jiraTicketsToLinkTo
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "jira_tickets_to_link_to", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "jira_tickets_to_link_to", t, "form", "multi")
+		}
+	}
+	if r.taskInitiatedFrom != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "task_initiated_from", r.taskInitiatedFrom, "form", "")
+	}
+	if r.jiraAssignTo != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "jira_assign_to", r.jiraAssignTo, "form", "")
+	}
+	if r.initiatedBy != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "initiated_by", r.initiatedBy, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -1740,6 +1850,7 @@ If that test doesn't exist in the registry, the registry will create an entry fo
 :param is_manually_quarantined: Denote if the test should be marked manually quarantined or not
 :param background_tasks: Background tasks to run after the request is completed.
 :param display_task_name: Optional - the display task name (that contains execution tasks).
+:param metadata: Optional - details about the quarantine to record.
 :return: None
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -1848,10 +1959,40 @@ type ApiMarkVariantAsManuallyQuarantinedApiTestSelectionTransitionVariantProject
 	projectId string
 	buildVariantName string
 	isManuallyQuarantined *bool
+	justification *string
+	jiraTicketsToLinkTo *[]string
+	taskInitiatedFrom *string
+	jiraAssignTo *string
+	initiatedBy *string
 }
 
 func (r ApiMarkVariantAsManuallyQuarantinedApiTestSelectionTransitionVariantProjectIdBuildVariantNamePostRequest) IsManuallyQuarantined(isManuallyQuarantined bool) ApiMarkVariantAsManuallyQuarantinedApiTestSelectionTransitionVariantProjectIdBuildVariantNamePostRequest {
 	r.isManuallyQuarantined = &isManuallyQuarantined
+	return r
+}
+
+func (r ApiMarkVariantAsManuallyQuarantinedApiTestSelectionTransitionVariantProjectIdBuildVariantNamePostRequest) Justification(justification string) ApiMarkVariantAsManuallyQuarantinedApiTestSelectionTransitionVariantProjectIdBuildVariantNamePostRequest {
+	r.justification = &justification
+	return r
+}
+
+func (r ApiMarkVariantAsManuallyQuarantinedApiTestSelectionTransitionVariantProjectIdBuildVariantNamePostRequest) JiraTicketsToLinkTo(jiraTicketsToLinkTo []string) ApiMarkVariantAsManuallyQuarantinedApiTestSelectionTransitionVariantProjectIdBuildVariantNamePostRequest {
+	r.jiraTicketsToLinkTo = &jiraTicketsToLinkTo
+	return r
+}
+
+func (r ApiMarkVariantAsManuallyQuarantinedApiTestSelectionTransitionVariantProjectIdBuildVariantNamePostRequest) TaskInitiatedFrom(taskInitiatedFrom string) ApiMarkVariantAsManuallyQuarantinedApiTestSelectionTransitionVariantProjectIdBuildVariantNamePostRequest {
+	r.taskInitiatedFrom = &taskInitiatedFrom
+	return r
+}
+
+func (r ApiMarkVariantAsManuallyQuarantinedApiTestSelectionTransitionVariantProjectIdBuildVariantNamePostRequest) JiraAssignTo(jiraAssignTo string) ApiMarkVariantAsManuallyQuarantinedApiTestSelectionTransitionVariantProjectIdBuildVariantNamePostRequest {
+	r.jiraAssignTo = &jiraAssignTo
+	return r
+}
+
+func (r ApiMarkVariantAsManuallyQuarantinedApiTestSelectionTransitionVariantProjectIdBuildVariantNamePostRequest) InitiatedBy(initiatedBy string) ApiMarkVariantAsManuallyQuarantinedApiTestSelectionTransitionVariantProjectIdBuildVariantNamePostRequest {
+	r.initiatedBy = &initiatedBy
 	return r
 }
 
@@ -1867,6 +2008,7 @@ Transition all known tests of a single variant into or out of the "Manually Quar
 :param build_variant_name: The build variant name.
 :param is_manually_quarantined: Denote if the variant should be marked manually quarantined
 :param background_tasks: Background tasks to run after the request is completed.
+:param metadata: Optional - details about the quarantine to record.
 :return: None
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -1910,6 +2052,29 @@ func (a *StateTransitionAPIService) MarkVariantAsManuallyQuarantinedApiTestSelec
 	}
 
 	parameterAddToHeaderOrQuery(localVarQueryParams, "is_manually_quarantined", r.isManuallyQuarantined, "form", "")
+	if r.justification != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "justification", r.justification, "form", "")
+	}
+	if r.jiraTicketsToLinkTo != nil {
+		t := *r.jiraTicketsToLinkTo
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "jira_tickets_to_link_to", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "jira_tickets_to_link_to", t, "form", "multi")
+		}
+	}
+	if r.taskInitiatedFrom != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "task_initiated_from", r.taskInitiatedFrom, "form", "")
+	}
+	if r.jiraAssignTo != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "jira_assign_to", r.jiraAssignTo, "form", "")
+	}
+	if r.initiatedBy != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "initiated_by", r.initiatedBy, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1997,6 +2162,7 @@ Transition all known tests of a single variant into or out of the "Manually Quar
 :param build_variant_name: The build variant name.
 :param is_manually_quarantined: Denote if the variant should be marked manually quarantined
 :param background_tasks: Background tasks to run after the request is completed.
+:param metadata: Optional - details about the quarantine to record.
 :return: None
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().

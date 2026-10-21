@@ -65,9 +65,9 @@ func NewStrategyMetrics(strategyName StrategyEnum, totalTests int32, testsSelect
 	this.StrategyRedness = &strategyRedness
 	var actualRedness int32 = 0
 	this.ActualRedness = &actualRedness
-	var rednessSaved float32 = 0
+	var rednessSaved float32 = 0.0
 	this.RednessSaved = &rednessSaved
-	var timeSavedSeconds float32 = 0
+	var timeSavedSeconds float32 = 0.0
 	this.TimeSavedSeconds = &timeSavedSeconds
 	return &this
 }
@@ -93,9 +93,9 @@ func NewStrategyMetricsWithDefaults() *StrategyMetrics {
 	this.StrategyRedness = &strategyRedness
 	var actualRedness int32 = 0
 	this.ActualRedness = &actualRedness
-	var rednessSaved float32 = 0
+	var rednessSaved float32 = 0.0
 	this.RednessSaved = &rednessSaved
-	var timeSavedSeconds float32 = 0
+	var timeSavedSeconds float32 = 0.0
 	this.TimeSavedSeconds = &timeSavedSeconds
 	return &this
 }

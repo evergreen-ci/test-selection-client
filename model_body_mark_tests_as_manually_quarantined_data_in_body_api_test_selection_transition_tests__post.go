@@ -26,6 +26,7 @@ type BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTests
 	TaskName string `json:"task_name"`
 	TestNames []string `json:"test_names"`
 	IsManuallyQuarantined bool `json:"is_manually_quarantined"`
+	Metadata *QuarantineMetadata `json:"metadata,omitempty"`
 	DisplayTaskName NullableString `json:"display_task_name,omitempty"`
 }
 
@@ -173,6 +174,38 @@ func (o *BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionT
 	o.IsManuallyQuarantined = v
 }
 
+// GetMetadata returns the Metadata field value if set, zero value otherwise.
+func (o *BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost) GetMetadata() QuarantineMetadata {
+	if o == nil || IsNil(o.Metadata) {
+		var ret QuarantineMetadata
+		return ret
+	}
+	return *o.Metadata
+}
+
+// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost) GetMetadataOk() (*QuarantineMetadata, bool) {
+	if o == nil || IsNil(o.Metadata) {
+		return nil, false
+	}
+	return o.Metadata, true
+}
+
+// HasMetadata returns a boolean if a field has been set.
+func (o *BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost) HasMetadata() bool {
+	if o != nil && !IsNil(o.Metadata) {
+		return true
+	}
+
+	return false
+}
+
+// SetMetadata gets a reference to the given QuarantineMetadata and assigns it to the Metadata field.
+func (o *BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost) SetMetadata(v QuarantineMetadata) {
+	o.Metadata = &v
+}
+
 // GetDisplayTaskName returns the DisplayTaskName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost) GetDisplayTaskName() string {
 	if o == nil || IsNil(o.DisplayTaskName.Get()) {
@@ -230,6 +263,9 @@ func (o BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTe
 	toSerialize["task_name"] = o.TaskName
 	toSerialize["test_names"] = o.TestNames
 	toSerialize["is_manually_quarantined"] = o.IsManuallyQuarantined
+	if !IsNil(o.Metadata) {
+		toSerialize["metadata"] = o.Metadata
+	}
 	if o.DisplayTaskName.IsSet() {
 		toSerialize["display_task_name"] = o.DisplayTaskName.Get()
 	}

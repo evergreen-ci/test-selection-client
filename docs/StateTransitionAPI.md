@@ -729,7 +729,7 @@ No authorization required
 
 ## MarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePost
 
-> interface{} MarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePost(ctx, projectId, buildVariantName, taskName).IsManuallyQuarantined(isManuallyQuarantined).DisplayTaskName(displayTaskName).Execute()
+> interface{} MarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePost(ctx, projectId, buildVariantName, taskName).IsManuallyQuarantined(isManuallyQuarantined).DisplayTaskName(displayTaskName).Justification(justification).JiraTicketsToLinkTo(jiraTicketsToLinkTo).TaskInitiatedFrom(taskInitiatedFrom).JiraAssignTo(jiraAssignTo).InitiatedBy(initiatedBy).Execute()
 
 Mark Task As Manually Quarantined
 
@@ -753,10 +753,15 @@ func main() {
 	taskName := "taskName_example" // string | 
 	isManuallyQuarantined := true // bool | 
 	displayTaskName := "displayTaskName_example" // string |  (optional)
+	justification := "justification_example" // string |  (optional)
+	jiraTicketsToLinkTo := []string{"Inner_example"} // []string |  (optional)
+	taskInitiatedFrom := "taskInitiatedFrom_example" // string |  (optional)
+	jiraAssignTo := "jiraAssignTo_example" // string |  (optional)
+	initiatedBy := "initiatedBy_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StateTransitionAPI.MarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePost(context.Background(), projectId, buildVariantName, taskName).IsManuallyQuarantined(isManuallyQuarantined).DisplayTaskName(displayTaskName).Execute()
+	resp, r, err := apiClient.StateTransitionAPI.MarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePost(context.Background(), projectId, buildVariantName, taskName).IsManuallyQuarantined(isManuallyQuarantined).DisplayTaskName(displayTaskName).Justification(justification).JiraTicketsToLinkTo(jiraTicketsToLinkTo).TaskInitiatedFrom(taskInitiatedFrom).JiraAssignTo(jiraAssignTo).InitiatedBy(initiatedBy).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StateTransitionAPI.MarkTaskAsManuallyQuarantinedApiTestSelectionTransitionTaskProjectIdBuildVariantNameTaskNamePost``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -788,6 +793,11 @@ Name | Type | Description  | Notes
 
  **isManuallyQuarantined** | **bool** |  | 
  **displayTaskName** | **string** |  | 
+ **justification** | **string** |  | 
+ **jiraTicketsToLinkTo** | **[]string** |  | 
+ **taskInitiatedFrom** | **string** |  | 
+ **jiraAssignTo** | **string** |  | 
+ **initiatedBy** | **string** |  | 
 
 ### Return type
 
@@ -875,7 +885,7 @@ No authorization required
 
 ## MarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePost
 
-> interface{} MarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePost(ctx, projectId, buildVariantName, taskName).IsManuallyQuarantined(isManuallyQuarantined).RequestBody(requestBody).DisplayTaskName(displayTaskName).Execute()
+> interface{} MarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePost(ctx, projectId, buildVariantName, taskName).IsManuallyQuarantined(isManuallyQuarantined).RequestBody(requestBody).DisplayTaskName(displayTaskName).Justification(justification).JiraTicketsToLinkTo(jiraTicketsToLinkTo).TaskInitiatedFrom(taskInitiatedFrom).JiraAssignTo(jiraAssignTo).InitiatedBy(initiatedBy).Execute()
 
 Mark Tests As Manually Quarantined
 
@@ -900,10 +910,15 @@ func main() {
 	isManuallyQuarantined := true // bool | 
 	requestBody := []string{"Property_example"} // []string | 
 	displayTaskName := "displayTaskName_example" // string |  (optional)
+	justification := "justification_example" // string |  (optional)
+	jiraTicketsToLinkTo := []string{"Inner_example"} // []string |  (optional)
+	taskInitiatedFrom := "taskInitiatedFrom_example" // string |  (optional)
+	jiraAssignTo := "jiraAssignTo_example" // string |  (optional)
+	initiatedBy := "initiatedBy_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StateTransitionAPI.MarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePost(context.Background(), projectId, buildVariantName, taskName).IsManuallyQuarantined(isManuallyQuarantined).RequestBody(requestBody).DisplayTaskName(displayTaskName).Execute()
+	resp, r, err := apiClient.StateTransitionAPI.MarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePost(context.Background(), projectId, buildVariantName, taskName).IsManuallyQuarantined(isManuallyQuarantined).RequestBody(requestBody).DisplayTaskName(displayTaskName).Justification(justification).JiraTicketsToLinkTo(jiraTicketsToLinkTo).TaskInitiatedFrom(taskInitiatedFrom).JiraAssignTo(jiraAssignTo).InitiatedBy(initiatedBy).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StateTransitionAPI.MarkTestsAsManuallyQuarantinedApiTestSelectionTransitionTestsProjectIdBuildVariantNameTaskNamePost``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -936,6 +951,11 @@ Name | Type | Description  | Notes
  **isManuallyQuarantined** | **bool** |  | 
  **requestBody** | **[]string** |  | 
  **displayTaskName** | **string** |  | 
+ **justification** | **string** |  | 
+ **jiraTicketsToLinkTo** | **[]string** |  | 
+ **taskInitiatedFrom** | **string** |  | 
+ **jiraAssignTo** | **string** |  | 
+ **initiatedBy** | **string** |  | 
 
 ### Return type
 
@@ -1023,7 +1043,7 @@ No authorization required
 
 ## MarkVariantAsManuallyQuarantinedApiTestSelectionTransitionVariantProjectIdBuildVariantNamePost
 
-> interface{} MarkVariantAsManuallyQuarantinedApiTestSelectionTransitionVariantProjectIdBuildVariantNamePost(ctx, projectId, buildVariantName).IsManuallyQuarantined(isManuallyQuarantined).Execute()
+> interface{} MarkVariantAsManuallyQuarantinedApiTestSelectionTransitionVariantProjectIdBuildVariantNamePost(ctx, projectId, buildVariantName).IsManuallyQuarantined(isManuallyQuarantined).Justification(justification).JiraTicketsToLinkTo(jiraTicketsToLinkTo).TaskInitiatedFrom(taskInitiatedFrom).JiraAssignTo(jiraAssignTo).InitiatedBy(initiatedBy).Execute()
 
 Mark Variant As Manually Quarantined
 
@@ -1045,10 +1065,15 @@ func main() {
 	projectId := "projectId_example" // string | 
 	buildVariantName := "buildVariantName_example" // string | 
 	isManuallyQuarantined := true // bool | 
+	justification := "justification_example" // string |  (optional)
+	jiraTicketsToLinkTo := []string{"Inner_example"} // []string |  (optional)
+	taskInitiatedFrom := "taskInitiatedFrom_example" // string |  (optional)
+	jiraAssignTo := "jiraAssignTo_example" // string |  (optional)
+	initiatedBy := "initiatedBy_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StateTransitionAPI.MarkVariantAsManuallyQuarantinedApiTestSelectionTransitionVariantProjectIdBuildVariantNamePost(context.Background(), projectId, buildVariantName).IsManuallyQuarantined(isManuallyQuarantined).Execute()
+	resp, r, err := apiClient.StateTransitionAPI.MarkVariantAsManuallyQuarantinedApiTestSelectionTransitionVariantProjectIdBuildVariantNamePost(context.Background(), projectId, buildVariantName).IsManuallyQuarantined(isManuallyQuarantined).Justification(justification).JiraTicketsToLinkTo(jiraTicketsToLinkTo).TaskInitiatedFrom(taskInitiatedFrom).JiraAssignTo(jiraAssignTo).InitiatedBy(initiatedBy).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StateTransitionAPI.MarkVariantAsManuallyQuarantinedApiTestSelectionTransitionVariantProjectIdBuildVariantNamePost``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1077,6 +1102,11 @@ Name | Type | Description  | Notes
 
 
  **isManuallyQuarantined** | **bool** |  | 
+ **justification** | **string** |  | 
+ **jiraTicketsToLinkTo** | **[]string** |  | 
+ **taskInitiatedFrom** | **string** |  | 
+ **jiraAssignTo** | **string** |  | 
+ **initiatedBy** | **string** |  | 
 
 ### Return type
 

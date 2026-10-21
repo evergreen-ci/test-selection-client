@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **TaskName** | **string** |  | 
 **TestNames** | **[]string** |  | 
 **IsManuallyQuarantined** | **bool** |  | 
+**Metadata** | Pointer to [**QuarantineMetadata**](QuarantineMetadata.md) |  | [optional] 
 **DisplayTaskName** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
@@ -129,6 +130,31 @@ and a boolean to check if the value has been set.
 
 SetIsManuallyQuarantined sets IsManuallyQuarantined field to given value.
 
+
+### GetMetadata
+
+`func (o *BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost) GetMetadata() QuarantineMetadata`
+
+GetMetadata returns the Metadata field if non-nil, zero value otherwise.
+
+### GetMetadataOk
+
+`func (o *BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost) GetMetadataOk() (*QuarantineMetadata, bool)`
+
+GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetadata
+
+`func (o *BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost) SetMetadata(v QuarantineMetadata)`
+
+SetMetadata sets Metadata field to given value.
+
+### HasMetadata
+
+`func (o *BodyMarkTestsAsManuallyQuarantinedDataInBodyApiTestSelectionTransitionTestsPost) HasMetadata() bool`
+
+HasMetadata returns a boolean if a field has been set.
 
 ### GetDisplayTaskName
 

@@ -436,6 +436,7 @@ paths:
         :param is_manually_quarantined: Denote if the test should be marked manually quarantined or not
         :param background_tasks: Background tasks to run after the request is completed.
         :param display_task_name: Optional - the display task name (that contains execution tasks).
+        :param metadata: Optional - details about the quarantine to record.
         :return: None
       operationId: mark_tests_as_manually_quarantined_data_in_body_api_test_selection_transition_tests__post
       requestBody:
@@ -471,6 +472,7 @@ paths:
         :param is_manually_quarantined: Denote if the test should be marked manually quarantined or not
         :param background_tasks: Background tasks to run after the request is completed.
         :param display_task_name: Optional - the display task name (that contains execution tasks).
+        :param metadata: Optional - details about the quarantine to record.
         :return: None
       operationId: mark_tests_as_manually_quarantined_api_test_selection_transition_tests__project_id___build_variant_name___task_name___post
       parameters:
@@ -514,6 +516,49 @@ paths:
           nullable: true
           type: string
         style: form
+      - explode: true
+        in: query
+        name: justification
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: jira_tickets_to_link_to
+        required: false
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+          default: null
+        style: form
+      - explode: true
+        in: query
+        name: task_initiated_from
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: jira_assign_to
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: initiated_by
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: form
       requestBody:
         content:
           application/json:
@@ -550,6 +595,7 @@ paths:
         :param is_manually_quarantined: Denote if the task should be marked manually quarantined
         :param background_tasks: Background tasks to run after the request is completed.
         :param display_task_name: Optional - the display task name (that contains execution tasks).
+        :param metadata: Optional - details about the quarantine to record.
         :return: None
       operationId: mark_task_as_manually_quarantined_data_in_body_api_test_selection_transition_task__post
       requestBody:
@@ -583,6 +629,7 @@ paths:
         :param is_manually_quarantined: Denote if the task should be marked manually quarantined
         :param background_tasks: Background tasks to run after the request is completed.
         :param display_task_name: Optional - the display task name (that contains execution tasks).
+        :param metadata: Optional - details about the quarantine to record.
         :return: None
       operationId: mark_task_as_manually_quarantined_api_test_selection_transition_task__project_id___build_variant_name___task_name___post
       parameters:
@@ -626,6 +673,49 @@ paths:
           nullable: true
           type: string
         style: form
+      - explode: true
+        in: query
+        name: justification
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: jira_tickets_to_link_to
+        required: false
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+          default: null
+        style: form
+      - explode: true
+        in: query
+        name: task_initiated_from
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: jira_assign_to
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: initiated_by
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -649,6 +739,7 @@ paths:
         :param build_variant_name: The build variant name.
         :param is_manually_quarantined: Denote if the variant should be marked manually quarantined
         :param background_tasks: Background tasks to run after the request is completed.
+        :param metadata: Optional - details about the quarantine to record.
         :return: None
       operationId: mark_variant_as_manually_quarantined_data_in_body_api_test_selection_transition_variant__post
       requestBody:
@@ -680,6 +771,7 @@ paths:
         :param build_variant_name: The build variant name.
         :param is_manually_quarantined: Denote if the variant should be marked manually quarantined
         :param background_tasks: Background tasks to run after the request is completed.
+        :param metadata: Optional - details about the quarantine to record.
         :return: None
       operationId: mark_variant_as_manually_quarantined_api_test_selection_transition_variant__project_id___build_variant_name___post
       parameters:
@@ -706,6 +798,49 @@ paths:
         schema:
           title: Is Manually Quarantined
           type: boolean
+        style: form
+      - explode: true
+        in: query
+        name: justification
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: jira_tickets_to_link_to
+        required: false
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+          default: null
+        style: form
+      - explode: true
+        in: query
+        name: task_initiated_from
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: jira_assign_to
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: initiated_by
+        required: false
+        schema:
+          nullable: true
+          type: string
         style: form
       responses:
         "200":
@@ -1144,93 +1279,6 @@ paths:
       summary: Get Project Quarantined
       tags:
       - state_transition
-  /api/test_selection/patch_scanner/{project_id}:
-    post:
-      description: |-
-        Run over all patches of the last day in a project
-        :param project_id: The project id.
-        :param strategies: The set of strategies to use
-        :return: None
-      operationId: scan_patches_api_test_selection_patch_scanner__project_id__post
-      parameters:
-      - explode: false
-        in: path
-        name: project_id
-        required: true
-        schema:
-          title: Project Id
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              default:
-              - Optimistic
-              items:
-                $ref: "#/components/schemas/StrategyEnum"
-              title: Strategies
-              type: array
-      responses:
-        "200":
-          content:
-            application/json:
-              schema: {}
-          description: Successful Response
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/HTTPValidationError"
-          description: Validation Error
-      summary: Scan Patches
-      tags:
-      - patch_scanner_initiation
-  /api/test_selection/single_patch_scanner/{patch_id}:
-    post:
-      description: |-
-        Run over all patches of the last day in a project
-        :param patch_id: The patch id.
-        :param strategies: The set of strategies to use
-        :return: None
-      operationId: scan_single_patch_api_test_selection_single_patch_scanner__patch_id__post
-      parameters:
-      - explode: false
-        in: path
-        name: patch_id
-        required: true
-        schema:
-          title: Patch Id
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              default:
-              - Optimistic
-              items:
-                $ref: "#/components/schemas/StrategyEnum"
-              title: Strategies
-              type: array
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                allOf:
-                - $ref: "#/components/schemas/PatchExplanation"
-                nullable: true
-          description: Successful Response
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/HTTPValidationError"
-          description: Validation Error
-      summary: Scan Single Patch
-      tags:
-      - patch_scanner_initiation
   /api/baseline/compute:
     post:
       description: |-
@@ -1715,6 +1763,8 @@ components:
         is_manually_quarantined:
           title: Is Manually Quarantined
           type: boolean
+        metadata:
+          $ref: "#/components/schemas/QuarantineMetadata"
         display_task_name:
           nullable: true
           type: string
@@ -1745,6 +1795,8 @@ components:
         is_manually_quarantined:
           title: Is Manually Quarantined
           type: boolean
+        metadata:
+          $ref: "#/components/schemas/QuarantineMetadata"
         display_task_name:
           nullable: true
           type: string
@@ -1766,6 +1818,8 @@ components:
         is_manually_quarantined:
           title: Is Manually Quarantined
           type: boolean
+        metadata:
+          $ref: "#/components/schemas/QuarantineMetadata"
       required:
       - build_variant_name
       - is_manually_quarantined
@@ -1866,21 +1920,6 @@ components:
       - task_name
       - test_names
       title: Body_select_tests_with_data_in_body_api_test_selection_select_tests__post
-    BuildExplanation:
-      description: Explanation of the results of a single build variant
-      properties:
-        build_variant:
-          description: Build variant name (not display name)
-          title: Build Variant
-          type: string
-        tasks:
-          additionalProperties:
-            $ref: "#/components/schemas/TaskExplanation"
-          default: {}
-          title: Tasks
-      required:
-      - build_variant
-      title: BuildExplanation
     ComparisonStatus:
       description: Status of a baseline comparison operation.
       enum:
@@ -1971,28 +2010,28 @@ components:
       - evergreen
       title: KnownIssueSource
       type: string
-    PatchExplanation:
-      description: |-
-        Explanation of the results of a whole patch
-
-        The builds are mapped by build variant name (not display name)
+    QuarantineMetadata:
+      description: Per-quarantine details stored on test registry records.
       properties:
-        patch_id:
-          title: Patch Id
+        justification:
+          nullable: true
           type: string
-        builds:
-          additionalProperties:
-            $ref: "#/components/schemas/BuildExplanation"
-          default: {}
-          title: Builds
-        success_measure:
-          additionalProperties:
-            $ref: "#/components/schemas/SuccessMeasure"
-          default: {}
-          title: Success Measure
-      required:
-      - patch_id
-      title: PatchExplanation
+        jira_tickets_to_link_to:
+          items:
+            type: string
+          nullable: true
+          type: array
+          default: null
+        task_initiated_from:
+          nullable: true
+          type: string
+        jira_assign_to:
+          nullable: true
+          type: string
+        initiated_by:
+          nullable: true
+          type: string
+      title: QuarantineMetadata
     StateMachineEnum:
       description: This enumerates all possible test states
       enum:
@@ -2078,11 +2117,11 @@ components:
           title: Actual Redness
           type: integer
         redness_saved:
-          default: 0
+          default: 0.0
           title: Redness Saved
           type: number
         time_saved_seconds:
-          default: 0
+          default: 0.0
           title: Time Saved Seconds
           type: number
       required:
@@ -2156,68 +2195,6 @@ components:
       - test_name
       - was_filtered
       title: StrategyTestMetrics
-    SuccessMeasure:
-      description: |-
-        This class is used to calculate the "magic number" that denotes the efficiency of a strategy
-
-        The "magic numbers" are:
-        1. How many tests were processed: total_number_of_tests
-        2. What percentage of selected tests matched the expected outcome
-            (number_of_correctly_selected_expected_outcome_passing_tests / number_of_selected_tests)
-        3. What percentage of unselected tests matched the expected outcome
-            (number_of_correctly_unselected_expected_outcome_passing_tests / number_of_unselected_tests)
-        4. The overall success of the patch
-            (number_of_correctly_selected_expected_outcome_passing_tests +
-            number_of_correctly_unselected_expected_outcome_passing_tests)
-            / total_number_of_tests
-      properties:
-        total_number_of_tests:
-          default: 0
-          title: Total Number Of Tests
-          type: integer
-        number_of_selected_tests:
-          default: 0
-          title: Number Of Selected Tests
-          type: integer
-        number_of_unselected_tests:
-          default: 0
-          title: Number Of Unselected Tests
-          type: integer
-        number_of_correctly_selected_expected_outcome_passing_tests:
-          default: 0
-          title: Number Of Correctly Selected Expected Outcome Passing Tests
-          type: integer
-        number_of_correctly_unselected_expected_outcome_passing_tests:
-          default: 0
-          title: Number Of Correctly Unselected Expected Outcome Passing Tests
-          type: integer
-        selected_without_filter:
-          default: 0
-          title: Selected Without Filter
-          type: integer
-        number_of_selected_unknown_expected_outcome_tests:
-          default: 0
-          title: Number Of Selected Unknown Expected Outcome Tests
-          type: integer
-        number_of_unselected_unknown_expected_outcome_tests:
-          default: 0
-          title: Number Of Unselected Unknown Expected Outcome Tests
-          type: integer
-      title: SuccessMeasure
-    TaskExplanation:
-      description: Explanation of the results of a single task.
-      properties:
-        task_name:
-          title: Task Name
-          type: string
-        tests:
-          additionalProperties:
-            $ref: "#/components/schemas/TestExplanation"
-          default: {}
-          title: Tests
-      required:
-      - task_name
-      title: TaskExplanation
     TaskMetrics:
       description: Aggregated metrics for a task.
       example:
@@ -2331,35 +2308,6 @@ components:
       - unknown
       title: TestClassification
       type: string
-    TestExplanation:
-      description: Explanation of the results of a single test.
-      properties:
-        test_name:
-          title: Test Name
-          type: string
-        is_passing:
-          title: Is Passing
-          type: boolean
-        selected:
-          title: Selected
-          type: boolean
-        explanation:
-          title: Explanation
-          type: string
-        explanations:
-          additionalProperties:
-            $ref: "#/components/schemas/Explanation"
-          default: {}
-          title: Explanations
-        expected_outcome:
-          $ref: "#/components/schemas/ExpectedOutcome"
-      required:
-      - expected_outcome
-      - explanation
-      - is_passing
-      - selected
-      - test_name
-      title: TestExplanation
     TestResult:
       description: Represents a test execution result from Evergreen.
       properties:
@@ -2376,7 +2324,7 @@ components:
           title: Execution
           type: integer
         duration_seconds:
-          default: 0
+          default: 0.0
           title: Duration Seconds
           type: number
       required:

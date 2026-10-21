@@ -40,7 +40,7 @@ func NewTestResult(testName string, status string, taskId string, execution int3
 	this.Status = status
 	this.TaskId = taskId
 	this.Execution = execution
-	var durationSeconds float32 = 0
+	var durationSeconds float32 = 0.0
 	this.DurationSeconds = &durationSeconds
 	return &this
 }
@@ -50,7 +50,7 @@ func NewTestResult(testName string, status string, taskId string, execution int3
 // but it doesn't guarantee that properties required by API are set
 func NewTestResultWithDefaults() *TestResult {
 	this := TestResult{}
-	var durationSeconds float32 = 0
+	var durationSeconds float32 = 0.0
 	this.DurationSeconds = &durationSeconds
 	return &this
 }
